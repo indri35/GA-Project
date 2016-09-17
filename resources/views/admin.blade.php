@@ -151,6 +151,7 @@
     <!-- /.content -->
   </section>
     <!-- /.content -->
+</div>    
 @include('layouts.footer') 
 @include('layouts.chartdashboard')
 </body>
