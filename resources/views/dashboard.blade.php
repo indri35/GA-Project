@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="box-body">
-              <div class="line-chart" style="height: 300px;"></div>
+              <div id="line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -98,7 +98,7 @@
               </div>
             </div>
             <div class="box-body">
-              <div class="line-chart-daily" style="height: 300px;"></div>
+              <div id="line-chart-daily" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>
