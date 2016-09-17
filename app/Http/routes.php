@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function(){
         return view('dashboard');
     });
 
+    Route::get('/admin', function () {
+        return view('admin');
+    });
+
     Route::get('/home', 'HomeController@index');
 });
 
