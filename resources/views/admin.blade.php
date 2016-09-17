@@ -63,7 +63,7 @@
               </div> -->
             </div> 
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>

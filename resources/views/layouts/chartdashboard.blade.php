@@ -113,7 +113,7 @@
       data: cos,
       color: "#00c0ef"
     };
-    $.plot("#line-chart", [line_data1, line_data2], {
+    $.plot(".line-chart", [line_data1, line_data2], {
       grid: {
         hoverable: true,
         borderColor: "#f3f3f3",
@@ -146,7 +146,7 @@
       display: "none",
       opacity: 0.8
     }).appendTo("body");
-    $("#line-chart").bind("plothover", function (event, pos, item) {
+    $(".line-chart").bind("plothover", function (event, pos, item) {
 
       if (item) {
         var x = item.datapoint[0].toFixed(2),

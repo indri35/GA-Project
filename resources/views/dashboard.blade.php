@@ -5,7 +5,6 @@
       <!-- Main content -->
     <section class="content">
       
-
       <div class="row">
         <div class="col-md-6">
           <!-- Line chart -->
@@ -22,7 +21,7 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -88,7 +87,7 @@
           <!-- Line chart -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <i class="fa fa-bar-chart-o"></i>
+              <i class="fa fa-line-chart-o"></i>
 
               <h3 class="box-title">Daily Install</h3>
 
@@ -99,7 +98,7 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="line-chart" style="height: 300px;"></div>
             </div>
             <!-- /.box-body-->
           </div>
