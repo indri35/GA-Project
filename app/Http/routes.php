@@ -21,12 +21,19 @@ Route::group(['middleware' => 'auth'], function(){
         return view('dashboard');
     });
 
+    Route::get('/home', 'HomeController@index');
+
+
     Route::get('/admin', function () {
         return view('admin');
     });
 
-    Route::get('/home', 'HomeController@index');
 });
+
+
+Route::get('/getAllUser', 'DashboardController@getAllUser');
+Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
+Route::resource("master_datas","MasterDataController");
 
 Route::auth();
 

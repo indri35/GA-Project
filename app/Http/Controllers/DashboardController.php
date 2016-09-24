@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -13,8 +14,16 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getAllUser()
     {
-        return view('admin.layout.layout');
+        $user =  User::get();
+        return $user;
     }
+
+        public function getUserByEmail($email)
+    {
+        $user =  User::Where('email',$email)->get();
+        return $user;
+    }
+
 }
