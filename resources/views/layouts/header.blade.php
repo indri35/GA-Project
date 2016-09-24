@@ -15,6 +15,10 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{ asset('assets/dist/css/skins/_all-skins.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ asset('assets/dist/fonts/font-awesome.min.css')}}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{{ asset('assets/dist/css/ionicons.min.css')}}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/iCheck/flat/blue.css') }}">
   <!-- Morris chart -->
@@ -51,6 +55,9 @@
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </a>
 
       <div class="navbar-custom-menu">
@@ -67,30 +74,12 @@
                 <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{ Auth::user()->name }} 
+                  <small>Member since {{ Auth::user()->created_at }}</small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="{{ url('/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
@@ -134,63 +123,50 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
+          <a href="{{ url('/dashboard') }}">
+            <i class="fa fa-bar-chart"></i> <span>Dashboard</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-bar-chart"></i> <span>Report</span>
+            <i class="fa fa-bar-chart"></i> <span>Click and Impressions</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-fw"></i> Overview</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Performance LTV</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> GEO</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Assisted Install</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Retention</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Cohort</a></li>
-            <li>
-              <a href="#">
-                <i class="fa fa-fw"></i> <span>Export Data</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-            </li>
+            <li><a href="index.html"><i class="fa fa-fw"></i> Day</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Month</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cog"></i> <span>Configuration</span>
+            <i class="fa fa-cog"></i> <span>Install</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-fw"></i> Media Source Config</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-fw"></i> Config OnLink</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-fw"></i> Change App Store</a></li>
+            <li><a href="index.html"><i class="fa fa-fw"></i> Day</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Month</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-wrench"></i> <span>Integration</span>
+            <i class="fa fa-wrench"></i> <span>Interactive</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-fw"></i> SDK Integration </a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-fw"></i> API Access</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-flask"></i> <span>Lab</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-fw"></i> Right Now </a></li>
+            <li><a href="index.html"><i class="fa fa-fw"></i> Day</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="index2.html"><i class="fa fa-fw"></i> Month</a></li>
           </ul>
         </li>
       </ul>
