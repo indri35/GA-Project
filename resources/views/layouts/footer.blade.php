@@ -10,15 +10,14 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
+<!-- jQuery 2.2.3 -->
+<script src="{{ asset('assets/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('assets/dist/js/jquery-ui.min.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="{{ asset('assets/dist/js/raphael-min.js')}}"></script>
 <!-- daterangepicker -->
 <script src="{{ asset('assets/dist/js/moment.min.js') }}"></script>
-<!-- jQuery 2.2.3 -->
-<script src="{{ asset('assets/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
