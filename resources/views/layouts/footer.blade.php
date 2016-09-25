@@ -26,11 +26,11 @@
 <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
-<!-- FLOT CHARTS -->
-<script src="{{ asset('assets/plugins/flot/jquery.flot.min.js') }}"></script>
-<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
-<script src="{{ asset('assets/plugins/flot/jquery.flot.resize.min.js') }}"></script>
-<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
-<script src="{{ asset('assets/plugins/flot/jquery.flot.pie.min.js') }}"></script>
-<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
-<script src="{{ asset('assets/plugins/flot/jquery.flot.categories.min.js') }}"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
+<!-- DataTables -->
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+<!-- SlimScroll -->
+<script src="{{ asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+

@@ -23,9 +23,12 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index');
 
-
     Route::get('/admin', function () {
         return view('admin');
+    });
+
+    Route::get('/install', function () {
+        return view('page.install');
     });
 
 });

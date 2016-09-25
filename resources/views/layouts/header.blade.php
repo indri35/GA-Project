@@ -124,15 +124,12 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="{{ url('/dashboard') }}">
-            <i class="fa fa-bar-chart"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-bar-chart"></i> <span>Click and Impressions</span>
+            <i class="fa fa-mouse-pointer"></i> <span>Click and Impressions</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -145,7 +142,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-cog"></i> <span>Install</span>
+            <i class="fa fa-download"></i> <span>Install</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -153,7 +150,7 @@
           <ul class="treeview-menu">
             <li><a href="index.html"><i class="fa fa-fw"></i> Day</a></li>
             <li><a href="index2.html"><i class="fa fa-fw"></i> Week</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Month</a></li>
+            <li><a href="{{ url('/install') }}"><i class="fa fa-fw"></i> Month</a></li>
           </ul>
         </li>
         <li class="treeview">
