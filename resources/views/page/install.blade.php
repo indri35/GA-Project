@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 @include('layouts.header')
 
       <!-- Main content -->
