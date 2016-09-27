@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -24,6 +25,11 @@ class DashboardController extends Controller
     {
         $user =  User::Where('email',$email)->get();
         return $user;
+    }    
+        public function getDataInstall()
+    {
+        $install =  DB::table('view_user_count')->get();
+        return $install;
     }
 
 }
