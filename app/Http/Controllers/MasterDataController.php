@@ -115,12 +115,12 @@ class MasterDataController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Request $req)
 	{
-		$master_datum = MasterData::findOrFail($id);
+		$master_datum = MasterData::findOrFail($req->imei);
 		$master_datum->delete();
 
-		return redirect()->route('master_datas.index')->with('message', 'Item deleted successfully.');
+		return "success";
 	}
 
 }
