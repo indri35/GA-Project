@@ -20,6 +20,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index');
 
+    Route::get('/master', 'MasterDataController@index');
+
     Route::get('/admin', function () {
         return view('admin');
     });
@@ -45,6 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/getAllUser', 'DashboardController@getAllUser');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
+Route::get('/getDataInstall', 'DashboardController@getDataInstall');
 
 Route::get('/getDataByImei/{imei}', 'MasterDataController@getDataByImei');
 Route::post('/create_data','MasterDataController@store');

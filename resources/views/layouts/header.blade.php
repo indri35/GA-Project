@@ -155,7 +155,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-wrench"></i> <span>Interactive</span>
+            <i class="fa fa-wrench"></i> <span>View Page</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

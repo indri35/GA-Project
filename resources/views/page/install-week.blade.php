@@ -491,7 +491,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.installchart')
+@include('page.installchart-day')
 </body>
 </html>
 
