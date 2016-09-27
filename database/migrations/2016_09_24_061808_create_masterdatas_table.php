@@ -14,7 +14,6 @@ class CreateMasterDatasTable extends Migration {
 	{
 		Schema::create('master_datas', function(Blueprint $table) {
             $table->increments('id');
-            $table->int('id');
             $table->string('imei');
             $table->date('created_at');
             $table->date('updated_at');

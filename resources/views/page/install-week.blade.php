@@ -1,5 +1,15 @@
+<!DOCTYPE html>
+<html>
 @include('layouts.header')
-
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Install
+        <small>Week</small>
+      </h1>
+    </section>
       <!-- Main content -->
     <section class="content">
       
