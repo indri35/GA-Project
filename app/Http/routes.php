@@ -43,7 +43,6 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 Route::get('/getAllUser', 'DashboardController@getAllUser');
-Route::get('/getDataInstall', 'DashboardController@getDataInstall');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
 Route::resource("master_datas","MasterDataController");
 
