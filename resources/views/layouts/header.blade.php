@@ -148,9 +148,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-fw"></i> Day</a></li>
-            <li><a href="index2.html"><i class="fa fa-fw"></i> Week</a></li>
-            <li><a href="{{ url('/install') }}"><i class="fa fa-fw"></i> Month</a></li>
+            <li><a href="{{ url('/install-day') }}"><i class="fa fa-fw"></i> Day</a></li>
+            <li><a href="{{ url('/install-week') }}"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="{{ url('/install-month') }}"><i class="fa fa-fw"></i> Month</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -171,16 +171,4 @@
     <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
+  

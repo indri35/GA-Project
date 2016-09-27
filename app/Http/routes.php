@@ -27,8 +27,16 @@ Route::group(['middleware' => 'auth'], function(){
         return view('admin');
     });
 
-    Route::get('/install', function () {
-        return view('page.install');
+    Route::get('/install-month', function () {
+        return view('page.install-month');
+    });
+
+    Route::get('/install-week', function () {
+        return view('page.install-week');
+    });
+
+    Route::get('/install-day', function () {
+        return view('page.install-day');
     });
 
 });
