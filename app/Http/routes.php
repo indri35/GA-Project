@@ -45,7 +45,11 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/getAllUser', 'DashboardController@getAllUser');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
-Route::resource("master_datas","MasterDataController");
+
+Route::get('/getDataByImei/{imei}', 'MasterDataController@getDataByImei');
+Route::post('/create_data','MasterDataController@store');
+Route::post('/update_data','MasterDataController@update');
+Route::delete('/delete_data','MasterDataController@destroy');
 
 Route::auth();
 

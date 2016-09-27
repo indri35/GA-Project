@@ -15,6 +15,9 @@ class VerifyCsrfToken extends BaseVerifier
         //
         '/getAllUser',
         '/getUserByEmail',
+        '/create_data',
+        '/update_data',
+        '/delete_data',
         
     ];
 }

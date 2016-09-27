@@ -20,6 +20,13 @@ class MasterDataController extends Controller {
 		return view('master_datas.index', compact('master_datas'));
 	}
 
+	public function getDataByImei($imei)
+	{
+		$master_data = MasterData::Where('imei', $imei)->get();
+
+		return $master_data;
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -40,10 +47,7 @@ class MasterDataController extends Controller {
 	{
 		$master_datum = new MasterData();
 
-		$master_datum->id = $request->input("id");
         $master_datum->imei = $request->input("imei");
-        $master_datum->created_at = $request->input("created_at");
-        $master_datum->updated_at = $request->input("updated_at");
         $master_datum->click = $request->input("click");
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
@@ -53,7 +57,7 @@ class MasterDataController extends Controller {
 
 		$master_datum->save();
 
-		return redirect()->route('master_datas.index')->with('message', 'Item created successfully.');
+		return "success";
 	}
 
 	/**
@@ -89,14 +93,10 @@ class MasterDataController extends Controller {
 	 * @param Request $request
 	 * @return Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $request)
 	{
-		$master_datum = MasterData::findOrFail($id);
+		$master_datum = MasterData::findOrFail($request->imei);
 
-		$master_datum->id = $request->input("id");
-        $master_datum->imei = $request->input("imei");
-        $master_datum->created_at = $request->input("created_at");
-        $master_datum->updated_at = $request->input("updated_at");
         $master_datum->click = $request->input("click");
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
@@ -106,7 +106,7 @@ class MasterDataController extends Controller {
 
 		$master_datum->save();
 
-		return redirect()->route('master_datas.index')->with('message', 'Item updated successfully.');
+		return "success";
 	}
 
 	/**
