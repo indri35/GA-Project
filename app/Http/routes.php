@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -38,6 +35,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/install-day', function () {
         return view('page.install-day');
     });
+
+    Route::get('/', function () {
+    return view('dashboard');
+});
 
 });
 
