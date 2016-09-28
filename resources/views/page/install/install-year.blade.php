@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 @include('layouts.header')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -5,9 +7,10 @@
     <section class="content-header">
       <h1>
         Install
-        <small>Day</small>
+        <small>Year</small>
       </h1>
     </section>
+
       <!-- Main content -->
     <section class="content">
       
@@ -44,37 +47,33 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+                @if($user->count())
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                  </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                </tr>
+                @foreach($user as $user)
+                    <tr>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->created_at}}</td>
+                        <td>{{$user->updated_at}}</td>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
-                </tfoot>
               </table>
+            @else
+                <h3 class="text-center alert alert-info">Empty!</h3>
+            @endif  
             </div>
             <!-- /.box-body -->
           </div>
@@ -91,7 +90,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.installchart-day')
+@include('page.install-js.installchart-day')
 </body>
 </html>
 

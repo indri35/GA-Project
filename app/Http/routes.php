@@ -20,8 +20,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/master', 'MasterDataController@index');
-
     Route::get('/admin', function () {
         return view('admin');
     });
@@ -34,9 +32,19 @@ Route::group(['middleware' => 'auth'], function(){
         return view('page.install-week');
     });
 
-    Route::get('/install-day', function () {
-        return view('page.install-day');
-    });
+    Route::get('/master-data', 'PageController@masterdata');
+
+    Route::get('/install-day', 'PageController@installday');
+    Route::get('/install-week', 'PageController@installweek');
+    Route::get('/install-year', 'PageController@installyear');
+
+    Route::get('/click-day', 'PageController@clickday');
+    Route::get('/click-week', 'PageController@clickweek');
+    Route::get('/click-year', 'PageController@clickyear');
+
+    Route::get('/view-day', 'PageController@viewday');
+    Route::get('/view-week', 'PageController@viewweek');
+    Route::get('/view-year', 'PageController@viewyear');
 
     Route::get('/', function () {
     return view('dashboard');

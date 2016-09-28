@@ -17,7 +17,7 @@ class MasterDataController extends Controller {
 	{
 		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 
-		return view('master_datas.index', compact('master_datas'));
+		return view('page.install-day', compact('master_datas'));
 	}
 
 	/**

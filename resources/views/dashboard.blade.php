@@ -56,7 +56,9 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="bar-chart" style="height: 300px;"></div>
+              <div class="chart">
+                <canvas id="barChart" style="height:300px"></canvas>
+              </div>
             </div>
             <!-- /.box-body-->
           </div>
