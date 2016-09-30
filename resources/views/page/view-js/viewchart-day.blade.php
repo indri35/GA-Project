@@ -130,7 +130,7 @@
     var barChart = new Chart(barChartCanvas);
 
     $.ajax({
-      url: "http://localhost:8000/getDataInstall",
+      url: "{{ url('/getDataInstall') }}",
       method: "GET",
       success: function(data) {
       console.log(data);
