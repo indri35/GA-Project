@@ -52,23 +52,34 @@ class DashboardController extends Controller
     //DataViewPage
         public function getDataViewPageDay()
     {
-        $in = Array();
+        $json = Array();
         $viewcategory = DB::table('view_by_view_page_perday')->select('view')->groupBy('view')->get();
         foreach ($viewcategory  as $view) {
             $viewpageday =  DB::table('view_by_view_page_perday')->select('view_day','count_view')->Where('view',$view->view)->get();
-            $in[] = [$view->view => $viewpageday]; 
+            $json[] = [$view->view => $viewpageday]; 
         }
-        return $in;
+        return $json;
     }
         public function getDataViewPageMonth()
     {
-        $viewpagemonth =  DB::table('view_by_view_page_permonth')->get();
-        return $viewpagemonth;
+        $json = Array();
+        $viewcategory = DB::table('view_by_view_page_permonth')->select('view')->groupBy('view')->get();
+        foreach ($viewcategory  as $view) {
+            $viewpageday =  DB::table('view_by_view_page_permonth')->select('view_month','count_view')->Where('view',$view->view)->get();
+            $json[] = [$view->view => $viewpageday]; 
+        }
+        return $json;
+
     }
         public function getDataViewPageYear()
     {
-        $viewpageyear =  DB::table('view_by_view_page_peryear')->get();
-        return $viewpageyear;
+        $json = Array();
+        $viewcategory = DB::table('view_by_view_page_peryear')->select('view')->groupBy('view')->get();
+        foreach ($viewcategory  as $view) {
+            $viewpageday =  DB::table('view_by_view_page_peryear')->select('view_year','count_view')->Where('view',$view->view)->get();
+            $json[] = [$view->view => $viewpageday]; 
+        }
+        return $json;
     }
 
     //DataActivityDevice
