@@ -52,8 +52,13 @@ class DashboardController extends Controller
     //DataViewPage
         public function getDataViewPageDay()
     {
-        $viewpageday =  DB::table('view_by_view_page_perday')->get();
-        return $viewpageday;
+        $in = Array();
+        $viewcategory = DB::table('view_by_view_page_perday')->select('view')->groupBy('view')->get();
+        foreach ($viewcategory  as $view) {
+            $viewpageday =  DB::table('view_by_view_page_perday')->select('view_day','count_view')->Where('view',$view->view)->get();
+            $in[] = [$view->view => $viewpageday]; 
+        }
+        return $in;
     }
         public function getDataViewPageMonth()
     {
