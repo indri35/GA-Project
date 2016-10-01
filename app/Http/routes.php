@@ -57,6 +57,21 @@ Route::get('/getAllUser', 'DashboardController@getAllUser');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
 Route::get('/getDataInstall', 'DashboardController@getDataInstall');
 
+//DataClick
+Route::get('/getDataClickDay', 'DashboardController@getDataClickDay');
+Route::get('/getDataClickMonth', 'DashboardController@getDataClickMonth');
+Route::get('/getDataClickYear', 'DashboardController@getDataClickYear');
+
+//DataViewPage
+Route::get('/getDataViewPageDay', 'DashboardController@getDataViewPageDay');
+Route::get('/getDataViewPageMonth', 'DashboardController@getDataViewPageMonth');
+Route::get('/getDataViewPageYear', 'DashboardController@getDataViewPageYear');
+
+//DataActivityDevice
+Route::get('/getDataActivityDeviceDay', 'DashboardController@getDataActivityDeviceDay');
+Route::get('/getDataActivityDeviceMonth', 'DashboardController@getDataActivityDeviceMonth');
+Route::get('/getDataActivityDeviceYear', 'DashboardController@getDataActivityDeviceYear');
+
 Route::get('/getDataByImei/{imei}', 'MasterDataController@getDataByImei');
 Route::post('/create_data','MasterDataController@store');
 Route::post('/update_data','MasterDataController@update');

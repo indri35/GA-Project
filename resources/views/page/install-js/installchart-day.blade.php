@@ -3,7 +3,7 @@
 <script>
   $(function () {
     //-------------
-    //- BAR CHART -
+    //- BAR CHART - 
     //-------------
 
     var barChartCanvas = $("#barChart").get(0).getContext("2d");
