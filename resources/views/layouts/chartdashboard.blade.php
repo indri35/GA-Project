@@ -106,8 +106,29 @@
      * ----------
      */
     //LINE randomly generated data
+  var gab =[];
+  $.ajax({
+    url: "{{ url('/getDataActivityDeviceDay') }}",
+    method: "GET",
+    success: function(data) {
+    console.log(data);
 
     var sin = [], cos = [], asin = [];
+    for(var i in data) {
+
+        var datanya=[];
+        for(var j in data[i].data){
+            datanya.push([data[i].data[j].activity_day,data[i].data[j].count_activity]);
+        }
+
+        var linedata={
+          label : data[i].key,
+          data : datanya,
+          color: "#3c8dbc"
+        };      
+        gab.push(linedata);
+    }
+
     for (var i = 0; i < 14; i += 0.5) {
       sin.push([i, Math.sin(i)]);
       cos.push([i, Math.cos(i)]);
@@ -130,7 +151,7 @@
       color: "#00c000"
     };
 
-    $.plot("#line-chart", [line_data1, line_data2, line_data3], {
+    $.plot("#line-chart", gab, {
       grid: {
         hoverable: true,
         borderColor: "#f3f3f3",
@@ -188,6 +209,8 @@
         show: true
       }
     });
+    }
+  });
 
     //Initialize tooltip on hover
     $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
