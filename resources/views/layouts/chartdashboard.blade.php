@@ -100,6 +100,125 @@
      * END INTERACTIVE CHART
      */
 
+     //-------------
+    //- BAR CHART -
+    //-------------
+
+    var barChartCanvasView = $("#barChartView").get(0).getContext("2d");
+    var barChartView = new Chart(barChartCanvasView);
+
+    $.ajax({
+      url: "{{ url('/getDataViewPageDay') }}",
+      method: "GET",
+      success: function(data) {
+      console.log(data);
+      var day = [];
+      var welcome_count = [];
+      var registration_count = [];
+      var shopping_count = [];
+      var order_count = [];
+      var other_count = [];
+      
+      for(var i in data) {
+          day.push(data[i].day);
+          welcome_count.push(data[i].welcome_count);
+          registration_count.push(data[i].registration_count);
+          shopping_count.push(data[i].shopping_count);
+          order_count.push(data[i].order_count);
+          other_count.push(data[i].other_count);
+      }
+
+      var barChartDataView = {
+        labels: day,
+        datasets: [
+          {
+            label: "Welcome",
+            fillColor: "#f56954",
+            strokeColor: "#f56954",
+            pointColor: "#f56954",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f56954",
+            data: welcome_count
+          },
+          {
+            label: "Registration",
+            fillColor: "#00a65a",
+            strokeColor: "#00a65a",
+            pointColor: "#00a65a",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#00a65a",
+            data: registration_count
+          },
+          {
+            label: "Shopping",
+            fillColor: "#f39c12",
+            strokeColor: "#f39c12",
+            pointColor: "#f39c12",
+            pointStrokeColor: "#f39c12",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f39c12",
+            data: shopping_count
+          },
+          {
+            label: "Order",
+            fillColor: "#00c0ef",
+            strokeColor: "#00c0ef",
+            pointColor: "#00c0ef",
+            pointStrokeColor: "#00c0ef",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: order_count
+          },
+          {
+            label: "Other",
+            fillColor: "#3c8dbc",
+            strokeColor: "#3c8dbc",
+            pointColor: "#3c8dbc",
+            pointStrokeColor: "#3c8dbc",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#3c8dbc",
+            data: other_count
+          }
+        ]
+      };
+
+      barChartDataView.datasets[1].fillColor = "#00a65a";
+      barChartDataView.datasets[1].strokeColor = "#00a65a";
+      barChartDataView.datasets[1].pointColor = "#00a65a";
+      var barChartOptionsView = {
+        //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+        scaleBeginAtZero: true,
+        //Boolean - Whether grid lines are shown across the chart
+        scaleShowGridLines: true,
+        //String - Colour of the grid lines
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        //Number - Width of the grid lines
+        scaleGridLineWidth: 1,
+        //Boolean - Whether to show horizontal lines (except X axis)
+        scaleShowHorizontalLines: true,
+        //Boolean - Whether to show vertical lines (except Y axis)
+        scaleShowVerticalLines: true,
+        //Boolean - If there is a stroke on each bar
+        barShowStroke: true,
+        //Number - Pixel width of the bar stroke
+        barStrokeWidth: 2,
+        //Number - Spacing between each of the X value sets
+        barValueSpacing: 5,
+        //Number - Spacing between data sets within X values
+        barDatasetSpacing: 1,
+        //String - A legend template
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+        //Boolean - whether to make the chart responsive
+        responsive: true,
+        maintainAspectRatio: true
+      };
+
+    barChartOptionsView.datasetFill = false;  
+    barChartView.Bar(barChartDataView, barChartOptionsView);
+  }
+  });
 
      
 
