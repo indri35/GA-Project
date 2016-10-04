@@ -18,11 +18,11 @@
     var barChart = new Chart(barChartCanvas);
 
     $.ajax({
-      url: "{{ url('/getDataViewPageDay') }}",
+      url: "{{ url('/getDataViewPageMonth') }}",
       method: "GET",
       success: function(data) {
       console.log(data);
-      var day = [];
+      var month = [];
       var welcome_count = [];
       var registration_count = [];
       var shopping_count = [];
@@ -30,7 +30,7 @@
       var other_count = [];
       
       for(var i in data) {
-          day.push(data[i].day);
+          month.push(data[i].month);
           welcome_count.push(data[i].welcome_count);
           registration_count.push(data[i].registration_count);
           shopping_count.push(data[i].shopping_count);
@@ -39,7 +39,7 @@
       }
 
       var barChartData = {
-        labels: day,
+        labels: month,
         datasets: [
           {
             label: "Welcome",

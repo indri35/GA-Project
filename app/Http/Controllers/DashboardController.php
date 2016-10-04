@@ -25,11 +25,23 @@ class DashboardController extends Controller
     {
         $user =  User::Where('email',$email)->get();
         return $user;
-    }    
-        public function getDataInstall()
+    } 
+
+    //DataInstall   
+        public function getDataInstallDay()
     {
-        $install =  DB::table('view_user_count')->get();
-        return $install;
+        $installday =  DB::table('view_install_per_day')->get();
+        return $installday;
+    }
+        public function getDataInstallMonth()
+    {
+        $installmonth =  DB::table('view_install_per_month')->get();
+        return $installmonth;
+    }
+        public function getDataInstallYear()
+    {
+        $installyear =  DB::table('view_install_per_year')->get();
+        return $installyear;
     }
 
     //DataClick
@@ -40,77 +52,46 @@ class DashboardController extends Controller
     }
         public function getDataClickMonth()
     {
-        $clickday =  DB::table('view_by_click_per_month')->get();
-        return $clickday;
+        $clickmonth =  DB::table('view_by_click_per_month')->get();
+        return $clickmonth;
     }
         public function getDataClickYear()
     {
-        $clickday =  DB::table('view_by_click_per_year')->get();
-        return $clickday;
+        $clickyear =  DB::table('view_by_click_per_year')->get();
+        return $clickyear;
     } 
 
     //DataViewPage
         public function getDataViewPageDay()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_by_view_page_perday')->select('view')->groupBy('view')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_by_view_page_perday')->select('view_day','count_view')->Where('view',$view->view)->get();
-            $json[] = [ 'key'=>$view->view,'data'=> $viewpageday]; 
-        }
-        return $json;
+        $viewday =  DB::table('view_by_view_page_perday')->get();
+        return $viewday;
     }
         public function getDataViewPageMonth()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_by_view_page_permonth')->select('view')->groupBy('view')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_by_view_page_permonth')->select('view_month','count_view')->Where('view',$view->view)->get();
-            $json[] = [ 'key'=>$view->view,'data'=> $viewpageday]; 
-        }
-        return $json;
-
+        $viewmonth =  DB::table('view_by_view_page_permonth')->get();
+        return $viewmonth;
     }
         public function getDataViewPageYear()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_by_view_page_peryear')->select('view')->groupBy('view')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_by_view_page_peryear')->select('view_year','count_view')->Where('view',$view->view)->get();
-            $json[] = [ 'key'=>$view->view,'data'=> $viewpageday]; 
-        }
-        return $json;
+        $viewyear =  DB::table('view_by_view_page_peryear')->get();
+        return $viewyear;
     }
 
     //DataActivityDevice
         public function getDataActivityDeviceDay()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_activity_by_type_device_per_day')->select('type_device')->groupBy('type_device')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_activity_by_type_device_per_day')->select('activity_day','count_activity')->Where('type_device',$view->type_device)->get();
-            $json[] = [ 'key'=>$view->type_device,'data'=> $viewpageday]; 
-        }
-        return $json;
+        $activityday =  DB::table('view_activity_by_type_device_per_day')->get();
+        return $activityday;
     }
         public function getDataActivityDeviceMonth()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_activity_by_type_device_per_month')->select('type_device')->groupBy('type_device')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_activity_by_type_device_per_month')->select('activity_day','count_activity')->Where('type_device',$view->type_device)->get();
-            $json[] = [ 'key'=>$view->type_device,'data'=> $viewpageday]; 
-        }
-        return $json;
+        $activitymonth =  DB::table('view_activity_by_type_device_per_month')->get();
+        return $activitymonth;
     }
         public function getDataActivityDeviceYear()
     {
-        $json = Array();
-        $viewcategory = DB::table('view_activity_by_type_device_per_year')->select('type_device')->groupBy('type_device')->get();
-        foreach ($viewcategory  as $view) {
-            $viewpageday =  DB::table('view_activity_by_type_device_per_year')->select('activity_day','count_activity')->Where('type_device',$view->type_device)->get();
-            $json[] = [ 'key'=>$view->type_device,'data'=> $viewpageday]; 
-        }
-        return $json;
+        $activityyear =  DB::table('view_activity_by_type_device_per_year')->get();
+        return $activityyear;
     }        
 }

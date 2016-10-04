@@ -5,7 +5,7 @@
     <section class="content-header">
       <h1>
         View
-        <small>Day</small>
+        <small>Year</small>
       </h1>
     </section>
       <!-- Main content -->
@@ -70,7 +70,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.view-js.viewchart-day')
+@include('page.view-js.viewchart-year')
 </body>
 </html>
 

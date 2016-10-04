@@ -141,7 +141,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/click-day') }}"><i class="fa fa-fw"></i> Day</a></li>
-            <li><a href="{{ url('/click-month') }}"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="{{ url('/click-month') }}"><i class="fa fa-fw"></i> Month</a></li>
             <li><a href="{{ url('/click-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
         </li>
@@ -154,7 +154,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/install-day') }}"><i class="fa fa-fw"></i> Day</a></li>
-            <li><a href="{{ url('/install-week') }}"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="{{ url('/install-month') }}"><i class="fa fa-fw"></i> Month</a></li>
             <li><a href="{{ url('/install-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
         </li>
@@ -167,7 +167,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/view-day') }}"><i class="fa fa-fw"></i> Day</a></li>
-            <li><a href="{{ url('/view-week') }}"><i class="fa fa-fw"></i> Week</a></li>
+            <li><a href="{{ url('/view-month') }}"><i class="fa fa-fw"></i> Month</a></li>
             <li><a href="{{ url('/view-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
         </li>

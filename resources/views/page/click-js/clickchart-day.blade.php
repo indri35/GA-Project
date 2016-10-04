@@ -9,91 +9,134 @@
 <!-- Page script -->
 <script>
   $(function () {
-    /*
-     * LINE CHART
-     * ----------
-     */
-    //LINE randomly generated data
+      
     $.ajax({
       url: "{{ url('/getDataClickDay') }}",
       method: "GET",
       success: function(data) {
       console.log(data);
-      var click_day = [], click = [], count_click = [];
+      var day = [];
+      var login_count = [];
+      var save_count = [];
+      var close_count = [];
+      var delete_count = [];
+      var other_count = [];
+      
       for(var i in data) {
-        click_day.push(data[i].click_day);
-        count_click.push(data[i].count_click);
-        click.push(data[i].click);
+          day.push(data[i].day);
+          login_count.push(data[i].login_count);
+          save_count.push(data[i].save_count);
+          close_count.push(data[i].close_count);
+          delete_count.push(data[i].delete_count);
+          other_count.push(data[i].other_count);
       }
-      
-      var line_data1 = {
-        label: click[0],
-        data: count_click,
-        color: "#3c8dbc"
-      };
-      var line_data2 = {
-        label: click,
-        data: count_click,
-        color: "#00c0ef"
-      };
 
-      var line_data3 = {
-        label: click,
-        data: count_click,
-        color: "#00c000"
-      };
-
-      $.plot("#line-chart", [line_data1, line_data2, line_data3], {
-        grid: {
-          hoverable: true,
-          borderColor: "#f3f3f3",
-          borderWidth: 1,
-          tickColor: "#f3f3f3"
-        },
-        series: {
-          shadowSize: 0,
-          lines: {
-            show: true
+      var lineChartData = {
+        labels: day,
+        datasets: [
+          {
+            label: "Login",
+            fillColor: "#f56954",
+            strokeColor: "#f56954",
+            pointColor: "#f56954",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f56954",
+            data: login_count
           },
-          points: {
-            show: true
+          {
+            label: "Save",
+            fillColor: "#00a65a",
+            strokeColor: "#00a65a",
+            pointColor: "#00a65a",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#00a65a",
+            data: save_count
+          },
+          {
+            label: "Close",
+            fillColor: "#f39c12",
+            strokeColor: "#f39c12",
+            pointColor: "#f39c12",
+            pointStrokeColor: "#f39c12",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f39c12",
+            data: close_count
+          },
+          {
+            label: "Delete",
+            fillColor: "#00c0ef",
+            strokeColor: "#00c0ef",
+            pointColor: "#00c0ef",
+            pointStrokeColor: "#00c0ef",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: delete_count
+          },
+          {
+            label: "Other",
+            fillColor: "#3c8dbc",
+            strokeColor: "#3c8dbc",
+            pointColor: "#3c8dbc",
+            pointStrokeColor: "#3c8dbc",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#3c8dbc",
+            data: other_count
           }
-        },
-        lines: {
-          fill: false,
-          color: ["#3c8dbc", "#f56954"]
-        },
-        yaxis: {
-          show: true,
-        },
-        xaxis: {
-          show: true
-        }
-      });
+        ]
+      };
 
-      //Initialize tooltip on hover
-      $('<div class="tooltip-inner" id="line-chart-tooltip"></div>').css({
-        position: "absolute",
-        display: "none",
-        opacity: 0.8
-      }).appendTo("body");
 
-      $("#line-chart").bind("plothover", function (event, pos, item) {
+    //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartOptions = {
+      //Boolean - If we should show the scale at all
+      showScale: true,
+      //Boolean - Whether grid lines are shown across the chart
+      scaleShowGridLines: false,
+      //String - Colour of the grid lines
+      scaleGridLineColor: "rgba(0,0,0,.05)",
+      //Number - Width of the grid lines
+      scaleGridLineWidth: 1,
+      //Boolean - Whether to show horizontal lines (except X axis)
+      scaleShowHorizontalLines: true,
+      //Boolean - Whether to show vertical lines (except Y axis)
+      scaleShowVerticalLines: true,
+      //Boolean - Whether the line is curved between points
+      bezierCurve: true,
+      //Number - Tension of the bezier curve between points
+      bezierCurveTension: 0.3,
+      //Boolean - Whether to show a dot for each point
+      pointDot: false,
+      //Number - Radius of each point dot in pixels
+      pointDotRadius: 4,
+      //Number - Pixel width of point dot stroke
+      pointDotStrokeWidth: 1,
+      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+      pointHitDetectionRadius: 20,
+      //Boolean - Whether to show a stroke for datasets
+      datasetStroke: true,
+      //Number - Pixel width of dataset stroke
+      datasetStrokeWidth: 2,
+      //Boolean - Whether to fill the dataset with a color
+      datasetFill: true,
+      //String - A legend template
+      legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
+      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true
+    };
 
-        if (item) {
-          var x = item.datapoint[0].toFixed(2),
-              y = item.datapoint[1].toFixed(2);
+    var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+    var lineChart = new Chart(lineChartCanvas);
+    lineChartOptions.datasetFill = false;
+    lineChart.Line(lineChartData, lineChartOptions);
+  }
+  });
 
-          $("#line-chart-tooltip").html(item.series.label + " <br/> Click at " + x + " = " + y)
-              .css({top: item.pageY + 5, left: item.pageX + 5})
-              .fadeIn(200);
-        } else {
-          $("#line-chart-tooltip").hide();
-        }
-
-      });
-}
-      
-      /* END LINE CHART */
+    
 });
 </script>

@@ -28,22 +28,22 @@ Route::group(['middleware' => 'auth'], function(){
         return view('page.install-month');
     });
 
-    Route::get('/install-week', function () {
-        return view('page.install-week');
+    Route::get('/install-month', function () {
+        return view('page.install-month');
     });
 
     Route::get('/master-data', 'PageController@masterdata');
 
     Route::get('/install-day', 'PageController@installday');
-    Route::get('/install-week', 'PageController@installweek');
+    Route::get('/install-month', 'PageController@installmonth');
     Route::get('/install-year', 'PageController@installyear');
 
     Route::get('/click-day', 'PageController@clickday');
-    Route::get('/click-week', 'PageController@clickweek');
+    Route::get('/click-month', 'PageController@clickmonth');
     Route::get('/click-year', 'PageController@clickyear');
 
     Route::get('/view-day', 'PageController@viewday');
-    Route::get('/view-week', 'PageController@viewweek');
+    Route::get('/view-month', 'PageController@viewmonth');
     Route::get('/view-year', 'PageController@viewyear');
 
     Route::get('/', function () {
@@ -55,7 +55,11 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/getAllUser', 'DashboardController@getAllUser');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');
-Route::get('/getDataInstall', 'DashboardController@getDataInstall');
+
+//DataInstall
+Route::get('/getDataInstallDay', 'DashboardController@getDataInstallDay');
+Route::get('/getDataInstallMonth', 'DashboardController@getDataInstallMonth');
+Route::get('/getDataInstallYear', 'DashboardController@getDataInstallYear');
 
 //DataClick
 Route::get('/getDataClickDay', 'DashboardController@getDataClickDay');

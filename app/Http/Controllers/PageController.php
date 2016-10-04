@@ -28,11 +28,11 @@ class PageController extends Controller {
 		return view('page.install.install-day', compact('user'));
 	}
 
-	public function installweek()
+	public function installmonth()
 	{
 		$user = User::orderBy('id', 'desc')->paginate(10);
 
-		return view('page.install.install-week', compact('user'));
+		return view('page.install.install-month', compact('user'));
 	}
 
 	public function installyear()
@@ -42,15 +42,39 @@ class PageController extends Controller {
 		return view('page.install.install-year', compact('user'));
 	}
 
+	//click page
 	public function clickday()
 	{
 		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 
 		return view('page.click.click-day', compact('master_datas'));
 	}
+	public function clickmonth()
+	{
+		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 
+		return view('page.click.click-month', compact('master_datas'));
+	}
+	public function clickyear()
+	{
+		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+
+		return view('page.click.click-year', compact('master_datas'));
+	}
+
+	//view page
 	public function viewday()
 	{
 		return view('page.view.view-day');
+	}
+
+	public function viewmonth()
+	{
+		return view('page.view.view-month');
+	}
+
+	public function viewyear()
+	{
+		return view('page.view.view-year');
 	}
 }

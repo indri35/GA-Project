@@ -10,19 +10,19 @@
     var barChart = new Chart(barChartCanvas);
 
     $.ajax({
-      url: "{{ url('/getDataInstallDay') }}",
+      url: "{{ url('/getDataInstallYear') }}",
       method: "GET",
       success: function(data) {
       console.log(data);
-      var day = [];
+      var year = [];
       var count_install = [];
 
       for(var i in data) {
-        day.push(data[i].day);
+        year.push(data[i].year);
         count_install.push(data[i].count_install);
       }
       var barChartData = {
-        labels: day,
+        labels: year,
         datasets: [
           {
             label: "Install",

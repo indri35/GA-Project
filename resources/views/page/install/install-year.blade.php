@@ -90,7 +90,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.install-js.installchart-day')
+@include('page.install-js.installchart-year')
 </body>
 </html>
 

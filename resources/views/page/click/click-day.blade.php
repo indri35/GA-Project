@@ -27,7 +27,9 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="chart">
+                <canvas id="lineChart" style="height:300px"></canvas>
+              </div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -38,7 +40,7 @@
           <!-- Install Table -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table Install-Day</h3>
+              <h3 class="box-title">Data Table Click - Day</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -65,7 +67,7 @@
                         <td>{{$master_datum->imei}}</td>
                         <td>{{$master_datum->created_at}}</td>
                         <td>{{$master_datum->updated_at}}</td>
-                        <td>{{$master_datum->click}}</td>
+                        <td><b>{{$master_datum->click}}</b></td>
                         <td>{{$master_datum->view}}</td>
                         <td>{{$master_datum->type_device}}</td>
                         <td>{{$master_datum->language}}</td>

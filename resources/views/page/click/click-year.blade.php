@@ -5,7 +5,7 @@
     <section class="content-header">
       <h1>
         Click
-        <small>Year</small>
+        <small>Month</small>
       </h1>
     </section>
       <!-- Main content -->
@@ -27,7 +27,9 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="chart">
+                <canvas id="lineChart" style="height:300px"></canvas>
+              </div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -38,7 +40,7 @@
           <!-- Install Table -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table Install-Year</h3>
+              <h3 class="box-title">Data Table Install - Year</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -65,7 +67,7 @@
                         <td>{{$master_datum->imei}}</td>
                         <td>{{$master_datum->created_at}}</td>
                         <td>{{$master_datum->updated_at}}</td>
-                        <td>{{$master_datum->click}}</td>
+                        <td><b>{{$master_datum->click}}</b></td>
                         <td>{{$master_datum->view}}</td>
                         <td>{{$master_datum->type_device}}</td>
                         <td>{{$master_datum->language}}</td>
@@ -96,7 +98,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.click-js.clickchart-year')
+@include('page.click-js.clickchart-month')
 </body>
 </html>
 

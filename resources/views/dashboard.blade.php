@@ -33,7 +33,9 @@
               </div>
             </div>
             <div class="box-body">
-              <div id="line-chart" style="height: 300px;"></div>
+              <div class="chart">
+                <canvas id="lineChart" style="height:300px"></canvas>
+              </div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -125,6 +127,8 @@
   </div>
 @include('layouts.footer') 
 @include('layouts.chartdashboard')
+@include('page.install-js.installchart-day')
+@include('page.activity-js.activitychart-day')
 </body>
 </html>
 
