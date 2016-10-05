@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Dashboard;
+use App\Count;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -93,5 +95,13 @@ class DashboardController extends Controller
     {
         $activityyear =  DB::table('view_activity_by_type_device_per_year')->get();
         return $activityyear;
+    } 
+
+    public function dashboard()
+    {
+        $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
+        $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+
+        return view('dashboard', compact('master_datas', 'master_dataa'));
     }        
 }

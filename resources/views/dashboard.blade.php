@@ -16,7 +16,85 @@
     </section>
       <!-- Main content -->
     <section class="content">
-      
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              @foreach($master_datas as $count_install)
+              <h3>{{$count_install->total_install}}</h3> 
+              @endforeach
+              {!! $master_datas->render() !!}
+              <p>Count Install</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-ios-people"></i>
+            </div>
+            <a href="{{ url('/install-day') }}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              @foreach($master_dataa as $count)
+              <h3>{{$count->count_view}}</h3> 
+              @endforeach
+              {!! $master_dataa->render() !!}
+              <p>Count View Page</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-eye"></i>
+            </div>
+            <a href="{{ url('/view-day') }}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              @foreach($master_dataa as $count)
+              <h3>{{$count->count_click}}</h3> 
+              @endforeach
+              {!! $master_dataa->render() !!}
+              <p>Count Click</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-mouse-pointer"></i>
+            </div>
+            <a href="{{ url('/click-day') }}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              @foreach($master_dataa as $count)
+              <h3>{{$count->count_activity}}</h3> 
+              @endforeach
+              {!! $master_dataa->render() !!}
+              <p>Count Activity</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-table"></i>
+            </div>
+            <a href="{{ url('/master-data') }}" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
       <div class="row">
         <div class="col-md-6">
           <!-- Line chart -->

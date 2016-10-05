@@ -31,6 +31,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -129,7 +131,7 @@
         </li>
         <li class="treeview">
           <a href="{{ url('/master-data') }}">
-            <i class="fa fa-dashboard"></i> <span>Master Data</span>
+            <i class="fa fa-table"></i> <span>Master Data</span>
           </a>
         </li>
         <li class="treeview">
@@ -157,10 +159,10 @@
             <li><a href="{{ url('/install-month') }}"><i class="fa fa-fw"></i> Month</a></li>
             <li><a href="{{ url('/install-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
-        </li>
+        </li> 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-wrench"></i> <span>View Page</span>
+            <i class="fa fa-eye"></i> <span>View Page</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
