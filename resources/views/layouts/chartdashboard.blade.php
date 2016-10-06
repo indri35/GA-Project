@@ -128,6 +128,15 @@
           other_count.push(data[i].other_count);
       }
 
+      if(day.length > 30) {
+          day.shift();
+          welcome_count.shift();
+          registration_count.shift();
+          shopping_count.shift();
+          order_count.shift();
+          other_count.shift();
+      }
+
       var barChartDataView = {
         labels: day,
         datasets: [

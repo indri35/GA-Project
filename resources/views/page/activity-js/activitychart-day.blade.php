@@ -26,6 +26,12 @@
           apple_count.push(data[i].apple_count);
           other_count.push(data[i].other_count);
       }
+      if(day.length > 31){
+          day.shift();
+          samsung_count.shift();
+          apple_count.shift();
+          other_count.shift();
+      }
 
       var lineChartData = {
         labels: day,

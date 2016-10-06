@@ -30,6 +30,16 @@
           delete_count.push(data[i].delete_count);
           other_count.push(data[i].other_count);
       }
+      
+      if(day.length > 30) {
+          day.shift();
+          login_count.shift();
+          save_count.shift();
+          close_count.shift();
+          delete_count.shift();
+          other_count.shift();
+      }
+
 
       var lineChartData = {
         labels: day,

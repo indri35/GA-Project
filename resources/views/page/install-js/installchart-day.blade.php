@@ -21,6 +21,12 @@
         day.push(data[i].day);
         count_install.push(data[i].count_install);
       }
+
+      if(day.length > 30) {
+        day.shift();
+        count_install.shift();
+      }
+      
       var barChartData = {
         labels: day,
         datasets: [

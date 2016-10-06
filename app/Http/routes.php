@@ -14,6 +14,8 @@
 
 Route::group(['middleware' => 'auth'], function(){
 
+    Route::get('/', 'DashboardController@dashboard');
+
     Route::get('/dashboard', 'DashboardController@dashboard');
     
     Route::get('/home', 'HomeController@index');
@@ -22,13 +24,6 @@ Route::group(['middleware' => 'auth'], function(){
         return view('admin');
     });
 
-    Route::get('/install-month', function () {
-        return view('page.install-month');
-    });
-
-    Route::get('/install-month', function () {
-        return view('page.install-month');
-    });
 
     Route::get('/master-data', 'PageController@masterdata');
 
@@ -43,10 +38,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/view-day', 'PageController@viewday');
     Route::get('/view-month', 'PageController@viewmonth');
     Route::get('/view-year', 'PageController@viewyear');
-
-    Route::get('/', function () {
-    return view('dashboard');
-});
 
 });
 
