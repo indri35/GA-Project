@@ -77,4 +77,20 @@ class PageController extends Controller {
 	{
 		return view('page.view.view-year');
 	}
+
+	//connected page
+	public function connectedday()
+	{
+		return view('page.connected.connected-day');
+	}
+
+	public function connectedmonth()
+	{
+		return view('page.connected.connected-month');
+	}
+
+	public function connectedyear()
+	{
+		return view('page.connected.connected-year');
+	}
 }

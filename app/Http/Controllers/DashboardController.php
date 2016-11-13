@@ -103,5 +103,22 @@ class DashboardController extends Controller
         $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
 
         return view('dashboard', compact('master_datas', 'master_dataa'));
+    }
+
+    //Dataconnectedby  
+        public function getDataConnectedDay()
+    {
+        $connectedday =  DB::table('count_connectedby_day')->get();
+        return $connectedday;
+    }
+        public function getDataConnectedMonth()
+    {
+        $connectedmonth =  DB::table('count_connectedby_month')->get();
+        return $connectedmonth;
+    }
+        public function getDataConnectedYear()
+    {
+        $connectedyear =  DB::table('count_connectedby_year')->get();
+        return $connectedyear;
     }        
 }

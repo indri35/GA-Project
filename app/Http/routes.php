@@ -39,6 +39,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/view-month', 'PageController@viewmonth');
     Route::get('/view-year', 'PageController@viewyear');
 
+    Route::get('/connected-day', 'PageController@connectedday');
+    Route::get('/connected-month', 'PageController@connectedmonth');
+    Route::get('/connected-year', 'PageController@connectedyear');
+
 });
 
 
@@ -69,6 +73,11 @@ Route::get('/getDataByImei/{imei}', 'MasterDataController@getDataByImei');
 Route::post('/create_data','MasterDataController@store');
 Route::post('/update_data','MasterDataController@update');
 Route::delete('/delete_data','MasterDataController@destroy');
+
+//DataConnected
+Route::get('/getDataConnectedDay', 'DashboardController@getDataConnectedDay');
+Route::get('/getDataConnectedMonth', 'DashboardController@getDataConnectedMonth');
+Route::get('/getDataConnectedYear', 'DashboardController@getDataConnectedYear');
 
 Route::auth();
 

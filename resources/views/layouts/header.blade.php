@@ -173,6 +173,19 @@
             <li><a href="{{ url('/view-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-wifi "></i> <span>Connected By</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ url('/connected-day') }}"><i class="fa fa-fw"></i> Day</a></li>
+            <li><a href="{{ url('/connected-month') }}"><i class="fa fa-fw"></i> Month</a></li>
+            <li><a href="{{ url('/connected-year') }}"><i class="fa fa-fw"></i> Year</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
