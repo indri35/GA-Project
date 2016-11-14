@@ -42,3 +42,5 @@
 <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <!-- SlimScroll -->
 <script src="{{ asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+<!-- Map chart-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
