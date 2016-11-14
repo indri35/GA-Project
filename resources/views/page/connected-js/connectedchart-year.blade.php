@@ -42,7 +42,7 @@
         labels: year,
         datasets: [
           {
-            label: "Welcome",
+            label: "Wifi",
             fillColor: "#f56954",
             strokeColor: "#f56954",
             pointColor: "#f56954",
@@ -52,7 +52,7 @@
             data: wifi_count
           },
           {
-            label: "Registration",
+            label: "Celuller",
             fillColor: "#00a65a",
             strokeColor: "#00a65a",
             pointColor: "#00a65a",
