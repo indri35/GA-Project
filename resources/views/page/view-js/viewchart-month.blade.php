@@ -38,6 +38,16 @@
           other_count.push(data[i].other_count);
       }
 
+      if(month.length > 7) {
+          month.shift();
+          welcome_count.shift();
+          registration_count.shift();
+          shopping_count.shift();
+          order_count.shift();
+          other_count.shift();
+      }
+
+
       var barChartData = {
         labels: month,
         datasets: [

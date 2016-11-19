@@ -21,6 +21,12 @@
         month.push(data[i].month);
         count_install.push(data[i].count_install);
       }
+
+      if(month.length > 7) {
+          month.shift();
+          count_install.shift();
+      }
+
       var barChartData = {
         labels: month,
         datasets: [
