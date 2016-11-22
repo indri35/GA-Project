@@ -23,8 +23,7 @@
                   <tr>
                     <th>IP</th>
                     <th>IMEI</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
+                    <th>Date</th>
                     <th>Click</th>
                     <th>View</th>
                     <th>Type Device</th>
@@ -40,7 +39,6 @@
                         <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
                         <td>{{$master_datum->created_at}}</td>
-                        <td>{{$master_datum->updated_at}}</td>
                         <td>{{$master_datum->click}}</td>
                         <td>{{$master_datum->view}}</td>
                         <td>{{$master_datum->type_device}}</td>
