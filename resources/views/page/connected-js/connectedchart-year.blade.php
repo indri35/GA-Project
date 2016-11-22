@@ -32,12 +32,6 @@
           cellular_count.push(data[i].cellular_count);
       }
 
-      if(year.length > 30) {
-          year.shift();
-          wifi_count.shift();
-          cellular_count.shift();
-      }
-
       var barChartData = {
         labels: year,
         datasets: [

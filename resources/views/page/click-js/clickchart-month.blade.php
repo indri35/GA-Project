@@ -31,6 +31,15 @@
           other_count.push(data[i].other_count);
       }
 
+      if(month.length > 7) {
+          month.shift();
+          login_count.shift();
+          save_count.shift();
+          close_count.shift();
+          delete_count.shift();
+          other_count.shift();
+      }
+
       var lineChartData = {
         labels: month,
         datasets: [

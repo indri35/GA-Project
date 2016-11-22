@@ -32,7 +32,7 @@
           cellular_count.push(data[i].cellular_count);
       }
 
-      if(month.length > 30) {
+      if(month.length > 7) {
           month.shift();
           wifi_count.shift();
           cellular_count.shift();
