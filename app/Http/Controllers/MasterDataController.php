@@ -46,6 +46,7 @@ class MasterDataController extends Controller {
 		$ip = $request->input("ip");
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
+		$master_datum->user = $request->input("user");
 		$master_datum->ip = $request->input("ip");
         $master_datum->imei = $request->input("imei");
         $master_datum->click = $request->input("click");
@@ -109,6 +110,7 @@ class MasterDataController extends Controller {
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
 		$master_datum->ip = $request->input("ip");
+		$master_datum->user = $request->input("user");
         $master_datum->imei = $request->input("imei");
         $master_datum->created_at = $request->input("created_at");
         $master_datum->updated_at = $request->input("updated_at");

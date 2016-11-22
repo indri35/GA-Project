@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\MasterData;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller {
 
@@ -16,8 +17,12 @@ class PageController extends Controller {
 	 */
 	public function masterdata()
 	{
-		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
-
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
 		return view('page.master-data', compact('master_datas'));
 	}
 

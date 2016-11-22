@@ -9,6 +9,7 @@ use App\User;
 use App\Dashboard;
 use App\Count;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -99,9 +100,13 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
+        $user = Auth::user();
         $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
-        $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
-
+        if($user->role=='admin'){
+            $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+        }else{
+            $master_dataa = Count::orderBy('count_click', 'desc')->Where('user',$user->email)->paginate(10);            
+        }
         return view('dashboard', compact('master_datas', 'master_dataa'));
     }
 
@@ -126,9 +131,16 @@ class DashboardController extends Controller
       public function getDataMap()
     {
         $year=date('Y');
-        $region = DB::table('map_region')->Where('year',$year)->get();
-        $state = DB::table('map_state')->Where('year',$year)->get();
-        $country = DB::table('map_country')->Where('year',$year)->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $region = DB::table('map_region_admin')->Where('year',$year)->get();
+            $state = DB::table('map_state_admin')->Where('year',$year)->get();
+            $country = DB::table('map_country_admin')->Where('year',$year)->get();
+        }else{
+            $region = DB::table('map_region')->Where('year',$year)->Where('user',$user->email)->get();
+            $state = DB::table('map_state')->Where('year',$year)->Where('user',$user->email)->get();
+            $country = DB::table('map_country')->Where('year',$year)->Where('user',$user->email)->get();            
+        }
         return compact('region','state','country');
     }        
 
