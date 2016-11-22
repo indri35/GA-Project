@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Dashboard;
 use App\Count;
+use App\Usercount;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,76 +51,142 @@ class DashboardController extends Controller
     //DataClick
         public function getDataClickDay()
     {
-        $clickday =  DB::table('view_by_click_per_day')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $clickday =  DB::table('view_by_click_per_day')->get();
+        }else{
+            $clickday =  DB::table('view_by_click_per_day_user')->Where('user',$user->email)->get();
+        }
         return $clickday;
     }
         public function getDataClickMonth()
     {
-        $clickmonth =  DB::table('view_by_click_per_month')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $clickmonth =  DB::table('view_by_click_per_month')->get();
+        }else{
+            $clickmonth =  DB::table('view_by_click_per_month_user')->Where('user',$user->email)->get();
+        }
         return $clickmonth;
     }
         public function getDataClickYear()
     {
-        $clickyear =  DB::table('view_by_click_per_year')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $clickyear =  DB::table('view_by_click_per_year')->get();
+        }else{
+            $clickyear =  DB::table('view_by_click_per_year_user')->Where('user',$user->email)->get();
+        }
         return $clickyear;
     } 
 
     //DataViewPage
         public function getDataViewPageDay()
     {
-        $viewday =  DB::table('view_by_view_page_perday')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $viewday =  DB::table('view_by_view_page_perday')->get();
+        }else{
+            $viewday =  DB::table('view_by_view_page_perday_user')->Where('user',$user->email)->get();
+        }
         return $viewday;
     }
         public function getDataViewPageMonth()
     {
-        $viewmonth =  DB::table('view_by_view_page_permonth')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $viewmonth =  DB::table('view_by_view_page_permonth')->get();
+        }else{
+            $viewmonth =  DB::table('view_by_view_page_permonth_user')->Where('user',$user->email)->get();
+        }
         return $viewmonth;
     }
         public function getDataViewPageYear()
     {
-        $viewyear =  DB::table('view_by_view_page_peryear')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $viewyear =  DB::table('view_by_view_page_peryear')->get();
+        }else{
+            $viewyear =  DB::table('view_by_view_page_peryear_user')->Where('user',$user->email)->get();
+        }
         return $viewyear;
     }
 
     //DataActivityDevice
         public function getDataActivityDeviceDay()
     {
-        $activityday =  DB::table('view_activity_by_type_device_per_day')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $activityday =  DB::table('view_activity_by_type_device_per_day')->get();
+        }else{
+            $activityday =  DB::table('view_activity_by_type_device_per_day_user')->Where('user',$user->email)->get();
+        }
         return $activityday;
     }
         public function getDataActivityDeviceMonth()
     {
-        $activitymonth =  DB::table('view_activity_by_type_device_per_month')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $activitymonth =  DB::table('view_activity_by_type_device_per_month')->get();
+        }else{
+            $activityday =  DB::table('view_activity_by_type_device_per_month_user')->Where('user',$user->email)->get();
+        }
         return $activitymonth;
     }
         public function getDataActivityDeviceYear()
     {
-        $activityyear =  DB::table('view_activity_by_type_device_per_year')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $activityyear =  DB::table('view_activity_by_type_device_per_year')->get();
+        }else{
+            $activityday =  DB::table('view_activity_by_type_device_per_year_user')->Where('user',$user->email)->get();
+        }
         return $activityyear;
     } 
 
     public function dashboard()
     {
         $user = Auth::user();
-        $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
-        $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+        if($user->role=='admin'){
+            $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
+            $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+        }else{
+            $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
+            $master_dataa = Usercount::orderBy('count_click', 'desc')->Where('user',$user->email)->paginate(10);            
+        }
+        
         return view('dashboard', compact('master_datas', 'master_dataa'));
     }
 
     //Dataconnectedby  
         public function getDataConnectedDay()
     {
-        $connectedday =  DB::table('count_connectedby_day')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $connectedday =  DB::table('count_connectedby_day')->get();
+        }else{
+            $connectedday =  DB::table('count_connectedby_day_user')->Where('user',$user->email)->get();
+        }
         return $connectedday;
     }
         public function getDataConnectedMonth()
     {
-        $connectedmonth =  DB::table('count_connectedby_month')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $connectedmonth =  DB::table('count_connectedby_month')->get();
+        }else{
+            $connectedmonth =  DB::table('count_connectedby_month_user')->Where('user',$user->email)->get();
+        }
         return $connectedmonth;
     }
         public function getDataConnectedYear()
     {
-        $connectedyear =  DB::table('count_connectedby_year')->get();
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $connectedyear =  DB::table('count_connectedby_year')->get();
+        }else{
+            $connectedyear =  DB::table('count_connectedby_year_user')->Where('user',$user->email)->get();
+        }
         return $connectedyear;
     }        
 
