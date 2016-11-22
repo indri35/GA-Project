@@ -244,9 +244,71 @@
         + Math.round(series.percent) + "%</div>";
   }
 
-      google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.load('upcoming', {'packages':['geochart','geomap']});
       google.charts.setOnLoadCallback(drawRegionsMap);
+      google.charts.setOnLoadCallback(drawCityMap);
+      google.charts.setOnLoadCallback(drawStateMap);
       var datacountry;
+      var dataRegion;
+
+      function drawCityMap() {
+        $.ajax({
+          url: "{{ url('/getDataMap') }}",
+          method: "GET",
+          success: function(data) {
+          
+          var datachart=[];
+          var Header= ['City', 'Acitvity'];
+          datachart.push(Header);
+           for (var i = 0; i < data.region.length; i++) {
+              var temp=[];
+              temp.push(data.region[i].regional);
+              temp.push(data.region[i].count_region);
+              datachart.push(temp);
+            }
+          var datanya = google.visualization.arrayToDataTable(datachart);
+
+          var options = {};
+          options['region'] = 'ID';
+          options['colors'] = [0xFF8747, 0xFFB581, 0xc06000]; //orange colors
+          options['dataMode'] = 'markers';
+
+          var container = document.getElementById('map_city');
+          var geomap = new google.visualization.GeoMap(container);
+          geomap.draw(datanya, options);
+          }
+        });
+    };
+
+      function drawStateMap() {
+                $.ajax({
+                url: "{{ url('/getDataMap') }}",
+                method: "GET",
+                success: function(data) {
+                
+                    var datachart=[];
+                    var Header= ['Province', 'Acitvity'];
+                    datachart.push(Header);
+                    for (var i = 0; i < data.state.length; i++) {
+                        var temp=[];
+                        temp.push(data.state[i].regional);
+                        temp.push(data.state[i].count_state);
+                        datachart.push(temp);
+                      }
+                    var datanya = google.visualization.arrayToDataTable(datachart);
+
+                var options = {};
+                options['region'] = 'ID';
+                options['dataMode'] = 'regions';
+
+                var container = document.getElementById('map_province');
+                var geomap = new google.visualization.GeoMap(container);
+                geomap.draw(datanya, options);
+              }
+          });
+    };
+
+
       function drawRegionsMap() {
 
         $.ajax({
@@ -254,16 +316,21 @@
           method: "GET",
           success: function(data) {
             
-          datacountry = google.visualization.arrayToDataTable([
-              ['Country', 'Activity'],
-              [data.country[0].country,data.country[0].count_country]
-            ]);
+          var datachart=[];
+          var Header= ['Country', 'Acitvity'];
+          datachart.push(Header);
+          for (var i = 0; i < data.country.length; i++) {
+              var temp=[];
+              temp.push(data.country[i].country);
+              temp.push(data.country[i].count_country);
+              datachart.push(temp);
+            }
+          var datanya = google.visualization.arrayToDataTable(datachart);
 
             var options = {};
-
             var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-            chart.draw(datacountry, options);
+            chart.draw(datanya, options);
 
           }
         });
