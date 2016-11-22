@@ -129,13 +129,13 @@ class DashboardController extends Controller
         $year=date('Y');
         $user = Auth::user();
         if($user->role=='admin'){
-            $region = DB::table('map_region_admin')->Where('year',$year)->get();
-            $state = DB::table('map_state_admin')->Where('year',$year)->get();
-            $country = DB::table('map_country_admin')->Where('year',$year)->get();
+            $region = DB::table('map_region_admin')->get();
+            $state = DB::table('map_state_admin')->get();
+            $country = DB::table('map_country_admin')->get();
         }else{
-            $region = DB::table('map_region')->Where('year',$year)->Where('user',$user->email)->get();
-            $state = DB::table('map_state')->Where('year',$year)->Where('user',$user->email)->get();
-            $country = DB::table('map_country')->Where('year',$year)->Where('user',$user->email)->get();            
+            $region = DB::table('map_region')->Where('user',$user->email)->get();
+            $state = DB::table('map_state')->Where('user',$user->email)->get();
+            $country = DB::table('map_country')->Where('user',$user->email)->get();            
         }
         return compact('region','state','country');
     }        
