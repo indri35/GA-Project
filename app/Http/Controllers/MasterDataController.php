@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\MasterData;
 use Illuminate\Http\Request;
+use Stichoza\GoogleTranslate\TranslateClient;
 
 class MasterDataController extends Controller {
 
@@ -37,6 +38,10 @@ class MasterDataController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		$tr = new TranslateClient(); // Default is from 'auto' to 'en'
+		$tr->setSource('en'); // Translate from English
+		$tr->setTarget('id'); // Translate to Indonesian
+
 		$master_datum = new MasterData();
 		$ip = $request->input("ip");
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
@@ -47,7 +52,11 @@ class MasterDataController extends Controller {
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
         $master_datum->language = $detail->country;
-        $master_datum->state = $detail->region;
+        
+		
+		$reg_indo=$tr->translate($detail->region);
+        $master_datum->state = $reg_indo;
+		
         $master_datum->regional = $detail->city;	
 		$master_datum->loc = $detail->loc;	
 		$master_datum->save();
@@ -90,6 +99,9 @@ class MasterDataController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+		$tr = new TranslateClient(); // Default is from 'auto' to 'en'
+		$tr->setSource('en'); // Translate from English
+		$tr->setTarget('id'); // Translate to Indonesian
 
 		$master_datum = MasterData::findOrFail($id);
 
@@ -104,7 +116,10 @@ class MasterDataController extends Controller {
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
         $master_datum->language = $detail->country;
-        $master_datum->state = $detail->region;
+		
+		$reg_indo=$tr->translate($detail->region);
+        $master_datum->state = $reg_indo;
+		
         $master_datum->regional = $detail->city;
 		$master_datum->loc = $detail->loc;
 		$master_datum->save();
