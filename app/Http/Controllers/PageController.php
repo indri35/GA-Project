@@ -26,6 +26,17 @@ class PageController extends Controller {
 		return view('page.master-data', compact('master_datas'));
 	}
 
+	public function userdata()
+	{
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = User::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = User::orderBy('id', 'desc')->Where('email',$user->email)->paginate(10);			
+		}
+		return view('page.user-data', compact('master_datas'));
+	}
+
 	public function installday()
 	{
 		$user = User::orderBy('id', 'desc')->paginate(10);

@@ -102,11 +102,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
-        if($user->role=='admin'){
-            $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
-        }else{
-            $master_dataa = Count::orderBy('count_click', 'desc')->Where('user',$user->email)->paginate(10);            
-        }
+        $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
         return view('dashboard', compact('master_datas', 'master_dataa'));
     }
 

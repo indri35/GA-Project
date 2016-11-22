@@ -134,6 +134,13 @@
             <i class="fa fa-table"></i> <span>Master Data</span>
           </a>
         </li>
+        @if (Auth::user()->role=='admin')
+        <li class="treeview">
+          <a href="{{ url('/user-data') }}">
+            <i class="fa fa-table"></i> <span>User Data</span>
+          </a>
+        </li>
+        @endif
         <li class="treeview">
           <a href="#">
             <i class="fa fa-mouse-pointer"></i> <span>Click and Impressions</span>
