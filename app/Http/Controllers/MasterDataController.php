@@ -2,7 +2,6 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\MasterData;
 use Illuminate\Http\Request;
 
@@ -39,21 +38,21 @@ class MasterDataController extends Controller {
 	public function store(Request $request)
 	{
 		$master_datum = new MasterData();
-
+		$ip = $request->input("ip");
+		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
+		$master_datum->ip = $request->input("ip");
         $master_datum->imei = $request->input("imei");
-        $master_datum->created_at = $request->input("created_at");
-        $master_datum->updated_at = $request->input("updated_at");
         $master_datum->click = $request->input("click");
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
-        $master_datum->language = $request->input("language");
-        $master_datum->state = $request->input("state");
-        $master_datum->regional = $request->input("regional");
-
+        $master_datum->language = $detail->country;
+        $master_datum->state = $detail->region;
+        $master_datum->regional = $detail->city;	
+		$master_datum->loc = $detail->loc;	
 		$master_datum->save();
 
-		return redirect()->route('master_datas.index')->with('message', 'Item created successfully.');
+        return response()->json(['status'=>'true', 'message'=>$master_datum]);
 	}
 
 	/**
@@ -91,19 +90,23 @@ class MasterDataController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+
 		$master_datum = MasterData::findOrFail($id);
 
+		$ip = $request->input("ip");
+		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
+		$master_datum->ip = $request->input("ip");
         $master_datum->imei = $request->input("imei");
         $master_datum->created_at = $request->input("created_at");
         $master_datum->updated_at = $request->input("updated_at");
         $master_datum->click = $request->input("click");
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
-        $master_datum->language = $request->input("language");
-        $master_datum->state = $request->input("state");
-        $master_datum->regional = $request->input("regional");
-
+        $master_datum->language = $detail->country;
+        $master_datum->state = $detail->region;
+        $master_datum->regional = $detail->city;
+		$master_datum->loc = $detail->loc;
 		$master_datum->save();
 
 		return redirect()->route('master_datas.index')->with('message', 'Item updated successfully.');

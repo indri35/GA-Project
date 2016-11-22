@@ -121,4 +121,15 @@ class DashboardController extends Controller
         $connectedyear =  DB::table('count_connectedby_year')->get();
         return $connectedyear;
     }        
+
+    //map
+      public function getDataMap()
+    {
+        $year=date('Y');
+        $region = DB::table('map_region')->Where('year',$year)->get();
+        $state = DB::table('map_state')->Where('year',$year)->get();
+        $country = DB::table('map_country')->Where('year',$year)->get();
+        return compact('region','state','country');
+    }        
+
 }
