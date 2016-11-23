@@ -34,17 +34,32 @@ class DashboardController extends Controller
     //DataInstall   
         public function getDataInstallDay()
     {
-        $installday =  DB::table('view_install_per_day')->get();
+        $user = Auth::user();
+		if($user->role=='admin'){		
+            $installday =  DB::table('view_install_per_day_admin')->get();
+        }else{
+            $installday =  DB::table('view_install_per_day')->Where('user',$user->email)->get();            
+        }
         return $installday;
     }
         public function getDataInstallMonth()
     {
-        $installmonth =  DB::table('view_install_per_month')->get();
+        $user = Auth::user();
+		if($user->role=='admin'){		    
+            $installmonth =  DB::table('view_install_per_month_admin')->get();
+        }else{
+            $installmonth =  DB::table('view_install_per_month')->Where('user',$user->email)->get();            
+        }
         return $installmonth;
     }
         public function getDataInstallYear()
     {
-        $installyear =  DB::table('view_install_per_year')->get();
+        $user = Auth::user();
+		if($user->role=='admin'){		    
+            $installyear =  DB::table('view_install_per_year_admin')->get();
+        }else{
+             $installyear =  DB::table('view_install_per_year')->Where('user',$user->email)->get();
+        }
         return $installyear;
     }
 

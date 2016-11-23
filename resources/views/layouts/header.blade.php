@@ -131,13 +131,20 @@
         </li>
         <li class="treeview">
           <a href="{{ url('/master-data') }}">
-            <i class="fa fa-table"></i> <span>Master Data</span>
+            <i class="fa fa-table"></i> <span>Data Master</span>
           </a>
         </li>
         @if (Auth::user()->role=='admin')
         <li class="treeview">
           <a href="{{ url('/user-data') }}">
-            <i class="fa fa-table"></i> <span>User Data</span>
+            <i class="fa fa-table"></i> <span>Users</span>
+          </a>
+        </li>
+        @endif
+        @if (Auth::user()->role=='admin')
+        <li class="treeview">
+          <a href="{{ url('/aplikasis') }}">
+            <i class="fa fa-table"></i> <span>Apps</span>
           </a>
         </li>
         @endif

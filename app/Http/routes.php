@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/connected-month', 'PageController@connectedmonth');
     Route::get('/connected-year', 'PageController@connectedyear');
 
+    Route::resource("aplikasis","AplikasiController");
+
 });
 
 //Map

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\MasterData;
 use App\User;
+use App\Aplikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,22 +40,35 @@ class PageController extends Controller {
 
 	public function installday()
 	{
-		$user = User::orderBy('id', 'desc')->paginate(10);
-
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+		}
 		return view('page.install.install-day', compact('user'));
 	}
 
 	public function installmonth()
 	{
-		$user = User::orderBy('id', 'desc')->paginate(10);
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+		}
 
 		return view('page.install.install-month', compact('user'));
 	}
 
 	public function installyear()
 	{
-		$user = User::orderBy('id', 'desc')->paginate(10);
-
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+		}
 		return view('page.install.install-year', compact('user'));
 	}
 
