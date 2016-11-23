@@ -43,4 +43,4 @@
 <!-- SlimScroll -->
 <script src="{{ asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- Map chart-->
-<script type="text/javascript" src="{{ asset('assets/dist/js/loader.js') }}"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
