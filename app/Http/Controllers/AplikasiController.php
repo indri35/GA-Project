@@ -4,9 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Aplikasi;
 use App\MasterData;
+use App\User;
 use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\TranslateClient;
 use File;
+use Illuminate\Support\Facades\Auth;
 
 class AplikasiController extends Controller {
 
@@ -17,8 +19,12 @@ class AplikasiController extends Controller {
 	 */
 	public function index()
 	{
-		$aplikasis = Aplikasi::orderBy('id', 'desc')->paginate(5);
-		//return view('aplikasis.index', compact('aplikasis'));
+		$user = Auth::user();
+		if($user->role=='admin'){		
+			$aplikasis = Aplikasi::orderBy('id', 'desc')->paginate(5);
+		}else{
+			$aplikasis = Aplikasi::Where('user', $user->email)->paginate(5);			
+		}
 		return view('aplikasis.index', compact('aplikasis'));
 	}
 
@@ -29,7 +35,8 @@ class AplikasiController extends Controller {
 	 */
 	public function create()
 	{
-		return view('aplikasis.create');
+		$users = User::orderBy('id', 'desc')->get();
+		return view('aplikasis.create',compact('users'));
 	}
 
 	/**
@@ -81,10 +88,10 @@ class AplikasiController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id)
-	{
+	{		
+		$users = User::orderBy('id', 'desc')->get();
 		$aplikasi = Aplikasi::findOrFail($id);
-
-		return view('aplikasis.edit', compact('aplikasi'));
+		return view('aplikasis.edit', compact('aplikasi','users'));
 	}
 
 	/**

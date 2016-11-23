@@ -40,8 +40,12 @@
                     </div>
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                        <label for="user-field">user</label>
-                    <input type="text" id="user-field" name="user" class="form-control" value="{{ is_null(old("user")) ? $aplikasi->user : old("user") }}"/>
-                       @if($errors->has("user"))
+                        <select class="form-control select2" id="name-field" name="name">                    
+                        @foreach($users as $user)
+                            <option value="{{ $user->email }}">{{$user->name.'-'.$user->email}}</option>
+                        @endforeach
+                        </select>
+                        @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
                        @endif
                     </div>
