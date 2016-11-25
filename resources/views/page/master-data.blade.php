@@ -3,11 +3,15 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Data Table
+    <div class="page-header clearfix">
+        <h1>
+            Data Table
         <small>Master</small>
-      </h1>
-    </section>
+            <a class="btn btn-success pull-right" href="{{ route('master_datas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+        </h1>
+
+    </div>
+</section>
       <!-- Main content -->
     <section class="content">
       

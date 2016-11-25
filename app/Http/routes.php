@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/master-data', 'PageController@masterdata');
+    Route::get('/master-data-looping', 'AboutController@create');
     Route::get('/user-data', 'PageController@userdata');
 
     Route::get('/install-day', 'PageController@installday');
@@ -45,6 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/connected-year', 'PageController@connectedyear');
 
     Route::resource("aplikasis","AplikasiController");
+    Route::resource("master_datas","MasterDataController");
+    Route::resource("about","AboutController");
 
 });
 

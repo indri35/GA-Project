@@ -10,11 +10,14 @@
       <!-- Main content -->
     <section class="content">
     @include('error')
+
     <div class="row">
         <div class="col-md-12">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <form action="{{ route('master_datas.store') }}" method="POST">
-                    <div class="form-group @if($errors->has('imei')) has-error @endif">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <div class="form-group @if($errors->has('imei')) has-error @endif">
                        <label for="imei-field">Imei</label>
                     <input type="text" id="imei-field" name="imei" class="form-control" value="{{ old("imei") }}"/>
                        @if($errors->has("imei"))
@@ -61,13 +64,6 @@
                     <input type="text" id="user-field" name="user" class="form-control" value="{{ old("user") }}"/>
                        @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('token')) has-error @endif">
-                       <label for="token-field">token</label>
-                    <input type="text" id="token-field" name="token" class="form-control" value="{{ old("token") }}"/>
-                       @if($errors->has("token"))
-                        <span class="help-block">{{ $errors->first("token") }}</span>
                        @endif
                     </div>
                 <div class="well well-sm">

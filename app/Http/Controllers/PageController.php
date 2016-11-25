@@ -75,8 +75,12 @@ class PageController extends Controller {
 	//click page
 	public function clickday()
 	{
-		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
-
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
 		return view('page.click.click-day', compact('master_datas'));
 	}
 	public function clickmonth()

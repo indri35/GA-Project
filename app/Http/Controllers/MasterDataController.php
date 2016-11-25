@@ -17,7 +17,7 @@ class MasterDataController extends Controller {
 	{
 		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 
-		return view('page.install-day', compact('master_datas'));
+		return view('page.master-data', compact('master_datas'));
 	}
 
 	/**
@@ -27,7 +27,7 @@ class MasterDataController extends Controller {
 	 */
 	public function create()
 	{
-		return view('master_datas.create');
+		return view('page.create');
 	}
 
 	/**
@@ -60,10 +60,11 @@ class MasterDataController extends Controller {
         $master_datum->state = $reg_indo;
 		
         $master_datum->regional = $detail->city;	
-		$master_datum->loc = $detail->loc;	
+		$master_datum->loc = $detail->loc;
+		
+			
 		$master_datum->save();
-
-        return response()->json(['status'=>'true', 'message'=>$master_datum]);
+        return view('page.install-day', compact('master_datas'));
 	}
 
 	/**
