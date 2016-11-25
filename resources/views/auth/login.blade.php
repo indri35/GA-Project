@@ -27,6 +27,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
+      <p class="login-box-msg">
+        <img src="{{ asset('assets/dist/img/analytics_logo.png') }}" width="100" height="100" alt="User Image">
+    </p>
     <a href="{{ url('/') }}"><b>Admin</b>Analytic</a>
   </div>
   <!-- /.login-logo -->
@@ -74,7 +77,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
+                            <div class="col-md-11 col-md-offset-3">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
@@ -84,6 +87,9 @@
                             </div>
                         </div>
                     </form>
+                   <p class="login-box-msg">
+                       <strong>Developed By <a href="http://almsaeedstudio.com">AppSynthesis Lab @2016</a></strong>
+                   </div>
                 </div>
             </div>
 </div>
