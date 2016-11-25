@@ -30,8 +30,9 @@
                     <th>Date</th>
                     <th>Click</th>
                     <th>View</th>
-                    <th>Type Device</th>
-                    <th>Language</th>
+                    <th>Connect</th>
+                    <th>Device</th>
+                    <th>Lang</th>
                     <th>State</th>
                     <th>Regional</th>
                     <th>Location</th>
@@ -42,9 +43,10 @@
                     <tr>
                         <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
-                        <td>{{$master_datum->created_at}}</td>
+                        <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
                         <td>{{$master_datum->click}}</td>
                         <td>{{$master_datum->view}}</td>
+                        <td>{{$master_datum->connected_by}}</td>
                         <td>{{$master_datum->type_device}}</td>
                         <td>{{$master_datum->language}}</td>
                         <td>{{$master_datum->state}}</td>

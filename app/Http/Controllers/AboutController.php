@@ -44,6 +44,7 @@ class AboutController extends Controller
         $master_datum->imei = rand(11212112,123232321);
         $master_datum->click = "save";
         $master_datum->view =  "home";
+        $master_datum->connected_by="celuler";
         $master_datum->type_device ="samsung";
         $master_datum->language = $detail->country;
         
