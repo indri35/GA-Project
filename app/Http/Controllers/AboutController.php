@@ -38,13 +38,12 @@ class AboutController extends Controller
         $ip = $request->ip();
         $detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
         $master_datum->id = $request->input("id");
-        $master_datum->user = rand("drikdoank@gmail.com","indriyani.cs49@gmail.com");
+        $master_datum->user = "drikdoank@gmail.com";
         $master_datum->id_aplikasi = rand(1,5);
-        $master_datum->ip = $request->input("ip");
         $master_datum->imei = rand(11212112,123232321);
-        $master_datum->click = rand("save","edit","view","login","logout");
-        $master_datum->view =  rand("registration","order","checkout","welcome","home");
-        $master_datum->type_device = $request->input("samsung","apple","oppo","nokia");
+        $master_datum->click = "save";
+        $master_datum->view =  "home";
+        $master_datum->type_device ="samsung";
         $master_datum->language = $detail->country;
         
         
