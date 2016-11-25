@@ -58,7 +58,10 @@ class MasterDataController extends Controller {
         
 		
 		$reg_indo=$tr->translate($detail->region);
-        $master_datum->state = $reg_indo;
+		if($reg_indo=="Jakarta")
+			$reg_indo="Jakarta Raya";
+    
+	    $master_datum->state = $reg_indo;		
 		
         $master_datum->regional = $detail->city;	
 		$master_datum->loc = $detail->loc;

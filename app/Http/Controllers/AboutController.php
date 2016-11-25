@@ -50,6 +50,9 @@ class AboutController extends Controller
         
         
         $reg_indo=$tr->translate($detail->region);
+	    if($reg_indo=="Jakarta")
+			$reg_indo="Jakarta Raya";
+    
         $master_datum->state = $reg_indo;
         
         $master_datum->regional = $detail->city;    
