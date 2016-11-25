@@ -43,7 +43,7 @@ class MasterDataController extends Controller {
 		$tr->setTarget('id'); // Translate to Indonesian
 
 		$master_datum = new MasterData();
-		$ip = $request->input("ip");
+		$ip = $request->ip();
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
 		$master_datum->user = $request->input("user");
@@ -61,10 +61,10 @@ class MasterDataController extends Controller {
 		
         $master_datum->regional = $detail->city;	
 		$master_datum->loc = $detail->loc;
-		
-			
+						
 		$master_datum->save();
-        return view('page.install-day', compact('master_datas'));
+		$status = true;
+        return compact('status','master_datum');
 	}
 
 	/**

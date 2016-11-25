@@ -35,16 +35,16 @@ class AboutController extends Controller
         $tr->setTarget('id'); // Translate to Indonesian
 
         $master_datum = new MasterData();
-        $ip = $request->input("ip");
+        $ip = $request->ip();
         $detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
         $master_datum->id = $request->input("id");
-        $master_datum->user = $request->input("user");
-        $master_datum->id_aplikasi = $request->input("id_aplikasi");
+        $master_datum->user = rand("drikdoank@gmail.com","indriyani.cs49@gmail.com");
+        $master_datum->id_aplikasi = rand(1,5);
         $master_datum->ip = $request->input("ip");
-        $master_datum->imei = $request->input("imei");
-        $master_datum->click = $request->input("click");
-        $master_datum->view = $request->input("view");
-        $master_datum->type_device = $request->input("type_device");
+        $master_datum->imei = rand(11212112,123232321);
+        $master_datum->click = rand("save","edit","view","login","logout");
+        $master_datum->view =  rand("registration","order","checkout","welcome","home");
+        $master_datum->type_device = $request->input("samsung","apple","oppo","nokia");
         $master_datum->language = $detail->country;
         
         
@@ -52,11 +52,10 @@ class AboutController extends Controller
         $master_datum->state = $reg_indo;
         
         $master_datum->regional = $detail->city;    
-        $master_datum->loc = $detail->loc;
-        
-            
-            $master_datum->save();
+        $master_datum->loc = $detail->loc;               
+        $master_datum->save();
         }
-        return view('page.master-data', compact('master_datas'));
+        $status=true;
+        return compact('status');
     }
 }

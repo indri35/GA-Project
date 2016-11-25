@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/master-data', 'PageController@masterdata');
-    Route::get('/master-data-looping', 'AboutController@create');
+    Route::get('/master-data-looping', 'AboutController@store');
     Route::get('/user-data', 'PageController@userdata');
 
     Route::get('/install-day', 'PageController@installday');
