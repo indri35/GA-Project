@@ -28,7 +28,7 @@ class AboutController extends Controller
 
     public function store(Request $request)
     {
-        for ($x = 0; $x <= 50; $x++) {
+        for ($x = 0; $x <= 100; $x++) {
 
         $tr = new TranslateClient(); // Default is from 'auto' to 'en'
         $tr->setSource('en'); // Translate from English
