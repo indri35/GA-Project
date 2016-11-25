@@ -36,6 +36,7 @@ class AboutController extends Controller
 
         $master_datum = new MasterData();
         $ip = $request->ip();
+        $master_datum->ip = $ip;
         $detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
         $master_datum->id = $request->input("id");
         $master_datum->user = "drikdoank@gmail.com";
