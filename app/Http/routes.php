@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/click-month', 'PageController@clickmonth');
     Route::get('/click-year', 'PageController@clickyear');
 
+    Route::get('/operator-day', 'PageController@operatorday');
+    Route::get('/operator-month', 'PageController@operatormonth');
+    Route::get('/operator-year', 'PageController@operatoryear');
+
     Route::get('/view-day', 'PageController@viewday');
     Route::get('/view-month', 'PageController@viewmonth');
     Route::get('/view-year', 'PageController@viewyear');
@@ -87,6 +91,11 @@ Route::delete('/delete_data','MasterDataController@destroy');
 Route::get('/getDataConnectedDay', 'DashboardController@getDataConnectedDay');
 Route::get('/getDataConnectedMonth', 'DashboardController@getDataConnectedMonth');
 Route::get('/getDataConnectedYear', 'DashboardController@getDataConnectedYear');
+
+//DataOperator
+Route::get('/getDataOperatorDay', 'DashboardController@getDataOperatorDay');
+Route::get('/getDataOperatorMonth', 'DashboardController@getDataOperatorMonth');
+Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
 

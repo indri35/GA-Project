@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Click
+        Operator
         <small>Month</small>
       </h1>
     </section>
@@ -18,7 +18,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">Click and Impressions</h3>
+              <h3 class="box-title">Operator</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -40,7 +40,7 @@
           <!-- Install Table -->
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table Click - Year</h3>
+              <h3 class="box-title">Data Table Operator - Year</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -98,7 +98,7 @@
     $("#example1").DataTable();
   });
 </script>
-@include('page.click-js.clickchart-year')
+@include('page.operator-js.operatorchart-year')
 </body>
 </html>
 

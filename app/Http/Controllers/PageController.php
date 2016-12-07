@@ -135,4 +135,36 @@ class PageController extends Controller {
 	{
 		return view('page.connected.connected-year');
 	}
+
+	//click page
+	public function operatorday()
+	{
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.operator.operator-day', compact('master_datas'));
+	}
+	public function operatormonth()
+	{
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.operator.operator-month', compact('master_datas'));
+	}
+	public function operatoryear()
+	{
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.operator.operator-year', compact('master_datas'));
+	}
 }

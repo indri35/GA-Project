@@ -235,6 +235,38 @@ class DashboardController extends Controller
             $uninstall = DB::table('aplikasi')->Where('user',$user->email)->Where('status',0)->count();
         }
         return compact('install','uninstall');
+    } 
+
+    //DataOperator
+        public function getDataOperatorDay()
+    {
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $operatorday =  DB::table('operator_per_day')->get();
+        }else{
+            $operatorday =  DB::table('operator_per_day_user')->Where('user',$user->email)->get();
+        }
+        return $operatorday;
+    }
+        public function getDataOperatorMonth()
+    {
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $operatormonth =  DB::table('operator_per_month')->get();
+        }else{
+            $operatormonth =  DB::table('operator_per_month_user')->Where('user',$user->email)->get();
+        }
+        return $operatormonth;
+    }
+        public function getDataOperatorYear()
+    {
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $operatoryear =  DB::table('operator_per_year')->get();
+        }else{
+            $operatoryear =  DB::table('operator_per_year_user')->Where('user',$user->email)->get();
+        }
+        return $operatoryear;
     }        
 
 }
