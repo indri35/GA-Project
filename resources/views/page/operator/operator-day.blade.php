@@ -48,32 +48,35 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                    <th>IP</th>
                     <th>IMEI</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
+                    <th>Date</th>
                     <th>Click</th>
                     <th>View</th>
-                    <th>Type Device</th>
-                    <th>Language</th>
+                    <th>Connect</th>
+                    <th>Operator</th>
+                    <th>Device</th>
+                    <th>Lang</th>
                     <th>State</th>
                     <th>Regional</th>
+                    <th>Location</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach($master_datas as $master_datum)
                     <tr>
-                        <td>{{$master_datum->id}}</td>
+                        <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
-                        <td>{{$master_datum->created_at}}</td>
-                        <td>{{$master_datum->updated_at}}</td>
-                        <td><b>{{$master_datum->click}}</b></td>
+                        <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
+                        <td>{{$master_datum->click}}</td>
                         <td>{{$master_datum->view}}</td>
+                        <td>{{$master_datum->connected_by}}</td>
+                        <td>{{$master_datum->operator}}</td>
                         <td>{{$master_datum->type_device}}</td>
                         <td>{{$master_datum->language}}</td>
                         <td>{{$master_datum->state}}</td>
                         <td>{{$master_datum->regional}}</td>
-                        </td>
+                        <td>{{$master_datum->loc}}</td>
                     </tr>
                 @endforeach
                 </tbody>

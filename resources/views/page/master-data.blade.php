@@ -54,7 +54,6 @@
                         <td>{{$master_datum->state}}</td>
                         <td>{{$master_datum->regional}}</td>
                         <td>{{$master_datum->loc}}</td>
-                        </td>
                     </tr>
                 @endforeach
                 </tbody>
