@@ -26,6 +26,7 @@
                         <th>UPDATED</th>
                         <th>USER</th>
                         <th>CATEGORY</th>
+                        <th>STATUS</th>
                         <th>PLATFORM</th>
                             <th class="text-right">OPTIONS</th>
                         </tr>
@@ -40,6 +41,7 @@
                             <td>{{$master_datum->updated_at}}</td>
                             <td>{{$master_datum->user}}</td>
                             <td>{{$master_datum->category}}</td>
+                            <td>{{$master_datum->status}}</td>
                             <td>{{$master_datum->platform}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('aplikasis.show', $master_datum->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>

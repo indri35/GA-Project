@@ -127,7 +127,7 @@
             <div class="box-header with-border">
               <i class="fa fa-bar-chart-o"></i>
 
-              <h3 class="box-title">Install</h3>
+              <h3 class="box-title">Install vs Uninstall</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -137,8 +137,7 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                <canvas id="barChart" style="height:300px"></canvas>
-              </div>
+                <canvas id="pieChart" style="height: 300px; width: 510px;" height="300" width="510"></canvas>              </div>
             </div>
             <!-- /.box-body-->
           </div>
@@ -287,7 +286,6 @@
   </div>
 @include('layouts.footer') 
 @include('layouts.chartdashboard')
-@include('page.install-js.installchart-day')
 @include('page.activity-js.activitychart-day')
 </body>
 </html>

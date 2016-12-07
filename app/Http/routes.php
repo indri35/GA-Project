@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 //Map
 Route::get('/getDataMap', 'DashboardController@getDataMap');
+Route::get('/getInstallUninstall', 'DashboardController@getInstallUninstall');
 
 Route::get('/getAllUser', 'DashboardController@getAllUser');
 Route::get('/getUserByEmail/{email}', 'DashboardController@getUserByEmail');

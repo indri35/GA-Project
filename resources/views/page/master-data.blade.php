@@ -31,6 +31,7 @@
                     <th>Click</th>
                     <th>View</th>
                     <th>Connect</th>
+                    <th>Operator</th>
                     <th>Device</th>
                     <th>Lang</th>
                     <th>State</th>
@@ -47,6 +48,7 @@
                         <td>{{$master_datum->click}}</td>
                         <td>{{$master_datum->view}}</td>
                         <td>{{$master_datum->connected_by}}</td>
+                        <td>{{$master_datum->operator}}</td>
                         <td>{{$master_datum->type_device}}</td>
                         <td>{{$master_datum->language}}</td>
                         <td>{{$master_datum->state}}</td>

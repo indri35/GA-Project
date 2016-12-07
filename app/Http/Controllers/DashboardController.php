@@ -222,4 +222,19 @@ class DashboardController extends Controller
         return compact('region','state','country');
     }        
 
+    //getdatainstall/uninstall
+      public function getInstallUninstall()
+    {
+        
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $install = DB::table('aplikasi')->Where('status',1)->count();
+            $uninstall = DB::table('aplikasi')->Where('status',0)->count();
+        }else{
+            $install = DB::table('aplikasi')->Where('user',$user->email)->Where('status',1)->count();
+            $uninstall = DB::table('aplikasi')->Where('user',$user->email)->Where('status',0)->count();
+        }
+        return compact('install','uninstall');
+    }        
+
 }

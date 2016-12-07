@@ -22,8 +22,21 @@ class AplikasiController extends Controller {
 		$user = Auth::user();
 		if($user->role=='admin'){		
 			$aplikasis = Aplikasi::orderBy('id', 'desc')->paginate(5);
+			foreach ($aplikasis as $model){
+				if($model->status==1)
+					$model->status="Intsall";
+				else
+					$model->status="Uninstall";
+			}
 		}else{
-			$aplikasis = Aplikasi::Where('user', $user->email)->paginate(5);			
+			$aplikasis = Aplikasi::Where('user', $user->email)->paginate(5);
+				foreach ($aplikasis as $model){
+				if($model->status==1)
+					$model->status="Intsall";
+				else
+					$model->status="Uninstall";
+			}
+			
 		}
 		return view('aplikasis.index', compact('aplikasis'));
 	}
@@ -54,6 +67,7 @@ class AplikasiController extends Controller {
 		$aplikasi->platform = $request->input("platform");
 		$aplikasi->token= $request->input("token");
  		$aplikasi->name = $request->input("name");
+ 		$aplikasi->status = 1;
 		
 		if ($request->hasFile('picture')) {		
 			$imageTempName = $request->file('picture')->getPathname();
@@ -108,6 +122,7 @@ class AplikasiController extends Controller {
 		$aplikasi->category = $request->input("category");
 		$aplikasi->platform = $request->input("platform");
  		$aplikasi->name = $request->input("name");
+ 		$aplikasi->status = 1;
 
 		if ($request->hasFile('picture')) {		
 			$imageTempName = $request->file('picture')->getPathname();

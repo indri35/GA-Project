@@ -51,6 +51,7 @@ class MasterDataController extends Controller {
 		$master_datum->ip = $ip;
 		$master_datum->connected_by=$request->input("celuler");
         $master_datum->imei = $request->input("imei");
+        $master_datum->operator = $request->input("operator");
         $master_datum->click = $request->input("click");
         $master_datum->view = $request->input("view");
         $master_datum->type_device = $request->input("type_device");
@@ -118,6 +119,7 @@ class MasterDataController extends Controller {
 		$master_datum->ip = $request->input("ip");
 		$master_datum->user = $request->input("user");
         $master_datum->imei = $request->input("imei");
+		$master_datum->operator = $request->input("operator");
 		$master_datum->id_aplikasi = $request->input("id_aplikasi");
         $master_datum->created_at = $request->input("created_at");
         $master_datum->updated_at = $request->input("updated_at");
