@@ -28,7 +28,7 @@
                     <th>IP</th>
                     <th>IMEI</th>
                     <th>Date</th>
-                    <th>Click</th>
+                    <th>OS</th>
                     <th>View</th>
                     <th>Connect</th>
                     <th>Operator</th>
@@ -45,7 +45,7 @@
                         <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
                         <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
-                        <td>{{$master_datum->click}}</td>
+                        <td>{{$master_datum->os}}</td>
                         <td>{{$master_datum->view}}</td>
                         <td>{{$master_datum->connected_by}}</td>
                         <td>{{$master_datum->operator}}</td>

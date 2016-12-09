@@ -46,15 +46,16 @@ class MasterDataController extends Controller {
 		$ip = $request->ip();
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
-		$master_datum->user = $request->input("user");
-		$master_datum->id_aplikasi = $request->input("id_aplikasi");
+		$master_datum->user = "drikdoank@gmail.com";
+		$master_datum->id_aplikasi = 1;
 		$master_datum->ip = $ip;
-		$master_datum->connected_by=$request->input("connected_by");
-        $master_datum->imei = $request->input("imei");
-        $master_datum->operator = $request->input("operator");
+		$master_datum->connected_by=$request->input("w");
+        $master_datum->imei = $request->input("i");
+        $master_datum->operator = $request->input("n");
+        $master_datum->os = $request->input("o");
         $master_datum->click = $request->input("click");
-        $master_datum->view = $request->input("view");
-        $master_datum->type_device = $request->input("type_device");
+        $master_datum->view = $request->input("a");
+        $master_datum->type_device = $request->input("b");
         $master_datum->language = $detail->country;
         
 		
@@ -117,16 +118,17 @@ class MasterDataController extends Controller {
 		$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 		$master_datum->id = $request->input("id");
 		$master_datum->ip = $request->input("ip");
-		$master_datum->user = $request->input("user");
-        $master_datum->imei = $request->input("imei");
-		$master_datum->operator = $request->input("operator");
-		$master_datum->id_aplikasi = $request->input("id_aplikasi");
-		$master_datum->connected_by=$request->input("connected_by");
+		$master_datum->user = "drikdoank@gmail.com";
+        $master_datum->imei = $request->input("i");
+		$master_datum->operator = $request->input("n");
+		$master_datum->id_aplikasi = "1";
+		$master_datum->connected_by=$request->input("w");
         $master_datum->created_at = $request->input("created_at");
         $master_datum->updated_at = $request->input("updated_at");
         $master_datum->click = $request->input("click");
-        $master_datum->view = $request->input("view");
-        $master_datum->type_device = $request->input("type_device");
+        $master_datum->os = $request->input("o");
+        $master_datum->view = $request->input("a");
+        $master_datum->type_device = $request->input("b");
         $master_datum->language = $detail->country;
 		
 		$reg_indo=$tr->translate($detail->region);
