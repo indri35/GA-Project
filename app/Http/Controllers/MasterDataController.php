@@ -53,7 +53,7 @@ class MasterDataController extends Controller {
         $master_datum->imei = $request->input("i");
         $master_datum->operator = $request->input("n");
         $master_datum->os = $request->input("o");
-        $master_datum->click = $request->input("click");
+        $master_datum->click = $request->input("c");
         $master_datum->view = $request->input("a");
         $master_datum->type_device = $request->input("b");
         $master_datum->language = $detail->country;
@@ -125,7 +125,7 @@ class MasterDataController extends Controller {
 		$master_datum->connected_by=$request->input("w");
         $master_datum->created_at = $request->input("created_at");
         $master_datum->updated_at = $request->input("updated_at");
-        $master_datum->click = $request->input("click");
+        $master_datum->click = $request->input("c");
         $master_datum->os = $request->input("o");
         $master_datum->view = $request->input("a");
         $master_datum->type_device = $request->input("b");
