@@ -38,6 +38,16 @@ class MasterDataController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		$this->validate($request, [
+			'c' => 'required',
+			'i' => 'required',
+			'n' => 'required',
+			'w' => 'required',
+			'o' => 'required',
+			'a' => 'required',
+			'b' => 'required'
+		]);
+
 		$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 		$tr->setSource('en'); // Translate from English
 		$tr->setTarget('id'); // Translate to Indonesian
@@ -108,6 +118,16 @@ class MasterDataController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+		$this->validate($request, [
+			'c' => 'required',
+			'i' => 'required',
+			'n' => 'required',
+			'w' => 'required',
+			'o' => 'required',
+			'a' => 'required',
+			'b' => 'required'
+		]);
+
 		$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 		$tr->setSource('en'); // Translate from English
 		$tr->setTarget('id'); // Translate to Indonesian
