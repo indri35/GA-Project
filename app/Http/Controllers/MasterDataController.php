@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\MasterData;
 use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\TranslateClient;
+use JWTAuth;
 
 class MasterDataController extends Controller {
 
@@ -18,6 +19,14 @@ class MasterDataController extends Controller {
 		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 
 		return view('page.master-data', compact('master_datas'));
+	}
+
+	public function get()
+	{
+		$user = JWTAuth::parseToken()->toUser();
+		$master_datas = MasterData::Where("user",$user->email)->get();
+
+		return compact('master_datas');
 	}
 
 	/**

@@ -83,9 +83,6 @@ Route::get('/getDataActivityDeviceMonth', 'DashboardController@getDataActivityDe
 Route::get('/getDataActivityDeviceYear', 'DashboardController@getDataActivityDeviceYear');
 
 Route::get('/getDataByImei/{imei}', 'MasterDataController@getDataByImei');
-Route::post('/create_data','MasterDataController@store');
-Route::post('/update_data','MasterDataController@update');
-Route::delete('/delete_data','MasterDataController@destroy');
 
 //DataConnected
 Route::get('/getDataConnectedDay', 'DashboardController@getDataConnectedDay');
@@ -99,3 +96,37 @@ Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
 
+        //jwt-auth
+Route::post('/signup', function(){
+        $input = Input::only('email','password');
+        $input['password'] = Hash::make($input['password']);
+            
+        try {
+            User::create($input);
+            
+        } catch (Exception $e) {
+            return Response::json(['status'=>false,'message'=>$e]);
+        }
+
+        return Response::json(['status'=>true]);
+});
+
+Route::post('/signin', function(){
+
+    $input = Input::only('email','password');
+    //$customClaims = ['name' => $user->nama, 'picture' => $user->file_foto];
+    //if (!$token = JWTAuth::attempt($input, $customClaims)) {
+
+    if (!$token = JWTAuth::attempt($input)) {
+        return response()->json(['status'=>false,'message' => 'wrong email or password.']);
+    }
+        return response()->json(['status'=>true,'token' => $token]);
+
+});
+
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        Route::post('/create_data','MasterDataController@store');
+        Route::post('/update_data','MasterDataController@update');
+        Route::delete('/delete_data','MasterDataController@destroy');
+        Route::get('/get_data','MasterDataController@get');
+    });

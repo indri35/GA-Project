@@ -18,6 +18,9 @@ class VerifyCsrfToken extends BaseVerifier
         '/create_data',
         '/update_data',
         '/delete_data',
+        '/get_data',
+        '/signin',
+        '/signup',
         
     ];
 }
