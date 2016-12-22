@@ -26,6 +26,10 @@
                      <label for="id">ID</label>
                      <p class="form-control-static">{{$aplikasi->id}}</p>
                 </div>
+                <div class="form-group">
+                     <label for="token">Token</label>
+                     <p class="form-control-static">{{$aplikasi->token}}</p>
+                </div>
                     <div class="form-group">
                      <label for="imei">Apps Name</label>
                      <p class="form-control-static">{{$aplikasi->name}}</p>

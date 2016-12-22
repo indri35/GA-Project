@@ -65,7 +65,7 @@ class AplikasiController extends Controller {
 		$aplikasi->user = $request->input("user");
 		$aplikasi->category = $request->input("category");
 		$aplikasi->platform = $request->input("platform");
-		$aplikasi->token= $request->input("token");
+		$aplikasi->token= md5(uniqid(rand(), true));
  		$aplikasi->name = $request->input("name");
  		$aplikasi->status = 1;
 		

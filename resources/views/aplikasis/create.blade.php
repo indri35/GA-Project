@@ -33,6 +33,7 @@
                         <span class="help-block">{{ $errors->first("name") }}</span>
                        @endif
                     </div>
+                   <!-- 
                     <div class="form-group @if($errors->has('created_at')) has-error @endif">
                        <label for="created_at-field">Created_at</label>
                     <input type="date" id="created_at-field" name="created_at" class="form-control date-picker" value="{{ old("created_at") }}"/>
@@ -47,6 +48,15 @@
                         <span class="help-block">{{ $errors->first("updated_at") }}</span>
                        @endif
                     </div>
+                    <div class="form-group @if($errors->has('token')) has-error @endif">
+                       <label for="token-field">token</label>
+                    <input type="text" id="token-field" name="token" class="form-control" value="{{ old("token") }}"/>
+                       @if($errors->has("token"))
+                        <span class="help-block">{{ $errors->first("token") }}</span>
+                       @endif
+                    </div>
+
+                    -->
                     <div class="form-group @if($errors->has('category')) has-error @endif">
                        <label for="category-field">category</label>
                     <input type="text" id="category-field" name="category" class="form-control" value="{{ old("category") }}"/>
@@ -69,13 +79,6 @@
                        @endif
                     </div>
 
-                    <div class="form-group @if($errors->has('token')) has-error @endif">
-                       <label for="token-field">token</label>
-                    <input type="text" id="token-field" name="token" class="form-control" value="{{ old("token") }}"/>
-                       @if($errors->has("token"))
-                        <span class="help-block">{{ $errors->first("token") }}</span>
-                       @endif
-                    </div>
                 <div class="well well-sm">
                     <button type="submit" class="btn btn-primary">Create</button>
                     <a class="btn btn-link pull-right" href="{{ route('aplikasis.index') }}"><i class="glyphicon glyphicon-backward"></i> Back</a>

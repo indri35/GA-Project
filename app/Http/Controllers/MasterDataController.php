@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\MasterData;
+use App\Aplikasi;
 use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\TranslateClient;
 use JWTAuth;
@@ -21,12 +22,14 @@ class MasterDataController extends Controller {
 		return view('page.master-data', compact('master_datas'));
 	}
 
-	public function get()
+	public function get(Request $request)
 	{
+        $token = $request->header('Api-key');
 		$user = JWTAuth::parseToken()->toUser();
-		$master_datas = MasterData::Where("user",$user->email)->get();
-
-		return compact('master_datas');
+		$apps = Aplikasi::Where("token",$token)->first();
+		$master_datas = MasterData::Where("user",$user->email)->Where("id_aplikasi",$apps->id)->get();
+		$status=true;
+		return compact('status','master_datas');
 	}
 
 	/**
@@ -47,6 +50,9 @@ class MasterDataController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		$token = $request->header('Api-key');
+		$user = JWTAuth::parseToken()->toUser();
+		$apps = Aplikasi::Where("token",$token)->first();
 		$status = true;
 		$master_datum = new MasterData();
 
@@ -61,8 +67,8 @@ class MasterDataController extends Controller {
 			$ip = $request->ip();
 			$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 			$master_datum->id = $request->input("id");
-			$master_datum->user = "drikdoank@gmail.com";
-			$master_datum->id_aplikasi = 1;
+			$master_datum->user = $user->email;
+			$master_datum->id_aplikasi = $apps->id;
 			$master_datum->ip = $ip;
 			$master_datum->connected_by=$request->input("w");
 			$master_datum->imei = $request->input("i");
