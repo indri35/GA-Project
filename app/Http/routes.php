@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -98,12 +98,12 @@ Route::auth();
 
         //jwt-auth
 Route::post('/signup', function(){
-        $input = Input::only('email','password');
+
+        $input = Input::only('email','password','role','name');
         $input['password'] = Hash::make($input['password']);
             
         try {
-            User::create($input);
-            
+            User::create($input);            
         } catch (Exception $e) {
             return Response::json(['status'=>false,'message'=>$e]);
         }
