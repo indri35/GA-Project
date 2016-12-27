@@ -23,9 +23,9 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>CREATED</th>
-                        <th>UPDATED</th>
                         <th>USER</th>
                         <th>CATEGORY</th>
+                        <th>PACKAGE</th>
                         <th>STATUS</th>
                         <th>PLATFORM</th>
                             <th class="text-right">OPTIONS</th>
@@ -37,10 +37,10 @@
                             <tr>
                             <td>{{$master_datum->id}}</td>
                             <td>{{$master_datum->name}}</td>
-                            <td>{{$master_datum->created_at}}</td>
-                            <td>{{$master_datum->updated_at}}</td>
+                            <td>{{date('d-M-Y',strtotime($master_datum->created_at))}}</td>
                             <td>{{$master_datum->user}}</td>
                             <td>{{$master_datum->category}}</td>
+                            <td>{{$master_datum->package}}</td>
                             <td>{{$master_datum->status}}</td>
                             <td>{{$master_datum->platform}}</td>
                                 <td class="text-right">

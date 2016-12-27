@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('aplikasis.update', $aplikasi->id) }}" method="POST">
+            <form action="{{ route('aplikasis.update', $aplikasi->id) }}" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group @if($errors->has('name')) has-error @endif">
@@ -24,15 +24,8 @@
                         <span class="help-block">{{ $errors->first("name") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('created_at')) has-error @endif">
-                       <label for="created_at-field">Created</label>
-                    <input type="date" id="created_at-field" name="created_at" class="form-control date-picker" value="{{ is_null(old("created_at")) ? $aplikasi->created_at : old("created_at") }}"/>
-                       @if($errors->has("created_at"))
-                        <span class="help-block">{{ $errors->first("created_at") }}</span>
-                       @endif
-                    </div>
                     <div class="form-group @if($errors->has('updated_at')) has-error @endif">
-                       <label for="updated_at-field">Updated</label>
+                       <label for="updated_at-field">Updated Date</label>
                     <input type="date" id="updated_at-field" name="updated_at" class="form-control date-picker" value="{{ is_null(old("updated_at")) ? $aplikasi->updated_at : old("updated_at") }}"/>
                        @if($errors->has("updated_at"))
                         <span class="help-block">{{ $errors->first("updated_at") }}</span>
@@ -40,7 +33,7 @@
                     </div>
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                        <label for="user-field">user</label>
-                        <select class="form-control select2" id="name-field" name="name">                    
+                        <select class="form-control select2" id="user-field" name="user">                    
                         @foreach($users as $user)
                             <option value="{{ $user->email }}">{{$user->name.'-'.$user->email}}</option>
                         @endforeach
@@ -54,6 +47,13 @@
                     <input type="text" id="category-field" name="category" class="form-control" value="{{ is_null(old("category")) ? $aplikasi->category : old("category") }}"/>
                        @if($errors->has("category"))
                         <span class="help-block">{{ $errors->first("category") }}</span>
+                       @endif
+                    </div>
+                    <div class="form-group @if($errors->has('package')) has-error @endif">
+                       <label for="category-field">package</label>
+                    <input type="text" id="package-field" name="package" class="form-control" value="{{ is_null(old("package")) ? $aplikasi->package : old("package") }}"/>
+                       @if($errors->has("package"))
+                        <span class="help-block">{{ $errors->first("package") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('platform')) has-error @endif">

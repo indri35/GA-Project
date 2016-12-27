@@ -95,8 +95,10 @@ Route::get('/getDataOperatorMonth', 'DashboardController@getDataOperatorMonth');
 Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
+Route::post('/create_data','MasterDataController@store');
 
-        //jwt-auth
+
+//jwt-auth
 Route::post('/signup', function(){
 
         $input = Input::only('email','password','role','name');
@@ -125,7 +127,7 @@ Route::post('/signin', function(){
 });
 
     Route::group(['middleware' => ['jwt.auth']], function () {
-        Route::post('/create_data','MasterDataController@store');
+        //Route::post('/create_data','MasterDataController@store');
         Route::post('/update_data','MasterDataController@update');
         Route::delete('/delete_data','MasterDataController@destroy');
         Route::get('/get_data','MasterDataController@get');

@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <form action="{{ route('aplikasis.store') }}" method="POST">
+            <form action="{{ route('aplikasis.store') }}"  enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                     <label for="user-field">User</label>
@@ -62,6 +62,13 @@
                     <input type="text" id="category-field" name="category" class="form-control" value="{{ old("category") }}"/>
                        @if($errors->has("category"))
                         <span class="help-block">{{ $errors->first("category") }}</span>
+                       @endif
+                    </div>
+                    <div class="form-group @if($errors->has('package')) has-error @endif">
+                       <label for="category-field">package</label>
+                    <input type="text" id="cpackage-field" name="package" class="form-control" value="{{ old("package") }}"/>
+                       @if($errors->has("package"))
+                        <span class="help-block">{{ $errors->first("package") }}</span>
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('platform')) has-error @endif">

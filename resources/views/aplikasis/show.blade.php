@@ -23,6 +23,10 @@
 
             <form action="#">
                 <div class="form-group">
+                     <label for="picture">Logo</label>
+                    <img width="100" height="100" src="{{ asset($aplikasi->picture) }}" class="img-responsive"/>
+                </div>
+                <div class="form-group">
                      <label for="id">ID</label>
                      <p class="form-control-static">{{$aplikasi->id}}</p>
                 </div>
@@ -53,11 +57,7 @@
                     <div class="form-group">
                      <label for="type_device">Platform</label>
                      <p class="form-control-static">{{$aplikasi->platform}}</p>
-                </div>
-                <div class="form-group">
-                     <label for="picture">Logo</label>
-                    <img src="{{ asset($aplikasi->picture) }}" class="img-responsive"/>
-                </div>
+                </div>               
 
             </form>
 

@@ -60,10 +60,19 @@ class AplikasiController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		$this->validate($request, [
+            'user' => 'required',
+            'category' => 'required',
+            'package' => 'required',
+            'platform' => 'required',
+            'name' => 'required'
+        ]);
+
 		$aplikasi = new Aplikasi();
 		$aplikasi->id = $request->input("id");
 		$aplikasi->user = $request->input("user");
 		$aplikasi->category = $request->input("category");
+		$aplikasi->package = $request->input("package");
 		$aplikasi->platform = $request->input("platform");
 		$aplikasi->token= md5(uniqid(rand(), true));
  		$aplikasi->name = $request->input("name");
@@ -117,9 +126,18 @@ class AplikasiController extends Controller {
 	 */
 	public function update(Request $request, $id)
 	{
+		$this->validate($request, [
+            'user' => 'required',
+            'category' => 'required',
+            'package' => 'required',
+            'platform' => 'required',
+            'name' => 'required'
+        ]);
+
 		$aplikasi = Aplikasi::findOrFail($id);
 		$aplikasi->user = $request->input("user");
 		$aplikasi->category = $request->input("category");
+		$aplikasi->package = $request->input("package");
 		$aplikasi->platform = $request->input("platform");
  		$aplikasi->name = $request->input("name");
  		$aplikasi->status = 1;
