@@ -60,49 +60,66 @@ class MasterDataController extends Controller {
 		$status = true;
 		$master_datum = new MasterData();
 
-		if($apps!=null){
-			if (isset($request['w']) && isset($request['i'])
-			&& isset($request['n']) && isset($request['o']) 
-			&& isset($request['c'])&& isset($request['a']) 
-			&& isset($request['b'])){
-				$tr = new TranslateClient(); // Default is from 'auto' to 'en'
-				$tr->setSource('en'); // Translate from English
-				$tr->setTarget('id'); // Translate to Indonesian
+		if($token!=null && $iduser !=null && $package){
 
-				$ip = $request->ip();
-				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-				$master_datum->id = $request->input("id");
-				$master_datum->user = $user->email;
-				$master_datum->id_aplikasi = $apps->id;
-				$master_datum->ip = $ip;
-				$master_datum->connected_by=$request->input("w");
-				$master_datum->imei = $request->input("i");
-				$master_datum->operator = $request->input("n");
-				$master_datum->os = $request->input("o");
-				$master_datum->click = $request->input("c");
-				$master_datum->view = $request->input("a");
-				$master_datum->type_device = $request->input("b");
-				$master_datum->language = $detail->country;
-				
-				
-				$reg_indo=$tr->translate($detail->region);
-				if($reg_indo=="Jakarta")
-					$reg_indo="Jakarta Raya";
-			
-				$master_datum->state = $reg_indo;		
-				
-				$master_datum->regional = $detail->city;	
-				$master_datum->loc = $detail->loc;
+			if($apps!=null){
+		
+				if (isset($request['w']) && isset($request['i'])
+				&& isset($request['n']) && isset($request['o']) 
+				&& isset($request['c'])&& isset($request['a']) 
+				&& isset($request['b'])){
+						
+						$tmp=date("Y-m-d H:i:s");
+						$data = MasterData::Where("created_at",$tmp)->Where("imei",$request['i'])->first();
+						
+						if($data ==null){	
+								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
+								$tr->setSource('en'); // Translate from English
+								$tr->setTarget('id'); // Translate to Indonesian
+
+								$ip = $request->ip();
+								$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+								$master_datum->id = $request->input("id");
+								$master_datum->user = $user->email;
+								$master_datum->id_aplikasi = $apps->id;
+								$master_datum->ip = $ip;
+								$master_datum->connected_by=$request->input("w");
+								$master_datum->imei = $request->input("i");
+								$master_datum->operator = $request->input("n");
+								$master_datum->os = $request->input("o");
+								$master_datum->click = $request->input("c");
+								$master_datum->view = $request->input("a");
+								$master_datum->type_device = $request->input("b");
+								$master_datum->language = $detail->country;
 								
-				$master_datum->save();
-			}else{
-				$status = false;
-				$master_datum = "parameter not complete";
-			}
+								
+								$reg_indo=$tr->translate($detail->region);
+								if($reg_indo=="Jakarta")
+									$reg_indo="Jakarta Raya";
+							
+								$master_datum->state = $reg_indo;		
+								
+								$master_datum->regional = $detail->city;	
+								$master_datum->loc = $detail->loc;
+												
+								$master_datum->save();
+
+							}else{
+								$status = false;
+								$master_datum = "retention not valid";
+							}
+					}else{
+						$status = false;
+						$master_datum = "parameter not complete";
+					}
 		}else{
 			$status = false;
 			$master_datum = "token not valid";
 		}
+	}else{
+			$status = false;
+			$master_datum = "header parameter not complete";
+	}
         return compact('status','master_datum');
 	}
 
