@@ -96,6 +96,7 @@ Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
 Route::post('/create_data','MasterDataController@store');
+Route::post('/get_encrypt_imei','MasterDataController@getImeiEncrypt');
 
 
 //jwt-auth

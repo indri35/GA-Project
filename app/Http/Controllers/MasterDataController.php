@@ -16,6 +16,8 @@ class MasterDataController extends Controller {
 	 *
 	 * @return Response
 	 */
+	 	
+
 	public function index()
 	{
 		$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
@@ -43,36 +45,93 @@ class MasterDataController extends Controller {
 		return view('page.create');
 	}
 
+	public function checkSig(&$params,$package)
+	{
+		$SALT = 'q5u12e4iu13l8c79';
+		$IV = 'rmfo9xuc4q2oawbr';
+		$keys = array_keys($params);
+		$value = '';
+		asort($keys);
+		foreach ($keys as $k){
+			$value.=$k;
+		}
+		$value.=strtolower($package);
+		$value.=$SALT;
+		return md5($value);
+	}
+
+	function decrypyptImei($imei,$package)
+	{
+		$SALT = 'q5u12e4iu13l8c79';
+		$IV = 'rmfo9xuc4q2oawbr';		
+		$key = md5($SALT.strtolower($package));
+		$chiper = base64_decode($imei);
+		if (!$chiper)return False;
+		return openssl_decrypt($chiper,  'AES-128-CBC', $key, OPENSSL_RAW_DATA,$IV);
+	}
+
+	public function getImeiEncrypt(Request $request){
+		$token = $request->header('Api-key');
+		$apps = Aplikasi::Where("token",$token)->first();	
+		$status = true;
+		$sig;
+		$master_datum = new MasterData();
+		if($token!=null){	
+			if($apps!=null){
+				$user = User::Where('email',$apps->user)->first();				
+				if (isset($request['i'])){
+					$imei = $request['i'];		
+					$master_datum = $this->encrypyptImei($imei,$apps->package);
+					$sig = $this->checkSig($request->input(), $apps->package);
+				}else{
+					$status = false;
+					$master_datum = "retention not valid";
+				}							
+			}else{
+			$status = false;
+			$master_datum = "token not valid";
+			}
+		}else{
+			$status = false;
+			$master_datum = "header parameter not complete";
+		}
+        return compact('status','master_datum','sig');
+	}
+
+	public function encrypyptImei($imei,$package)
+	{
+		$SALT = 'q5u12e4iu13l8c79';
+		$IV = 'rmfo9xuc4q2oawbr';		
+		$key = md5($SALT.strtolower($package));
+		$chiper = openssl_encrypt($imei,  'AES-128-CBC', $key, OPENSSL_RAW_DATA,$IV);
+		return base64_encode($chiper);
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param Request $request
 	 * @return Response
 	 */
+
 	public function store(Request $request)
 	{
 		$token = $request->header('Api-key');
-		$iduser = $request->header('uid');
-		$package = $request->header('pkey');
-		$user = User::Where('email',$iduser)->first();
 		//$user = JWTAuth::parseToken()->toUser();
-		$apps = Aplikasi::Where("package",$package)->Where("token",$token)->first();
+		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
+		$data;
 		$master_datum = new MasterData();
-
-		if($token!=null && $iduser !=null && $package){
-
+		if($token!=null){	
 			if($apps!=null){
-		
+				$user = User::Where('email',$apps->user)->first();
 				if (isset($request['w']) && isset($request['i'])
 				&& isset($request['n']) && isset($request['o']) 
 				&& isset($request['c'])&& isset($request['a']) 
-				&& isset($request['b'])){
-						
-						$tmp=date("Y-m-d H:i:s");
-						$data = MasterData::Where("created_at",$tmp)->Where("imei",$request['i'])->first();
-						
-						if($data ==null){	
+				&& isset($request['b'])){						
+				$tmp=date("Y-m-d H:i:s");
+						//$sig = $this->checkSig($request, $apps->package);
+						$data = $this->decrypyptImei($request['i'], $apps->package);					
+						if($data){	
 								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 								$tr->setSource('en'); // Translate from English
 								$tr->setTarget('id'); // Translate to Indonesian
@@ -103,11 +162,12 @@ class MasterDataController extends Controller {
 								$master_datum->loc = $detail->loc;
 												
 								$master_datum->save();
-
+								
 							}else{
 								$status = false;
 								$master_datum = "retention not valid";
 							}
+							
 					}else{
 						$status = false;
 						$master_datum = "parameter not complete";
@@ -120,7 +180,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$master_datum = "header parameter not complete";
 	}
-        return compact('status','master_datum');
+        return compact('status','master_datum','data');
 	}
 
 	/**
