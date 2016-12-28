@@ -74,6 +74,7 @@ class MasterDataController extends Controller {
 		$token = $request->header('Api-key');
 		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
+		$params = $request->input(); 
 		$sig;
 		$master_datum = new MasterData();
 		if($token!=null){	
@@ -82,6 +83,7 @@ class MasterDataController extends Controller {
 				if (isset($request['i'])){
 					$imei = $request['i'];		
 					$master_datum = $this->encrypyptImei($imei,$apps->package);
+					$sig = $this->checkSig($params, $apps->package); 
 				}else{
 					$status = false;
 					$master_datum = "retention not valid";
@@ -115,7 +117,7 @@ class MasterDataController extends Controller {
 	public function store(Request $request)
 	{
 		$token = $request->header('Api-key');
-		//$user = JWTAuth::parseToken()->toUser();
+		$sig = $request->header('Sig');
 		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
 		$imei;
@@ -129,8 +131,8 @@ class MasterDataController extends Controller {
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
 						$imei = $this->decrypyptImei($request['i'], $apps->package);					
-						$sig = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();						
-						if($imei && $sig==null){	
+						$duplicate = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();	
+						if($imei && $duplicate==null){	
 								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 								$tr->setSource('en'); // Translate from English
 								$tr->setTarget('id'); // Translate to Indonesian
@@ -149,8 +151,7 @@ class MasterDataController extends Controller {
 								$master_datum->view = $request->input("a");
 								$master_datum->type_device = $request->input("b");
 								$master_datum->language = $detail->country;
-								
-								
+															
 								$reg_indo=$tr->translate($detail->region);
 								if($reg_indo=="Jakarta")
 									$reg_indo="Jakarta Raya";
