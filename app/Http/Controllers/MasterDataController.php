@@ -118,8 +118,7 @@ class MasterDataController extends Controller {
 		//$user = JWTAuth::parseToken()->toUser();
 		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
-		$data;
-		$sig;
+		$imei;
 		$master_datum = new MasterData();
 		if($token!=null){	
 			if($apps!=null){
@@ -129,7 +128,7 @@ class MasterDataController extends Controller {
 				&& isset($request['c'])&& isset($request['a']) 
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
-						$data = $this->decrypyptImei($request['i'], $apps->package);					
+						$imei = $this->decrypyptImei($request['i'], $apps->package);					
 						$sig = MasterData::Where('imei',$data)->Where('created_at',$tmp)->first();						
 						if($data && $sig==null){	
 								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
@@ -180,7 +179,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$master_datum = "header parameter not complete";
 	}
-        return compact('status','master_datum','sig','data');
+        return compact('status','master_datum','imei');
 	}
 
 	/**
