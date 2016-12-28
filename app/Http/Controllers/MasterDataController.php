@@ -67,7 +67,7 @@ class MasterDataController extends Controller {
 		$key = md5($SALT.strtolower($package));
 		$chiper = base64_decode($imei);
 		if (!$chiper)return False;
-		return openssl_decrypt($chiper,  'AES-128-CBC', $key, OPENSSL_RAW_DATA,$IV);
+		return openssl_decrypt($chiper, 'AES-128-CBC', $key, OPENSSL_RAW_DATA,$IV);
 	}
 
 	public function getImeiEncrypt(Request $request){
@@ -82,7 +82,6 @@ class MasterDataController extends Controller {
 				if (isset($request['i'])){
 					$imei = $request['i'];		
 					$master_datum = $this->encrypyptImei($imei,$apps->package);
-					$sig = $this->checkSig($request->input(), $apps->package);
 				}else{
 					$status = false;
 					$master_datum = "retention not valid";
@@ -119,7 +118,6 @@ class MasterDataController extends Controller {
 		//$user = JWTAuth::parseToken()->toUser();
 		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
-		$data;
 		$master_datum = new MasterData();
 		if($token!=null){	
 			if($apps!=null){
@@ -129,9 +127,9 @@ class MasterDataController extends Controller {
 				&& isset($request['c'])&& isset($request['a']) 
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
-						//$sig = $this->checkSig($request, $apps->package);
 						$data = $this->decrypyptImei($request['i'], $apps->package);					
-						if($data){	
+						$sig = MasterData::Where('imei',$data)->Where('created_at',$tmp)->first();						
+						if($data && $sig==null){	
 								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 								$tr->setSource('en'); // Translate from English
 								$tr->setTarget('id'); // Translate to Indonesian
