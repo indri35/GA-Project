@@ -142,7 +142,7 @@ class MasterDataController extends Controller {
 								$master_datum->id_aplikasi = $apps->id;
 								$master_datum->ip = $ip;
 								$master_datum->connected_by=$request->input("w");
-								$master_datum->imei = $data;
+								$master_datum->imei = $imei;
 								$master_datum->operator = $request->input("n");
 								$master_datum->os = $request->input("o");
 								$master_datum->click = $request->input("c");
