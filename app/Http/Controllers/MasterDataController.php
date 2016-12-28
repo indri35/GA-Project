@@ -118,6 +118,8 @@ class MasterDataController extends Controller {
 		//$user = JWTAuth::parseToken()->toUser();
 		$apps = Aplikasi::Where("token",$token)->first();	
 		$status = true;
+		$data;
+		$sig;
 		$master_datum = new MasterData();
 		if($token!=null){	
 			if($apps!=null){
@@ -178,7 +180,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$master_datum = "header parameter not complete";
 	}
-        return compact('status','master_datum');
+        return compact('status','master_datum','sig','data');
 	}
 
 	/**
