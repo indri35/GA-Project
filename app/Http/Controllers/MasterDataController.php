@@ -162,7 +162,7 @@ class MasterDataController extends Controller {
 								$master_datum->loc = $detail->loc;
 												
 								$master_datum->save();
-								
+								$master_datum="sucess";
 							}else{
 								$status = false;
 								$master_datum = "package not valid";
@@ -180,7 +180,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$master_datum = "header parameter not complete";
 	}
-        return compact('status','master_datum','imei');
+        return compact('status','master_datum');
 	}
 
 	/**
