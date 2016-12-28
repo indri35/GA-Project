@@ -162,7 +162,7 @@ class MasterDataController extends Controller {
 								$master_datum->loc = $detail->loc;
 												
 								$master_datum->save();
-								$master_datum="sucess";
+								$master_datum="success";
 							}else{
 								$status = false;
 								$master_datum = "package not valid";
