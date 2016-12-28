@@ -129,8 +129,8 @@ class MasterDataController extends Controller {
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
 						$imei = $this->decrypyptImei($request['i'], $apps->package);					
-						$sig = MasterData::Where('imei',$data)->Where('created_at',$tmp)->first();						
-						if($data && $sig==null){	
+						$sig = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();						
+						if($imei && $sig==null){	
 								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 								$tr->setSource('en'); // Translate from English
 								$tr->setTarget('id'); // Translate to Indonesian
