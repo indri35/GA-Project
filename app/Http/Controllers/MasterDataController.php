@@ -143,7 +143,7 @@ class MasterDataController extends Controller {
 								$master_datum->id_aplikasi = $apps->id;
 								$master_datum->ip = $ip;
 								$master_datum->connected_by=$request->input("w");
-								$master_datum->imei = $request->input("i");
+								$master_datum->imei = $data;
 								$master_datum->operator = $request->input("n");
 								$master_datum->os = $request->input("o");
 								$master_datum->click = $request->input("c");
@@ -165,7 +165,7 @@ class MasterDataController extends Controller {
 								
 							}else{
 								$status = false;
-								$master_datum = "retention not valid";
+								$master_datum = "package not valid";
 							}
 							
 					}else{
@@ -180,7 +180,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$master_datum = "header parameter not complete";
 	}
-        return compact('status','master_datum','data');
+        return compact('status','master_datum');
 	}
 
 	/**
