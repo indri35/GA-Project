@@ -25,7 +25,7 @@
               <h3>{{$count_install->total_install}}</h3> 
               @endforeach
               {!! $master_datas->render() !!}
-              <p>Count Install</p>
+              <p>Users</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-people"></i>

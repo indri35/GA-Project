@@ -35,8 +35,12 @@
                      <p class="form-control-static">{{$aplikasi->token}}</p>
                 </div>
                     <div class="form-group">
-                     <label for="imei">Apps Name</label>
+                     <label for="appsname">Apps Name</label>
                      <p class="form-control-static">{{$aplikasi->name}}</p>
+                </div>
+                    <div class="form-group">
+                     <label for="package">Package</label>
+                     <p class="form-control-static">{{$aplikasi->package}}</p>
                 </div>
                     <div class="form-group">
                      <label for="created_at">Created</label>
