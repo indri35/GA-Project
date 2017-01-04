@@ -24,13 +24,6 @@
                         <span class="help-block">{{ $errors->first("name") }}</span>
                        @endif
                     </div>
-                    <div class="form-group @if($errors->has('updated_at')) has-error @endif">
-                       <label for="updated_at-field">Updated Date</label>
-                    <input type="date" id="updated_at-field" name="updated_at" class="form-control date-picker" value="{{ is_null(old("updated_at")) ? $aplikasi->updated_at : old("updated_at") }}"/>
-                       @if($errors->has("updated_at"))
-                        <span class="help-block">{{ $errors->first("updated_at") }}</span>
-                       @endif
-                    </div>
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                        <label for="user-field">user</label>
                         <select class="form-control select2" id="user-field" name="user">                    
@@ -68,13 +61,6 @@
                     <input type="file" class="form-control" id="picture" name="picture"/>								
                        @if($errors->has("picture"))
                         <span class="help-block">{{ $errors->first("picture") }}</span>
-                       @endif
-                    </div>
-                    <div class="form-group @if($errors->has('token')) has-error @endif">
-                       <label for="token-field">token</label>
-                    <input type="text" id="token-field" name="token" class="form-control" value="{{ is_null(old("token")) ? $aplikasi->token : old("token") }}"/>
-                       @if($errors->has("token"))
-                        <span class="help-block">{{ $errors->first("token") }}</span>
                        @endif
                     </div>
                 <div class="well well-sm">
