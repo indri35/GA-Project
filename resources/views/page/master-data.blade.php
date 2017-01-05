@@ -7,7 +7,7 @@
         <h1>
             Data Table
         <small>Master</small>
-            <a class="btn btn-success pull-right" href="{{ route('master_datas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+            <!--<a class="btn btn-success pull-right" href="{{ route('master_datas.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>-->
         </h1>
 
     </div>
