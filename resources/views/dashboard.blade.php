@@ -253,7 +253,7 @@
         </div>
         <!-- /.col -->
       </div>
-      <div class="row">
+      <div class="row" style="display:none;">
         <div class="col-xs-12">
           <!-- interactive chart -->
           <div class="box box-primary">

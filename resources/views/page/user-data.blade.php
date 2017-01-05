@@ -25,7 +25,6 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>Role</th>
-                    <th>Token</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -35,7 +34,6 @@
                         <td>{{$master_datum->email}}</td>
                         <td>{{$master_datum->name}}</td>
                         <td>{{$master_datum->role}}</td>
-                        <td>{{$master_datum->remember_token}}</td>
                         </td>
                     </tr>
                 @endforeach
