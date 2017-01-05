@@ -81,7 +81,7 @@ class MasterDataController extends Controller {
 			if($apps!=null){
 				$user = User::Where('email',$apps->user)->first();				
 				if (isset($request['i'])){
-					$imei = $request['i'];		
+						$imei = $request['i'];		
 						$data = $this->encrypyptImei($imei,$apps->package);
 						$sig = $this->checkSig($params, $apps->package); 
 				}else{
@@ -96,7 +96,7 @@ class MasterDataController extends Controller {
 			$status = false;
 			$data = "header parameter not complete";
 		}
-        return compact('status','data','sig');
+        return compact('status','data','sig','apps');
 	}
 
 	public function encrypyptImei($imei,$package)
