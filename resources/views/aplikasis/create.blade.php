@@ -22,7 +22,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                     <label for="user-field">User</label>
-                    <input type="text" id="user-field" name="user" class="form-control" value="{{ $user->email }}"/>
+                    <input type="text" id="user-field" name="user" class="form-control" value="{{ $user->email }}" readonly>
                         @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
                        @endif

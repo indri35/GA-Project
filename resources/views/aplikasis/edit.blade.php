@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                        <label for="user-field">User</label>
-                        <input type="text" id="user-field" name="user" class="form-control" value="{{ is_null(old("user")) ? $aplikasi->user : old("user") }}"/>
+                        <input type="text" id="user-field" name="user" class="form-control" value="{{ is_null(old("user")) ? $aplikasi->user : old("user") }}" readonly>
                         @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
                        @endif
