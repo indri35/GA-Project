@@ -168,6 +168,9 @@ class MasterDataController extends Controller {
 										}
 										$master_datum->save();
 										$master_datum="success";
+								}else{
+									$status = false;
+									$master_datum = "signature not valid";
 								}
 							}else{
 								$status = false;
