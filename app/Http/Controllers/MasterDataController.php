@@ -130,10 +130,12 @@ class MasterDataController extends Controller {
 				&& isset($request['c'])&& isset($request['a']) 
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
-						$imei = $this->decrypyptImei($request['i'], $apps->package);					
-						if($imei){
+				$imei = $this->decrypyptImei($request['i'], $apps->package);					
+					if($imei){
+						$params = $request->input(); 
+						$sigparam=$this->checkSig($params,$apps->package);
 								$duplicate = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();
-								if($duplicate==null){		
+								if($duplicate==null && $sigparam==$sig){		
 										$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 										$tr->setSource('en'); // Translate from English
 										$tr->setTarget('id'); // Translate to Indonesian
