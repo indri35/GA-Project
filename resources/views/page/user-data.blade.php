@@ -37,7 +37,7 @@
                         <td>{{$master_datum->name}}</td>
                         <td>{{$master_datum->role}}</td>
                         <td>{{$master_datum->plan}}</td>
-                        <td>{{if($master_datum->plan==3) Trial @else if ($master_datum->plan==5) Bronze  @else if ($master_datum->plan==7) Silver  @else Gold @endif }}</td>
+                        <td>{{@if($master_datum->plan==3) Trial @else if ($master_datum->plan==5) Bronze  @else if ($master_datum->plan==7) Silver  @else Gold @endif }}</td>
                         </td>
                     </tr>
                 @endforeach
