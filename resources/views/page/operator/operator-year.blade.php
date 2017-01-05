@@ -51,15 +51,7 @@
                     <th>IP</th>
                     <th>IMEI</th>
                     <th>Date</th>
-                    <th>Click</th>
-                    <th>View</th>
-                    <th>Connect</th>
                     <th>Operator</th>
-                    <th>Device</th>
-                    <th>Lang</th>
-                    <th>State</th>
-                    <th>Regional</th>
-                    <th>Location</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,15 +60,7 @@
                         <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
                         <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
-                        <td>{{$master_datum->click}}</td>
-                        <td>{{$master_datum->view}}</td>
-                        <td>{{$master_datum->connected_by}}</td>
                         <td>{{$master_datum->operator}}</td>
-                        <td>{{$master_datum->type_device}}</td>
-                        <td>{{$master_datum->language}}</td>
-                        <td>{{$master_datum->state}}</td>
-                        <td>{{$master_datum->regional}}</td>
-                        <td>{{$master_datum->loc}}</td>
                     </tr>
                 @endforeach
                 </tbody>

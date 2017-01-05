@@ -144,7 +144,10 @@ class MasterDataController extends Controller {
 										$master_datum->user = $user->email;
 										$master_datum->id_aplikasi = $apps->id;
 										$master_datum->ip = $ip;
-										$master_datum->connected_by=$request->input("w");
+										if($request->input("w")==true)
+											$master_datum->connected_by="wifi";
+										else
+											$master_datum->connected_by="celluler";
 										$master_datum->imei = $imei;
 										$master_datum->operator = $request->input("n");
 										$master_datum->os = $request->input("o");

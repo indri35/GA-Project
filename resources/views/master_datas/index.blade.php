@@ -37,15 +37,15 @@
                             <tr>
                                 <td>{{$master_datum->id}}</td>
                                 <td>{{$master_datum->id}}</td>
-                    <td>{{$master_datum->imei}}</td>
-                    <td>{{$master_datum->created_at}}</td>
-                    <td>{{$master_datum->updated_at}}</td>
-                    <td>{{$master_datum->click}}</td>
-                    <td>{{$master_datum->view}}</td>
-                    <td>{{$master_datum->type_device}}</td>
-                    <td>{{$master_datum->language}}</td>
-                    <td>{{$master_datum->state}}</td>
-                    <td>{{$master_datum->regional}}</td>
+                                <td>{{$master_datum->imei}}</td>
+                                <td>{{$master_datum->created_at}}</td>
+                                <td>{{$master_datum->updated_at}}</td>
+                                <td>{{$master_datum->click}}</td>
+                                <td>{{$master_datum->view}}</td>
+                                <td>{{$master_datum->type_device}}</td>
+                                <td>{{$master_datum->language}}</td>
+                                <td>{{$master_datum->state}}</td>
+                                <td>{{$master_datum->regional}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('master_datas.show', $master_datum->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
                                     <a class="btn btn-xs btn-warning" href="{{ route('master_datas.edit', $master_datum->id) }}"><i class="glyphicon glyphicon-edit"></i> Edit</a>

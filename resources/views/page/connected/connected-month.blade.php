@@ -35,6 +35,44 @@
           </div>
           <!-- /.box -->
         </div>
+                <div class="col-md-12">
+          <!-- Install Table -->
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Table Connceted By - Month</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            @if($master_datas->count())
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>IP</th>
+                    <th>IMEI</th>
+                    <th>Date</th>
+                    <th>Connected</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @foreach($master_datas as $master_datum)
+                    <tr>
+                        <td>{{$master_datum->ip}}</td>
+                        <td>{{$master_datum->imei}}</td>
+                        <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
+                        <td>{{$master_datum->connected_by}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+              </table>
+              {!! $master_datas->render() !!}
+            @else
+                <h3 class="text-center alert alert-info">Empty!</h3>
+            @endif  
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
       </div>
       <!-- /.row -->
     </section>

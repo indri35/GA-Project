@@ -107,33 +107,70 @@ class PageController extends Controller {
 	//view page
 	public function viewday()
 	{
-		return view('page.view.view-day');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.view.view-day',compact('master_datas'));
 	}
 
 	public function viewmonth()
 	{
-		return view('page.view.view-month');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.view.view-month',compact('master_datas'));
 	}
 
 	public function viewyear()
 	{
-		return view('page.view.view-year');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+
+		return view('page.view.view-year',compact('master_datas'));
 	}
 
 	//connected page
 	public function connectedday()
 	{
-		return view('page.connected.connected-day');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.connected.connected-day',compact('master_datas'));
 	}
 
 	public function connectedmonth()
 	{
-		return view('page.connected.connected-month');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.connected.connected-month',compact('master_datas'));
 	}
 
 	public function connectedyear()
 	{
-		return view('page.connected.connected-year');
+		$user = Auth::user();
+		if($user->role=='admin'){
+			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+		}else{
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+		}
+		return view('page.connected.connected-year',compact('master_datas'));
 	}
 
 	//click page
