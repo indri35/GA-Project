@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\User;
+use App\Aplikasi;
 use App\Dashboard;
 use App\Count;
 use App\Usercount;
@@ -163,7 +164,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
+            $master_datas = Aplikasi::Where('user',$user->email)->count();
             $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
         }else{
             $master_datas = Aplikasi::Where('user',$user->email)->count();

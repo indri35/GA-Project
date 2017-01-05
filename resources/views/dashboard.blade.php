@@ -22,7 +22,6 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>{{$master_datas}}</h3> 
-              {!! $master_datas->render() !!}
               <p>Apps</p>
             </div>
             <div class="icon">
