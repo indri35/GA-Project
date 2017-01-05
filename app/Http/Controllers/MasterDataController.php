@@ -76,27 +76,27 @@ class MasterDataController extends Controller {
 		$status = true;
 		$params = $request->input(); 
 		$sig;
-		$master_datum = new MasterData();
+		$data = new MasterData();
 		if($token!=null){	
 			if($apps!=null){
 				$user = User::Where('email',$apps->user)->first();				
 				if (isset($request['i'])){
 					$imei = $request['i'];		
-					$master_datum = $this->encrypyptImei($imei,$apps->package);
-					$sig = $this->checkSig($params, $apps->package); 
+						$data = $this->encrypyptImei($imei,$apps->package);
+						$sig = $this->checkSig($params, $apps->package); 
 				}else{
 					$status = false;
-					$master_datum = "retention not valid";
+						$data = "retention not valid";
 				}							
 			}else{
 			$status = false;
-			$master_datum = "token not valid";
+			$data = "token not valid";
 			}
 		}else{
 			$status = false;
-			$master_datum = "header parameter not complete";
+			$data = "header parameter not complete";
 		}
-        return compact('status','master_datum','sig');
+        return compact('status','data','sig');
 	}
 
 	public function encrypyptImei($imei,$package)
@@ -131,38 +131,39 @@ class MasterDataController extends Controller {
 				&& isset($request['b'])){						
 				$tmp=date("Y-m-d H:i:s");
 						$imei = $this->decrypyptImei($request['i'], $apps->package);					
-						$duplicate = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();	
-						if($imei && $duplicate==null){	
-								$tr = new TranslateClient(); // Default is from 'auto' to 'en'
-								$tr->setSource('en'); // Translate from English
-								$tr->setTarget('id'); // Translate to Indonesian
+						if($imei){
+								$duplicate = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();
+								if($duplicate==null){		
+										$tr = new TranslateClient(); // Default is from 'auto' to 'en'
+										$tr->setSource('en'); // Translate from English
+										$tr->setTarget('id'); // Translate to Indonesian
 
-								$ip = $request->ip();
-								$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-								$master_datum->id = $request->input("id");
-								$master_datum->user = $user->email;
-								$master_datum->id_aplikasi = $apps->id;
-								$master_datum->ip = $ip;
-								$master_datum->connected_by=$request->input("w");
-								$master_datum->imei = $imei;
-								$master_datum->operator = $request->input("n");
-								$master_datum->os = $request->input("o");
-								$master_datum->click = $request->input("c");
-								$master_datum->view = $request->input("a");
-								$master_datum->type_device = $request->input("b");
-								$master_datum->language = $detail->country;
-															
-								$reg_indo=$tr->translate($detail->region);
-								if($reg_indo=="Jakarta")
-									$reg_indo="Jakarta Raya";
-							
-								$master_datum->state = $reg_indo;		
-								
-								$master_datum->regional = $detail->city;	
-								$master_datum->loc = $detail->loc;
-												
-								$master_datum->save();
-								$master_datum="success";
+										$ip = $request->ip();
+										$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+										$master_datum->id = $request->input("id");
+										$master_datum->user = $user->email;
+										$master_datum->id_aplikasi = $apps->id;
+										$master_datum->ip = $ip;
+										$master_datum->connected_by=$request->input("w");
+										$master_datum->imei = $imei;
+										$master_datum->operator = $request->input("n");
+										$master_datum->os = $request->input("o");
+										$master_datum->click = $request->input("c");
+										$master_datum->view = $request->input("a");
+										$master_datum->type_device = $request->input("b");
+
+										if($detail!=null){
+											$master_datum->language = $detail->country;																	
+											$reg_indo=$tr->translate($detail->region);
+											if($reg_indo=="Jakarta")
+												$reg_indo="Jakarta Raya";									
+											$master_datum->state = $reg_indo;												
+											$master_datum->regional = $detail->city;	
+											$master_datum->loc = $detail->loc;
+										}
+										$master_datum->save();
+										$master_datum="success";
+								}
 							}else{
 								$status = false;
 								$master_datum = "package not valid";
