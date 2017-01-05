@@ -141,13 +141,11 @@
           </a>
         </li>
         @endif
-        @if (Auth::user()->role=='admin')
         <li class="treeview">
           <a href="{{ url('/aplikasis') }}">
             <i class="fa fa-table"></i> <span>Apps</span>
           </a>
         </li>
-        @endif
         <li class="treeview">
           <a href="#">
             <i class="fa fa-mouse-pointer"></i> <span>Click and Impressions</span>

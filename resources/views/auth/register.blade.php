@@ -49,6 +49,24 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('limit') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-3 control-label">Payment</label>
+                            <div class="col-md-9">
+                            <select class="form-control" id="limit-field" name="limit">                    
+                                    <option value="">Pilih Jenis</option>
+                                    <option value="3">Trial (3 Apps)</option>
+                                    <option value="5">Bronze (5 Apps)</option>
+                                    <option value="7">Silver (7 Apps)</option>
+                                    <option value="10">Gold (10 Apps)</option>
+                            </select>                       
+                       
+                                @if ($errors->has('limit'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('limit') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-3 control-label">E-Mail Address</label>
