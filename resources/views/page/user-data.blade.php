@@ -25,7 +25,7 @@
                     <th>Email</th>
                     <th>Name</th>
                     <th>Role</th>
-                    <th>Plan Apps</th>
+                    <th>Limit Apps</th>
                     <th>Status </th>
                   </tr>
                 </thead>
@@ -37,7 +37,7 @@
                         <td>{{$master_datum->name}}</td>
                         <td>{{$master_datum->role}}</td>
                         <td>{{$master_datum->plan}}</td>
-                        <td>{{@if($master_datum->plan==3) Trial @else if ($master_datum->plan==5) Bronze  @else if ($master_datum->plan==7) Silver  @else Gold @endif }}</td>
+                        <td>@if($master_datum->plan==3) Trial @elseif($master_datum->plan==5) Bronze @elseif($master_datum->plan==7) Silver @else Gold @endif</td>
                         </td>
                     </tr>
                 @endforeach
