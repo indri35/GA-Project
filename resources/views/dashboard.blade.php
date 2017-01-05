@@ -21,11 +21,9 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              @foreach($master_datas as $count_install)
-              <h3>{{$count_install->total_install}}</h3> 
-              @endforeach
+              <h3>{{$master_datas}}</h3> 
               {!! $master_datas->render() !!}
-              <p>Users</p>
+              <p>Apps</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-people"></i>

@@ -166,7 +166,7 @@ class DashboardController extends Controller
             $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
             $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
         }else{
-            $master_datas = Dashboard::orderBy('total_install', 'desc')->paginate(10);
+            $master_datas = Aplikasi::Where('user',$user->email)->count();
             $master_dataa = Usercount::orderBy('count_click', 'desc')->Where('user',$user->email)->paginate(10);            
         }
         
