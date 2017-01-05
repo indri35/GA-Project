@@ -60,6 +60,7 @@ class AplikasiController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+
 		$this->validate($request, [
             'user' => 'required',
             'category' => 'required',
@@ -68,27 +69,35 @@ class AplikasiController extends Controller {
             'name' => 'required'
         ]);
 
-		$aplikasi = new Aplikasi();
-		$aplikasi->id = $request->input("id");
-		$aplikasi->user = $request->input("user");
-		$aplikasi->category = $request->input("category");
-		$aplikasi->package = $request->input("package");
-		$aplikasi->platform = $request->input("platform");
-		$aplikasi->token= md5(uniqid(rand(), true));
- 		$aplikasi->name = $request->input("name");
- 		$aplikasi->status = 1;
-		
-		if ($request->hasFile('picture')) {		
-			$imageTempName = $request->file('picture')->getPathname();
-			$imageName =$request->file('picture')->getClientOriginalName();
-			$path = base_path() . '/public/upload/images/';
-			$request->file('picture')->move($path , $imageName);
-			$aplikasi->picture = '/upload/images/'.$imageName;
+		$user = Auth::user();
+		$limit =  Aplikasi::where('user',$user->email)->count();
+
+		if($limit==$user->limit){
+			return redirect()->route('aplikasis.create')->with('message', 'Apps has reached the limit (limit '.$limit.'). Please change your plan');
 		}
+		else{		
+			$aplikasi = new Aplikasi();
+			$aplikasi->id = $request->input("id");
+			$aplikasi->user = $request->input("user");
+			$aplikasi->category = $request->input("category");
+			$aplikasi->package = $request->input("package");
+			$aplikasi->platform = $request->input("platform");
+			$aplikasi->token= md5(uniqid(rand(), true));
+			$aplikasi->name = $request->input("name");
+			$aplikasi->status = 1;
+			
+			if ($request->hasFile('picture')) {		
+				$imageTempName = $request->file('picture')->getPathname();
+				$imageName =$request->file('picture')->getClientOriginalName();
+				$path = base_path() . '/public/upload/images/';
+				$request->file('picture')->move($path , $imageName);
+				$aplikasi->picture = '/upload/images/'.$imageName;
+			}
 
- 		$aplikasi->save();
+			$aplikasi->save();
 
-		return redirect()->route('aplikasis.index')->with('message', 'Item created successfully.');
+			return redirect()->route('aplikasis.index')->with('message2', 'Apps created successfully.');
+		}
 	}
 
 	/**
