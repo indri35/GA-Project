@@ -76,7 +76,7 @@
                 <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name}} {{ Auth::user()->role }} ({{ @if(Auth::user()->plan==3) Trial @elseif(Auth::user()->plan==5) Bronze @elseif(Auth::user()->plan==7) Silver @else Gold @endif }}) 
+                  {{ Auth::user()->name}} {{ Auth::user()->role }} ({{ Auth::user()->plan }}) 
                   <small>Member since {{ Auth::user()->created_at }}</small>
                 </p>
               </li>
