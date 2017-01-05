@@ -72,7 +72,7 @@ class AplikasiController extends Controller {
 		$user = Auth::user();
 		$limit =  Aplikasi::where('user',$user->email)->count();
 
-		if($limit==$user->limit){
+		if($limit==$user->plan){
 			return redirect()->route('aplikasis.create')->with('message', 'Apps has reached the limit (limit '.$limit.'). Please change your plan');
 		}
 		else{		
