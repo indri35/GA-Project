@@ -22,11 +22,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group @if($errors->has('user')) has-error @endif">
                     <label for="user-field">User</label>
-                    <select class="form-control select2" id="user-field" name="user">                    
-                        @foreach($users as $user)
-                            <option value="{{ $user->email }}">{{$user->name.'-'.$user->email}}</option>
-                        @endforeach
-                        </select>
+                    <input type="text" id="user-field" name="user" class="form-control" value="{{ $user->email }}"/>
                         @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
                        @endif

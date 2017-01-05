@@ -25,12 +25,8 @@
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('user')) has-error @endif">
-                       <label for="user-field">user</label>
-                        <select class="form-control select2" id="user-field" name="user">                    
-                        @foreach($users as $user)
-                            <option value="{{ $user->email }}">{{$user->name.'-'.$user->email}}</option>
-                        @endforeach
-                        </select>
+                       <label for="user-field">User</label>
+                        <input type="text" id="user-field" name="user" class="form-control" value="{{ is_null(old("user")) ? $aplikasi->user : old("user") }}"/>
                         @if($errors->has("user"))
                         <span class="help-block">{{ $errors->first("user") }}</span>
                        @endif

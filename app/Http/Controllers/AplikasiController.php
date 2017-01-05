@@ -48,8 +48,8 @@ class AplikasiController extends Controller {
 	 */
 	public function create()
 	{
-		$users = User::orderBy('id', 'desc')->get();
-		return view('aplikasis.create',compact('users'));
+		$user = Auth::user();
+		return view('aplikasis.create',compact('user'));
 	}
 
 	/**
@@ -121,9 +121,9 @@ class AplikasiController extends Controller {
 	 */
 	public function edit($id)
 	{		
-		$users = User::orderBy('id', 'desc')->get();
+		$user = Auth::user();
 		$aplikasi = Aplikasi::findOrFail($id);
-		return view('aplikasis.edit', compact('aplikasi','users'));
+		return view('aplikasis.edit', compact('aplikasi','user'));
 	}
 
 	/**
