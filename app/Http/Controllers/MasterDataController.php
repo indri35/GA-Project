@@ -61,6 +61,13 @@ class MasterDataController extends Controller {
 		return $md5;
 	}
 
+
+	public function hashFiled($appsid,$imei,$tmp)
+	{
+        $md5 = md5($appsid.''.$imei.''.$tmp);
+		return $md5;
+	}
+
 	function decrypyptImei($imei,$package)
 	{
 		$SALT = 'q5u12e4iu13l8c79';
@@ -130,12 +137,13 @@ class MasterDataController extends Controller {
 				&& isset($request['n']) && isset($request['o']) 
 				&& isset($request['c'])&& isset($request['a']) 
 				&& isset($request['b'])){						
-				$tmp=date("Y-m-d H:i:s");
+				$tmp= $request['t'];
 				$imei = $this->decrypyptImei($request['i'], $apps->package);					
 					if($imei){
 						$params = $request->input(); 
 						$sigparam=$this->checkSig($params,$apps->package);
-								$duplicate = MasterData::Where('imei',$imei)->Where('created_at',$tmp)->first();
+								$hash = $this->hashFiled($apps->id,$imei,$tmp);
+								$duplicate= MasterData::where('hash',$hash)->fisrt();	
 								if($duplicate==null && $sigparam==$sig){		
 										$tr = new TranslateClient(); // Default is from 'auto' to 'en'
 										$tr->setSource('en'); // Translate from English
