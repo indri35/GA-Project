@@ -136,7 +136,7 @@ class MasterDataController extends Controller {
 				if (isset($request['w']) && isset($request['i'])
 				&& isset($request['n']) && isset($request['o']) 
 				&& isset($request['c']) && isset($request['a']) 
-				&& isset($request['b'])){						
+				&& isset($request['b']) && isset($request['b'])){						
 				$tmp= $request['t'];
 				$imei = $this->decrypyptImei($request['i'], $apps->package);					
 					if($imei){
