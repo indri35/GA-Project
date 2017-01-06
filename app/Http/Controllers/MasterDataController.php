@@ -136,11 +136,11 @@ class MasterDataController extends Controller {
 				if (isset($request['w']) && isset($request['i'])
 				&& isset($request['n']) && isset($request['o']) 
 				&& isset($request['c']) && isset($request['a']) 
-				&& isset($request['b']) && isset($request['t'])){						
-				$tmp= $request['t'];
+				&& isset($request['b'])){						
+				$tmp=date("Y-m-d H:i:s");
 				$imei = $this->decrypyptImei($request['i'], $apps->package);					
 					if($imei){
-						//$request['i']=$imei;
+						$request['i']=$imei;
 						$params = $request->input(); 
 						$sigparam=$this->checkSig($params,$apps->package);
 								$hash = $this->hashFiled($apps->id,$imei,$tmp);
