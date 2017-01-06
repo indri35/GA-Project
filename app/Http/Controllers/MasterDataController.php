@@ -140,7 +140,7 @@ class MasterDataController extends Controller {
 				$tmp= $request['t'];
 				$imei = $this->decrypyptImei($request['i'], $apps->package);					
 					if($imei){
-						$request['i']=$imei;
+						//$request['i']=$imei;
 						$params = $request->input(); 
 						$sigparam=$this->checkSig($params,$apps->package);
 								$hash = $this->hashFiled($apps->id,$imei,$tmp);
