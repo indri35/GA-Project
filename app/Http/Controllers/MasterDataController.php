@@ -53,11 +53,12 @@ class MasterDataController extends Controller {
 		$value = '';
 		asort($keys);
 		foreach ($keys as $k){
-			$value.=$k;
+			$value.=$params[$k];
 		}
 		$value.=strtolower($package);
 		$value.=$SALT;
-		return md5($value);
+                $md5 = md5($value);
+		return $md5;
 	}
 
 	function decrypyptImei($imei,$package)
