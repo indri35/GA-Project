@@ -135,8 +135,8 @@ class MasterDataController extends Controller {
 				$user = User::Where('email',$apps->user)->first();
 				if (isset($request['w']) && isset($request['i'])
 				&& isset($request['n']) && isset($request['o']) 
-				&& isset($request['c'])&& isset($request['a']) 
-				&& isset($request['b'])){						
+				&& isset($request['c']) && isset($request['a']) 
+				&& isset($request['b']) && isset($request['t'])){						
 				$tmp= $request['t'];
 				$imei = $this->decrypyptImei($request['i'], $apps->package);					
 					if($imei){
