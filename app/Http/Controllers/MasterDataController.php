@@ -153,6 +153,7 @@ class MasterDataController extends Controller {
 										$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 										$master_datum->id = $request->input("id");
 										$master_datum->user = $user->email;
+										$master_datum->hash = $hash;
 										$master_datum->id_aplikasi = $apps->id;
 										$master_datum->ip = $ip;
 										if($request->input("w")==true)
