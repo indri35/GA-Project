@@ -143,8 +143,8 @@ class MasterDataController extends Controller {
 						$request['i']=$imei;
 						$params = $request->input(); 
 						$sigparam=$this->checkSig($params,$apps->package);
-								$hash = $this->hashFiled($apps->id,$imei,$tmp);
 								if($sigparam==$sig){		
+										$hash = $this->hashFiled($apps->id,$imei,$tmp);
 										$duplicate= MasterData::where('hash',$hash)->first();	
 										if($duplicate==null){
 											$tr = new TranslateClient(); // Default is from 'auto' to 'en'
