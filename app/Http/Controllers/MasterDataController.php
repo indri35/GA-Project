@@ -144,41 +144,46 @@ class MasterDataController extends Controller {
 						$params = $request->input(); 
 						$sigparam=$this->checkSig($params,$apps->package);
 								$hash = $this->hashFiled($apps->id,$imei,$tmp);
-								$duplicate= MasterData::where('hash',$hash)->first();	
-								if($duplicate==null && $sigparam==$sig){		
-										$tr = new TranslateClient(); // Default is from 'auto' to 'en'
-										$tr->setSource('en'); // Translate from English
-										$tr->setTarget('id'); // Translate to Indonesian
+								if($sigparam==$sig){		
+										$duplicate= MasterData::where('hash',$hash)->first();	
+										if($duplicate==null){
+											$tr = new TranslateClient(); // Default is from 'auto' to 'en'
+											$tr->setSource('en'); // Translate from English
+											$tr->setTarget('id'); // Translate to Indonesian
 
-										$ip = $request->ip();
-										$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-										$master_datum->id = $request->input("id");
-										$master_datum->user = $user->email;
-										$master_datum->hash = $hash;
-										$master_datum->id_aplikasi = $apps->id;
-										$master_datum->ip = $ip;
-										if($request->input("w")==true)
-											$master_datum->connected_by="wifi";
-										else
-											$master_datum->connected_by="celluler";
-										$master_datum->imei = $imei;
-										$master_datum->operator = $request->input("n");
-										$master_datum->os = $request->input("o");
-										$master_datum->click = $request->input("c");
-										$master_datum->view = $request->input("a");
-										$master_datum->type_device = $request->input("b");
+											$ip = $request->ip();
+											$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+											$master_datum->id = $request->input("id");
+											$master_datum->user = $user->email;
+											$master_datum->hash = $hash;
+											$master_datum->id_aplikasi = $apps->id;
+											$master_datum->ip = $ip;
+											if($request->input("w")==true)
+												$master_datum->connected_by="wifi";
+											else
+												$master_datum->connected_by="celluler";
+											$master_datum->imei = $imei;
+											$master_datum->operator = $request->input("n");
+											$master_datum->os = $request->input("o");
+											$master_datum->click = $request->input("c");
+											$master_datum->view = $request->input("a");
+											$master_datum->type_device = $request->input("b");
 
-										if($detail!=null){
-											$master_datum->language = $detail->country;																	
-											$reg_indo=$tr->translate($detail->region);
-											if($reg_indo=="Jakarta")
-												$reg_indo="Jakarta Raya";									
-											$master_datum->state = $reg_indo;												
-											$master_datum->regional = $detail->city;	
-											$master_datum->loc = $detail->loc;
+											if($detail!=null){
+												$master_datum->language = $detail->country;																	
+												$reg_indo=$tr->translate($detail->region);
+												if($reg_indo=="Jakarta")
+													$reg_indo="Jakarta Raya";									
+												$master_datum->state = $reg_indo;												
+												$master_datum->regional = $detail->city;	
+												$master_datum->loc = $detail->loc;
+											}
+											$master_datum->save();
+											$master_datum="success";
+										}else{
+											$status = false;
+											$master_datum = "duplicate data";											
 										}
-										$master_datum->save();
-										$master_datum="success";
 								}else{
 									$status = false;
 									$master_datum = "signature not valid";
