@@ -39,7 +39,7 @@ class DashboardController extends Controller
 		if($user->role=='admin'){		
             $installday =  DB::table('view_install_per_day_admin')->get();
         }else{
-            $installday =  DB::table('view_install_per_day')->Where('user',$user->email)->get();            
+            $installday =  DB::table('view_install_per_day')->Where('user',$user->email)->Where('user',$user->email)->get();            
         }
         return $installday;
     }
@@ -71,7 +71,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $clickday =  DB::table('view_by_click_per_day')->get();
         }else{
-            $clickday =  DB::table('view_by_click_per_day_user')->Where('user',$user->email)->get();
+            $clickday =  DB::table('view_by_click_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $clickday;
     }
@@ -79,7 +79,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $clickmonth =  DB::table('view_by_click_per_month')->get();
+            $clickmonth =  DB::table('view_by_click_per_month')->Where('id_aplikasi',$user->active_app)->get();
         }else{
             $clickmonth =  DB::table('view_by_click_per_month_user')->Where('user',$user->email)->get();
         }
@@ -91,7 +91,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $clickyear =  DB::table('view_by_click_per_year')->get();
         }else{
-            $clickyear =  DB::table('view_by_click_per_year_user')->Where('user',$user->email)->get();
+            $clickyear =  DB::table('view_by_click_per_year_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $clickyear;
     } 
@@ -103,7 +103,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $viewday =  DB::table('view_by_view_page_perday')->get();
         }else{
-            $viewday =  DB::table('view_by_view_page_perday_user')->Where('user',$user->email)->get();
+            $viewday =  DB::table('view_by_view_page_perday_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $viewday;
     }
@@ -113,7 +113,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $viewmonth =  DB::table('view_by_view_page_permonth')->get();
         }else{
-            $viewmonth =  DB::table('view_by_view_page_permonth_user')->Where('user',$user->email)->get();
+            $viewmonth =  DB::table('view_by_view_page_permonth_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $viewmonth;
     }
@@ -123,7 +123,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $viewyear =  DB::table('view_by_view_page_peryear')->get();
         }else{
-            $viewyear =  DB::table('view_by_view_page_peryear_user')->Where('user',$user->email)->get();
+            $viewyear =  DB::table('view_by_view_page_peryear_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $viewyear;
     }
@@ -135,7 +135,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $activityday =  DB::table('view_activity_by_type_device_per_day')->get();
         }else{
-            $activityday =  DB::table('view_activity_by_type_device_per_day_user')->Where('user',$user->email)->get();
+            $activityday =  DB::table('view_activity_by_type_device_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $activityday;
     }
@@ -145,7 +145,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $activitymonth =  DB::table('view_activity_by_type_device_per_month')->get();
         }else{
-            $activityday =  DB::table('view_activity_by_type_device_per_month_user')->Where('user',$user->email)->get();
+            $activityday =  DB::table('view_activity_by_type_device_per_month_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $activitymonth;
     }
@@ -155,7 +155,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $activityyear =  DB::table('view_activity_by_type_device_per_year')->get();
         }else{
-            $activityday =  DB::table('view_activity_by_type_device_per_year_user')->Where('user',$user->email)->get();
+            $activityday =  DB::table('view_activity_by_type_device_per_year_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $activityyear;
     } 
@@ -174,6 +174,22 @@ class DashboardController extends Controller
         return view('dashboard', compact('master_datas', 'master_dataa'));
     }
 
+    public function choose()
+    {
+        $user = Auth::user();
+        if($user->role=='admin'){
+            $master_datas = Aplikasi::Where('user',$user->email)->count();
+            $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+        }else{
+            $master_datas = Aplikasi::Where('user',$user->email)->paginate(10);
+            $master_dataa = Aplikasi::Where('id',$user->active_app)->paginate(10);
+        }
+        
+        return view('choose', compact('master_datas', 'master_dataa'));
+    }
+
+
+
     //Dataconnectedby  
         public function getDataConnectedDay()
     {
@@ -181,7 +197,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $connectedday =  DB::table('count_connectedby_day')->get();
         }else{
-            $connectedday =  DB::table('count_connectedby_day_user')->Where('user',$user->email)->get();
+            $connectedday =  DB::table('count_connectedby_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $connectedday;
     }
@@ -191,7 +207,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $connectedmonth =  DB::table('count_connectedby_month')->get();
         }else{
-            $connectedmonth =  DB::table('count_connectedby_month_user')->Where('user',$user->email)->get();
+            $connectedmonth =  DB::table('count_connectedby_month_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $connectedmonth;
     }
@@ -201,7 +217,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $connectedyear =  DB::table('count_connectedby_year')->get();
         }else{
-            $connectedyear =  DB::table('count_connectedby_year_user')->Where('user',$user->email)->get();
+            $connectedyear =  DB::table('count_connectedby_year_user')->Where('user',$user->email)->gWhere('id_aplikasi',$user->active_app)->et();
         }
         return $connectedyear;
     }        
@@ -216,9 +232,9 @@ class DashboardController extends Controller
             $state = DB::table('map_state_admin')->get();
             $country = DB::table('map_country_admin')->get();
         }else{
-            $region = DB::table('map_region')->Where('user',$user->email)->get();
-            $state = DB::table('map_state')->Where('user',$user->email)->get();
-            $country = DB::table('map_country')->Where('user',$user->email)->get();            
+            $region = DB::table('map_region')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+            $state = DB::table('map_state')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+            $country = DB::table('map_country')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();            
         }
         return compact('region','state','country');
     }        
@@ -232,8 +248,8 @@ class DashboardController extends Controller
             $install = DB::table('aplikasi')->Where('status',1)->count();
             $uninstall = DB::table('aplikasi')->Where('status',0)->count();
         }else{
-            $install = DB::table('aplikasi')->Where('user',$user->email)->Where('status',1)->count();
-            $uninstall = DB::table('aplikasi')->Where('user',$user->email)->Where('status',0)->count();
+            $install = DB::table('aplikasi')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->Where('status',1)->count();
+            $uninstall = DB::table('aplikasi')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->Where('status',0)->count();
         }
         return compact('install','uninstall');
     } 
@@ -245,7 +261,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $operatorday =  DB::table('operator_per_day')->get();
         }else{
-            $operatorday =  DB::table('operator_per_day_user')->Where('user',$user->email)->get();
+            $operatorday =  DB::table('operator_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $operatorday;
     }
@@ -255,7 +271,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $operatormonth =  DB::table('operator_per_month')->get();
         }else{
-            $operatormonth =  DB::table('operator_per_month_user')->Where('user',$user->email)->get();
+            $operatormonth =  DB::table('operator_per_month_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $operatormonth;
     }
@@ -265,7 +281,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $operatoryear =  DB::table('operator_per_year')->get();
         }else{
-            $operatoryear =  DB::table('operator_per_year_user')->Where('user',$user->email)->get();
+            $operatoryear =  DB::table('operator_per_year_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $operatoryear;
     }        

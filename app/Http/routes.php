@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/', 'DashboardController@dashboard');
 
     Route::get('/dashboard', 'DashboardController@dashboard');
+    Route::get('/choose', 'DashboardController@choose');
     
     Route::get('/home', 'HomeController@index');
 
