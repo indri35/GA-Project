@@ -79,7 +79,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.click.click-day', compact('master_datas'));
 	}
@@ -89,7 +89,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.click.click-month', compact('master_datas'));
 	}
@@ -99,7 +99,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.click.click-year', compact('master_datas'));
 	}
@@ -111,7 +111,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.view.view-day',compact('master_datas'));
 	}
@@ -122,7 +122,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.view.view-month',compact('master_datas'));
 	}
@@ -133,7 +133,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 
 		return view('page.view.view-year',compact('master_datas'));
@@ -146,7 +146,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.connected.connected-day',compact('master_datas'));
 	}
@@ -157,7 +157,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.connected.connected-month',compact('master_datas'));
 	}
@@ -168,7 +168,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.connected.connected-year',compact('master_datas'));
 	}
@@ -180,7 +180,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.operator.operator-day', compact('master_datas'));
 	}
@@ -190,7 +190,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.operator.operator-month', compact('master_datas'));
 	}
@@ -200,7 +200,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.operator.operator-year', compact('master_datas'));
 	}
