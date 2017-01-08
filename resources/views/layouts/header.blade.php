@@ -76,7 +76,8 @@
                 <img src="{{ asset('assets/dist/img/' . Auth::user()->img) }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name}} {{ Auth::user()->role }} (@if(Auth::user()->plan==3) Trial @elseif(Auth::user()->plan==5) Bronze @elseif(Auth::user()->plan==7) Silver @else Gold @endif) 
+                  {{ Auth::user()->name}} {{ Auth::user()->role }} (@if(Auth::user()->plan==3) Trial @elseif(Auth::user()->plan==5) Bronze @elseif(Auth::user()->plan==7) Silver @else Gold @endif)                  
+                  <small> ID Aplikasi: {{ Auth::user()->active_app}} </small>
                   <small>Member since {{ Auth::user()->created_at }}</small>
                 </p>
               </li>

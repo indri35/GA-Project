@@ -178,17 +178,25 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $master_datas = Aplikasi::Where('user',$user->email)->count();
-            $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
+            $master_datas = Aplikasi::get();
         }else{
-            $master_datas = Aplikasi::Where('user',$user->email)->paginate(10);
-            $master_dataa = Aplikasi::Where('id',$user->active_app)->paginate(10);
+            $master_datas = Aplikasi::Where('user',$user->email)->get();
         }
         
         return view('choose', compact('master_datas', 'master_dataa'));
     }
 
-
+    public function chooseapp(Request $request)
+    {
+        $this->validate($request, [
+            'app' => 'required'
+        ]);
+        $auth = Auth::user();     
+        $user = User::where('id',$auth->id)->first();
+        $user->active_app=$request->app;
+        $user->save();
+        return $this->dashboard();
+    }
 
     //Dataconnectedby  
         public function getDataConnectedDay()

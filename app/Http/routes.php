@@ -14,10 +14,11 @@ use App\User;
 
 Route::group(['middleware' => 'auth'], function(){
 
-    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/', 'DashboardController@choose');
 
     Route::get('/dashboard', 'DashboardController@dashboard');
     Route::get('/choose', 'DashboardController@choose');
+    Route::post('/chooseapp', 'DashboardController@chooseapp');
     
     Route::get('/home', 'HomeController@index');
 

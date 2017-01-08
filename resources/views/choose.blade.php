@@ -21,18 +21,16 @@
     <!-- /.lockscreen-image -->
 
     <!-- lockscreen credentials (contains the form) -->
-    <form class="lockscreen-credentials" role="form" method="POST" action="{{ url('/choose') }}">
+    <form class="lockscreen-credentials" role="form" method="POST" action="{{ url('/chooseapp') }}">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="input-group">
         <select class="form-control" name="app">
-            @foreach($master_dataa as $master_datum)
-            <option>{{$master_datum->name}}</option>
-            @endforeach
             @foreach($master_datas as $master_datum)
-            <option>{{$master_datum->name}}</option>
+            <option value="{{$master_datum->id}}">{{$master_datum->name}}</option>
             @endforeach
         </select>
         <div class="input-group-btn">
-          <button type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
+          <button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
         </div>
       </div>
     </form>
@@ -49,8 +47,6 @@
     <!-- /.content -->
   </div>
 @include('layouts.footer') 
-@include('layouts.chartdashboard')
-@include('page.activity-js.activitychart-day')
 </body>
 </html>
 
