@@ -1,5 +1,7 @@
 <?php
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,9 +15,13 @@ use App\User;
 
 
 Route::group(['middleware' => 'auth'], function(){
-
-    Route::get('/', 'DashboardController@choose');
-
+    
+    $user = Auth::user();
+    if($user->role !='admin')
+        Route::get('/', 'DashboardController@choose');
+    else
+        Route::get('/', 'DashboardController@dashboard');
+    
     Route::get('/dashboard', 'DashboardController@dashboard');
     Route::get('/choose', 'DashboardController@choose');
     Route::post('/chooseapp', 'DashboardController@chooseapp');
