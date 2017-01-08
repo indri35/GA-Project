@@ -194,6 +194,7 @@ class DashboardController extends Controller
         ]);
         $user = Auth::user();     
         $user->active_app=$request->app;
+        $user->save();
         return $this->dashboard();
     }
 
