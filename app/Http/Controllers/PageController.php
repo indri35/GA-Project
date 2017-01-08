@@ -22,7 +22,7 @@ class PageController extends Controller {
 		if($user->role=='admin'){
 			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);			
+			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.master-data', compact('master_datas'));
 	}

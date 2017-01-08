@@ -25,6 +25,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+                    <th>ID Apps</th>
                     <th>IP</th>
                     <th>IMEI</th>
                     <th>Date</th>
@@ -36,12 +37,12 @@
                     <th>Lang</th>
                     <th>State</th>
                     <th>Regional</th>
-                    <th>Location</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach($master_datas as $master_datum)
                     <tr>
+                        <td>{{$master_datum->id_aplikasi}}</td>
                         <td>{{$master_datum->ip}}</td>
                         <td>{{$master_datum->imei}}</td>
                         <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
@@ -53,7 +54,6 @@
                         <td>{{$master_datum->language}}</td>
                         <td>{{$master_datum->state}}</td>
                         <td>{{$master_datum->regional}}</td>
-                        <td>{{$master_datum->loc}}</td>
                     </tr>
                 @endforeach
                 </tbody>
