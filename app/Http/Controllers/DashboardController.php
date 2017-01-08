@@ -164,7 +164,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $master_datas = Aplikasi::Where('user',$user->email)->count();
+            $master_datas = Aplikasi::count();
             $master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
         }else{
             $master_datas = Aplikasi::Where('user',$user->email)->count();
