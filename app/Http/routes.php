@@ -20,6 +20,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/dashboard', 'DashboardController@dashboard');
     Route::get('/choose', 'DashboardController@choose');
     Route::post('/chooseapp', 'DashboardController@chooseapp');
+
+    Route::get('/updateimg', 'DashboardController@updateimg');
+    Route::post('/updateimgprofil', 'DashboardController@updateimgprofil');
     
     Route::get('/home', 'HomeController@index');
 

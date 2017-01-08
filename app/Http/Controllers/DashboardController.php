@@ -12,6 +12,8 @@ use App\Count;
 use App\Usercount;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use File;
+use Stichoza\GoogleTranslate\TranslateClient;
 
 class DashboardController extends Controller
 {
@@ -175,6 +177,18 @@ class DashboardController extends Controller
         
     }
 
+    public function updateimg()
+    {
+        $user = Auth::user();
+        if($user->role=='admin'){
+            return $this->dashboard();
+         }else{
+            $master_datas = Aplikasi::Where('user',$user->email)->get();
+            return view('updateimg', compact('master_datas', 'master_dataa'));
+        }
+    
+    }
+
     public function choose()
     {
         $user = Auth::user();
@@ -185,6 +199,21 @@ class DashboardController extends Controller
             return view('choose', compact('master_datas', 'master_dataa'));
         }
         
+    }
+
+    public function updateimgprofil(Request $request)
+    {
+        $this->validate($request, [
+            'img' => 'required'
+        ]);
+        $user = Auth::user();     
+        $imageName = $user->id . '-' . $user->name . '-' . 
+        $request->file('img')->getClientOriginalName();
+        $path = base_path() . '/public/upload/images/profil/';
+        $request->file('img')->move($path , $imageName);
+        $user->img = '/upload/images/profil/'.$imageName;
+        $user->save();
+        return $this->dashboard();
     }
 
     public function chooseapp(Request $request)
