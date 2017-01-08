@@ -39,7 +39,7 @@ class DashboardController extends Controller
 		if($user->role=='admin'){		
             $installday =  DB::table('view_install_per_day_admin')->get();
         }else{
-            $installday =  DB::table('view_install_per_day')->Where('user',$user->email)->Where('user',$user->email)->get();            
+            $installday =  DB::table('view_install_per_day')->Where('user',$user->email)->get();            
         }
         return $installday;
     }
@@ -79,9 +79,9 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $clickmonth =  DB::table('view_by_click_per_month')->Where('id_aplikasi',$user->active_app)->get();
+            $clickmonth =  DB::table('view_by_click_per_month')->get();
         }else{
-            $clickmonth =  DB::table('view_by_click_per_month_user')->Where('user',$user->email)->get();
+            $clickmonth =  DB::table('view_by_click_per_month_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $clickmonth;
     }
