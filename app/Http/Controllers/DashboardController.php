@@ -179,12 +179,12 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if($user->role=='admin'){
-            $master_datas = Aplikasi::get();
-        }else{
+            return $this->dashboard();
+         }else{
             $master_datas = Aplikasi::Where('user',$user->email)->get();
+            return view('choose', compact('master_datas', 'master_dataa'));
         }
         
-        return view('choose', compact('master_datas', 'master_dataa'));
     }
 
     public function chooseapp(Request $request)

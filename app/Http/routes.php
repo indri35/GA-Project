@@ -15,13 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::group(['middleware' => 'auth'], function(){
-    
-    $user = Auth::user();
-    if($user->role !='admin')
-        Route::get('/', 'DashboardController@choose');
-    else
-        Route::get('/', 'DashboardController@dashboard');
-    
+
+    Route::get('/', 'DashboardController@choose');
     Route::get('/dashboard', 'DashboardController@dashboard');
     Route::get('/choose', 'DashboardController@choose');
     Route::post('/chooseapp', 'DashboardController@chooseapp');
