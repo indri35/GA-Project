@@ -225,7 +225,7 @@ class DashboardController extends Controller
         if($user->role=='admin'){
             $connectedyear =  DB::table('count_connectedby_year')->get();
         }else{
-            $connectedyear =  DB::table('count_connectedby_year_user')->Where('user',$user->email)->gWhere('id_aplikasi',$user->active_app)->et();
+            $connectedyear =  DB::table('count_connectedby_year_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
         }
         return $connectedyear;
     }        
