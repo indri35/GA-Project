@@ -180,12 +180,7 @@ class DashboardController extends Controller
     public function updateimg()
     {
         $user = Auth::user();
-        if($user->role=='admin'){
-            return $this->dashboard();
-         }else{
-            $master_datas = Aplikasi::Where('user',$user->email)->get();
-            return view('updateimg', compact('master_datas', 'master_dataa'));
-        }
+        return view('updateimg', compact('user'));        
     
     }
 
