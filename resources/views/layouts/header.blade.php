@@ -125,7 +125,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-       @if (Auth::user()->role=='admin') 
+       @if (Auth::user()->role!='admin') 
         <li class="active treeview">
           <a href="{{ url('/choose') }}">
             <i class="fa fa-check-circle"></i> <span>Choose Application</span>
