@@ -171,7 +171,8 @@ class DashboardController extends Controller
             $master_dataa = Usercount::orderBy('count_click', 'desc')->Where('user',$user->email)->paginate(10);            
         }
         
-        return view('dashboard', compact('master_datas', 'master_dataa'));
+        return view('dashboard', compact('master_datas', 'master_dataa','user'));
+        
     }
 
     public function choose()
@@ -191,10 +192,8 @@ class DashboardController extends Controller
         $this->validate($request, [
             'app' => 'required'
         ]);
-        $auth = Auth::user();     
-        $user = User::where('id',$auth->id)->first();
+        $user = Auth::user();     
         $user->active_app=$request->app;
-        $user->save();
         return $this->dashboard();
     }
 
