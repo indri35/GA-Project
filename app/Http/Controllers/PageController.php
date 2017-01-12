@@ -2,7 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
 use App\MasterData;
 use App\User;
 use App\Aplikasi;
@@ -77,9 +77,21 @@ class PageController extends Controller {
 	{
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$master_datas = MasterData::orderBy('id', 'desc')->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, click, id_aplikasi, count(click) as count'))
+				->groupBy('click')
+				->groupBy('created_at')
+				->paginate(10);
 		}else{
-			$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, click,  id_aplikasi,  count(click) as count'))
+				->where('user', $user->email)
+				->where('id_aplikasi',$user->active_app)
+				->groupBy('click')
+				->groupBy('created_at')
+				->paginate(10);
+
+			//$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
 		}
 		return view('page.click.click-day', compact('master_datas'));
 	}
