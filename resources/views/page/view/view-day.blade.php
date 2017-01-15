@@ -71,19 +71,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>IP</th>
-                    <th>IMEI</th>
                     <th>Date</th>
-                    <th>Page</th>
+                    <th>ID Apps</th>
+                    <th>View</th>
+                    <th>Count</th>
                   </tr>
                 </thead>
                 <tbody>
                 @foreach($master_datas as $master_datum)
                     <tr>
-                        <td>{{$master_datum->ip}}</td>
-                        <td>{{$master_datum->imei}}</td>
-                        <td>{{ date('d-m-Y',strtotime($master_datum->created_at))}}</td>
+                        <td>{{ date('d-M-Y',strtotime($master_datum->created_at))}}</td>
+                        <td>{{ $master_datum->id_aplikasi }}</td>
                         <td>{{$master_datum->view}}</td>
+                        <td>{{$master_datum->count}}</td>
                     </tr>
                 @endforeach
                 </tbody>
