@@ -34,7 +34,6 @@
                     <th>Connect</th>
                     <th>Operator</th>
                     <th>Device</th>
-                    <th>Lang</th>
                     <th>State</th>
                     <th>Regional</th>
                   </tr>
@@ -51,7 +50,6 @@
                         <td>{{$master_datum->connected_by}}</td>
                         <td>{{$master_datum->operator}}</td>
                         <td>{{$master_datum->type_device}}</td>
-                        <td>{{$master_datum->language}}</td>
                         <td>{{$master_datum->state}}</td>
                         <td>{{$master_datum->regional}}</td>
                     </tr>
