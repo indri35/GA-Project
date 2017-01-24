@@ -11,9 +11,13 @@
 
     </div>
 </section>
-
-      <!-- Main content -->
 <section class="content">
+    @include('error')
+    @if(Session::has('message'))
+        <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('message') }}</p>
+    @elseif(Session::has('message2'))
+        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message2') }}</p>
+    @endif
     <div class="row">
         <div class="col-md-12">
             @if($aplikasis->count())
