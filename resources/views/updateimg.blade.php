@@ -24,7 +24,7 @@
     <form class="lockscreen-credentials" role="form" method="POST" action="{{ url('/updateimgprofil') }}" enctype="multipart/form-data">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="input-group">
-        <input type="file" id="img" name="img">
+        <input type="file" id="img" name="img" accept="image/x-png,image/gif,image/jpeg">
         <div class="input-group-btn">
           <button type="submit" class="btn"><i class="fa fa-pencil-square-o text-muted"></i> Update</button>
         </div>
