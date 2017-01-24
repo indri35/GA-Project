@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group @if($errors->has('picture')) has-error @endif">
                        <label for="picture-field">Picture</label>
-                    <input type="file" class="form-control" id="picture" name="picture"/>								
+                    <input type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg" id="picture" name="picture"/>								
                        @if($errors->has("picture"))
                         <span class="help-block">{{ $errors->first("picture") }}</span>
                        @endif
