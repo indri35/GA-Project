@@ -208,6 +208,7 @@ class DashboardController extends Controller
         $request->file('img')->move($path , $imageName);
         $user->img = '/upload/images/profil/'.$imageName;
         $user->save();
+        
         return $this->dashboard();
     }
 
