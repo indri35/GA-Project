@@ -66,7 +66,8 @@ class AplikasiController extends Controller {
             'category' => 'required',
             'package' => 'required',
             'platform' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+			'picture' => 'required|mimes:jpeg,bmp,jpg,png'
         ]);
 
 		$user = Auth::user();
@@ -140,7 +141,9 @@ class AplikasiController extends Controller {
             'category' => 'required',
             'package' => 'required',
             'platform' => 'required',
-            'name' => 'required'
+            'name' => 'required',
+			'picture' => 'required|mimes:jpeg,bmp,jpg,png'
+
         ]);
 
 		$aplikasi = Aplikasi::findOrFail($id);
