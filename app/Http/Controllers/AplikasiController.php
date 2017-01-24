@@ -143,7 +143,6 @@ class AplikasiController extends Controller {
             'platform' => 'required',
             'name' => 'required',
 			'picture' => 'required|mimes:jpeg,bmp,jpg,png'
-
         ]);
 
 		$aplikasi = Aplikasi::findOrFail($id);
