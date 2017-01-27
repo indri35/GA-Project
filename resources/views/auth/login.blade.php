@@ -88,7 +88,7 @@
                         </div>
                     </form>
                    <p class="login-box-msg">
-                       <strong>Developed By <a href="appxoffer.com/dashboard">AppXoffer @2016</a></strong>
+                       <strong>Developed By <a href="appxoffer.com">AppXoffer @2016</a></strong>
                    </div>
                 </div>
             </div>
