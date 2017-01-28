@@ -41,3 +41,4 @@
 <script src="{{ asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- Map chart-->
 <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBjJTuVIp1YElHYU3atuFrU6jl7qmro2Yg" async="" defer="defer"></script>
