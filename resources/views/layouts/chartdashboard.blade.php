@@ -304,7 +304,7 @@
         + Math.round(series.percent) + "%</div>";
   }
 
-      google.charts.load('upcoming', {'packages':['geochart','geomap']});
+      google.charts.load('upcoming', {'packages':['geomap','geochart']});
       google.charts.setOnLoadCallback(drawRegionsMap);
       google.charts.setOnLoadCallback(drawCityMap);
       google.charts.setOnLoadCallback(drawStateMap);
