@@ -1,7 +1,7 @@
 <div>
 <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2016 <a href="appxoffer.com/dashboard">AppXoffer</a>.</strong> All rights
+    <strong>Copyright &copy; 2016 <a href="www.appxoffer.com">AppXoffer</a>.</strong> All rights
     reserved.
   </footer>
   <div class="control-sidebar-bg"></div>
@@ -40,4 +40,5 @@
 <!-- SlimScroll -->
 <script src="{{ asset('assets/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- Map chart-->
-<script type="text/javascript" src="{{ asset('assets/dist/js/loader.js') }}"></script>
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBjJTuVIp1YElHYU3atuFrU6jl7qmro2Yg" async="" defer="defer"></script>
