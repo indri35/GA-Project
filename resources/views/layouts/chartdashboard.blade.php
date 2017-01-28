@@ -329,7 +329,7 @@
           var datanya = google.visualization.arrayToDataTable(datachart);
 
           var options = {
-            region: 'IT',
+            region: 'ID',
             displayMode: 'markers',
             colorAxis: {colors: ['green', 'blue']}
           };
