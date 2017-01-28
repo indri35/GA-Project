@@ -328,7 +328,6 @@
             }
           var datanya = google.visualization.arrayToDataTable(datachart);
 
-
           var options = {};
           options['region'] = 'ID';
           options['colors'] = [0xFF8747, 0xFFB581, 0xc06000]; //orange colors
