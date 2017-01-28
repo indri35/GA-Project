@@ -328,15 +328,15 @@
             }
           var datanya = google.visualization.arrayToDataTable(datachart);
 
-          var options = {
-            region: 'ID',
-            displayMode: 'markers',
-            colorAxis: {colors: ['green', 'blue']}
-          };
 
-          var chart = new google.visualization.GeoChart(document.getElementById('map_city'));
+          var options = {};
+          options['region'] = 'ID';
+          options['colors'] = [0xFF8747, 0xFFB581, 0xc06000]; //orange colors
+          options['dataMode'] = 'markers';
 
-          chart.draw(datanya, options);
+          var container = document.getElementById('map_city');
+          var geomap = new google.visualization.GeoMap(container);
+          geomap.draw(datanya, options);
           }
         });
     };
