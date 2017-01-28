@@ -328,13 +328,14 @@
             }
           var datanya = google.visualization.arrayToDataTable(datachart);
 
-          var options = {};
-          options['region'] = 'ID';
-          //options['colors'] = [0xFF8747, 0xFFB581, 0xc06000]; //orange colors
-          options['dataMode'] = 'markers';
+         var options = {
+          region: 'ID',
+          displayMode: 'markers',
+          colorAxis: {colors: ['green', 'blue']}
+        };
 
           var container = document.getElementById('map_city');
-          var geomap = new google.visualization.GeoMap(container);
+          var geomap = new google.visualization.GeoChart(container);
           geomap.draw(datanya, options);
           }
         });
