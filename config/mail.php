@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => env('lunaappsid@gmail.com'),
+    'username' => env('MAIL_USERNAME','lunaappsid@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('wzrzuqfqixevpehn'),
+    'password' => env('MAIL_PASSWORD','luna123456'),
 
     /*
     |--------------------------------------------------------------------------
