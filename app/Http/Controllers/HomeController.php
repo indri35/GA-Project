@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Aplikasi;
+use App\Count;
+use App\Usercount;
 
 class HomeController extends Controller
 {
