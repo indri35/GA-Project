@@ -30,7 +30,7 @@
       <p class="login-box-msg">
         <img src="{{ asset('assets/dist/img/analytics_logo.png') }}" width="100" height="100" alt="User Image">
     </p>
-    <a href="{{ url('/') }}"><b>App</b>Analytic</a>
+    <a href="{{ url('/') }}"><b>Apps</b>Analytic</a>
   </div>
   <!-- /.login-logo -->
 <div class="login-box-body">
