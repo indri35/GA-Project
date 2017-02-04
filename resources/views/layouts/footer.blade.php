@@ -1,7 +1,7 @@
 <div>
 <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2016 <a href="www.appxoffer.com">AppXoffer</a>.</strong> All rights
+    <strong>&copy; 2016 <a href="www.appxoffer.com">AppXoffer</a>.</strong> All rights
     reserved.
   </footer>
   <div class="control-sidebar-bg"></div>

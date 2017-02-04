@@ -99,7 +99,7 @@
                         </div>
                     </form>
                    <p class="login-box-msg">
-                       <strong>Copyright <a href="www.appxoffer.com">AppXoffer @2016</a></strong>
+                       <strong>&copy; <a href="www.appxoffer.com">2016 AppXoffer</a> All rights reserved.</strong>
                    </div>
                 </div>
             </div>
