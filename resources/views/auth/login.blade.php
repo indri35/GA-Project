@@ -30,7 +30,7 @@
       <p class="login-box-msg">
         <img src="{{ asset('assets/dist/img/analytics_logo.png') }}" width="100" height="100" alt="User Image">
     </p>
-    <a href="{{ url('/') }}"><b>Admin</b>Analytic</a>
+    <a href="{{ url('/') }}"><b>App</b>Analytic</a>
   </div>
   <!-- /.login-logo -->
 <div class="login-box-body">
@@ -99,7 +99,7 @@
                         </div>
                     </form>
                    <p class="login-box-msg">
-                       <strong>Developed By <a href="www.appxoffer.com">AppXoffer @2016</a></strong>
+                       <strong>Copyright <a href="www.appxoffer.com">AppXoffer @2016</a></strong>
                    </div>
                 </div>
             </div>
