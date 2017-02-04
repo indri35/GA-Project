@@ -104,6 +104,8 @@ Route::auth();
 Route::post('/create_data','MasterDataController@store');
 Route::post('/get_encrypt_imei','MasterDataController@getImeiEncrypt');
 
+//activation
+Route::get('/user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 //jwt-auth
 Route::post('/signup', function(){

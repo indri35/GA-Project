@@ -32,6 +32,16 @@
     </p>
     <a href="{{ url('/') }}"><b>Admin</b>Analytic</a>
   </div>
+  @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
   <!-- /.login-logo -->
 <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
