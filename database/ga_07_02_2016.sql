@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2016 at 04:57 AM
+-- Generation Time: Feb 07, 2017 at 05:51 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -35,19 +35,22 @@ CREATE TABLE IF NOT EXISTS `aplikasi` (
   `category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `picture` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `platform` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(10) DEFAULT NULL,
+  `package` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `aplikasi`
 --
 
-INSERT INTO `aplikasi` (`id`, `created_at`, `updated_at`, `name`, `user`, `category`, `picture`, `platform`, `token`) VALUES
-(1, '2016-11-22 17:00:00', '2016-11-22 20:31:52', 'Makan Bareng Dua', 'drikdoank@gmail.com', 'Life style', '', 'Mobile Apps', ''),
-(2, '2016-11-22 17:00:00', '2016-11-22 17:00:00', 'Ngaji', 'Indriyani.cs49@gmail.com', 'Book', '""', 'Web  Apps', ''),
-(3, '2016-11-22 17:00:00', '2016-11-22 17:00:00', 'Pingpong', 'drikdoank@gmail.com', 'Games', '""', 'Mobile Apps', ''),
-(4, '2016-11-22 17:00:00', '2016-11-23 02:32:58', 'Karoke', 'drikdoank@gmail.com', 'Music', '""', 'Mobile Apps', ''),
-(5, '2016-11-22 20:41:25', '2016-11-22 20:41:25', 'Dorong Kereta', 'drikdoank@gmail.com', 'Games', 'bunga.jpg', 'Mobile Apps', '');
+INSERT INTO `aplikasi` (`id`, `created_at`, `updated_at`, `name`, `user`, `category`, `picture`, `platform`, `token`, `status`, `package`) VALUES
+(1, '2016-11-22 17:00:00', '2016-11-22 20:31:52', 'Makan Bareng Dua', 'drikdoank@gmail.com', 'Life style', 'tes.jpg', 'Mobile Apps', '264d277baad16c73231065bcdd020c01', 0, ''),
+(2, '2016-11-22 17:00:00', '2016-12-26 23:27:26', 'Ngaji', 'indriyani.cs49@gmail.com', 'Book', '/upload/images/bunga.jpg', 'Web  Apps', '264d277baad16c73231065bcdd020c02', 1, 'com.package.didok'),
+(3, '2016-11-22 17:00:00', '2016-11-22 17:00:00', 'Pingpong', 'drikdoank@gmail.com', 'Games', '""', 'Mobile Apps', '264d277baad16c73231065bcdd020c03', 1, ''),
+(4, '2016-11-22 17:00:00', '2016-11-23 02:32:58', 'Karoke', 'drikdoank@gmail.com', 'Music', '""', 'Mobile Apps', '264d277baad16c73231065bcdd020c05', 1, ''),
+(5, '2016-11-22 20:41:25', '2016-11-22 20:41:25', 'Dorong Kereta', 'drikdoank@gmail.com', 'Games', 'bunga.jpg', 'Mobile Apps', '264d277baad16c73231065bcdd020c04', 1, ''),
+(6, '2016-12-22 03:09:48', '2016-12-26 23:29:12', 'app', 'indriyani.cs49@gmail.com', 'Food', '/upload/images/pp.jpg', 'Mobile Apps', '264d277baad16c73231065bcdd020c00', 1, 'com.package.Food');
 
 -- --------------------------------------------------------
 
@@ -55,7 +58,7 @@ INSERT INTO `aplikasi` (`id`, `created_at`, `updated_at`, `name`, `user`, `categ
 -- Stand-in structure for view `count_connectedby_day`
 --
 CREATE TABLE IF NOT EXISTS `count_connectedby_day` (
-`day` date
+`day` timestamp
 ,`wifi_count` bigint(21)
 ,`cellular_count` bigint(21)
 );
@@ -66,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `count_connectedby_day` (
 --
 CREATE TABLE IF NOT EXISTS `count_connectedby_day_user` (
 `user` varchar(100)
-,`day` date
+,`id_aplikasi` int(10)
+,`day` timestamp
 ,`wifi_count` bigint(21)
 ,`cellular_count` bigint(21)
 );
@@ -87,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `count_connectedby_month` (
 --
 CREATE TABLE IF NOT EXISTS `count_connectedby_month_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`month` int(2)
 ,`wifi_count` bigint(21)
 ,`cellular_count` bigint(21)
@@ -108,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `count_connectedby_year` (
 --
 CREATE TABLE IF NOT EXISTS `count_connectedby_year_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`wifi_count` bigint(21)
 ,`cellular_count` bigint(21)
@@ -129,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `count_dashboard` (
 --
 CREATE TABLE IF NOT EXISTS `count_dashboard_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`count_activity` bigint(21)
 ,`count_click` bigint(21)
 ,`count_view` bigint(21)
@@ -148,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `count_install` (
 --
 CREATE TABLE IF NOT EXISTS `map_country` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`country` varchar(150)
 ,`count_country` bigint(21)
@@ -169,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `map_country_admin` (
 --
 CREATE TABLE IF NOT EXISTS `map_region` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`regional` varchar(200)
 ,`count_region` bigint(21)
@@ -190,6 +199,7 @@ CREATE TABLE IF NOT EXISTS `map_region_admin` (
 --
 CREATE TABLE IF NOT EXISTS `map_state` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`regional` varchar(200)
 ,`count_state` bigint(21)
@@ -214,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `master_data` (
 `id` int(11) NOT NULL,
   `imei` varchar(250) NOT NULL,
   `ip` varchar(200) NOT NULL,
-  `created_at` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` date NOT NULL,
   `click` varchar(200) NOT NULL,
   `view` varchar(200) NOT NULL,
@@ -225,28 +235,33 @@ CREATE TABLE IF NOT EXISTS `master_data` (
   `loc` varchar(200) NOT NULL,
   `user` varchar(100) NOT NULL,
   `connected_by` varchar(128) NOT NULL,
-  `id_aplikasi` int(10) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `id_aplikasi` int(10) NOT NULL,
+  `operator` varchar(100) DEFAULT NULL,
+  `os` varchar(200) DEFAULT NULL,
+  `hash` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `master_data`
 --
 
-INSERT INTO `master_data` (`id`, `imei`, `ip`, `created_at`, `updated_at`, `click`, `view`, `type_device`, `language`, `state`, `regional`, `loc`, `user`, `connected_by`, `id_aplikasi`) VALUES
-(1, '2132411232123213', '103.10.105.60', '2016-09-01', '2016-09-26', 'login', 'welcome', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 3),
-(2, '2314321325132', '103.10.105.60', '2016-09-02', '2016-09-26', 'save', 'registration', 'samsung', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'wifi', 2),
-(3, '2132411232123211', '103.10.105.60', '2016-09-03', '2016-09-26', 'login', 'welcome', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 1),
-(4, '2314321325132', '103.10.105.60', '2016-09-05', '2016-09-26', 'save', 'registration', 'samsung', 'ID', 'Kalimantan Barat', 'Balikpapan', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'wifi', 2),
-(5, '2314321325133', '103.10.105.60', '2016-09-01', '2016-09-26', 'close', 'registration', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 1),
-(6, '2314321325134', '103.10.105.60', '2016-09-01', '2016-09-26', 'delete', 'shopping', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 3),
-(7, '2314321325135', '103.10.105.60', '2016-09-02', '2016-09-27', 'login', 'welcome', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1),
-(8, '2314321325136', '103.10.105.60', '2016-09-03', '2016-09-26', 'save', 'shopping', 'apple', 'ID', 'Sumatera Utara', 'Padang', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2),
-(9, '4356243624354236', '103.10.105.60', '2016-09-04', '2016-09-27', 'save', 'order', 'apple', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1),
-(10, '123232323', '103.10.105.60', '2016-11-22', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 4),
-(11, '123232323', '103.10.105.60', '2016-11-22', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2),
-(12, '1232323111', '103.10.105.60', '2016-11-22', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1),
-(13, '1232323111', '103.10.105.60', '2016-11-22', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 4),
-(14, '1232323111', '103.10.105.60', '2016-11-22', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa barat', 'Bogor', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2);
+INSERT INTO `master_data` (`id`, `imei`, `ip`, `created_at`, `updated_at`, `click`, `view`, `type_device`, `language`, `state`, `regional`, `loc`, `user`, `connected_by`, `id_aplikasi`, `operator`, `os`, `hash`) VALUES
+(1, '2132411232123213', '103.10.105.60', '2016-08-31 17:00:00', '2016-09-26', 'login', 'welcome', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 3, 'Telkomsel', 'Android', ''),
+(2, '2314321325132', '103.10.105.60', '2016-09-01 17:00:00', '2016-09-26', 'save', 'registration', 'samsung', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'wifi', 2, 'Telkomsel', 'Android', ''),
+(3, '2132411232123211', '103.10.105.60', '2016-09-02 17:00:00', '2016-09-26', 'login', 'welcome', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 1, 'Telkomsel', 'Android', ''),
+(4, '2314321325132', '103.10.105.60', '2016-09-04 17:00:00', '2016-09-26', 'save', 'registration', 'samsung', 'ID', 'Kalimantan Barat', 'Balikpapan', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'wifi', 2, 'Telkomsel', 'Android', ''),
+(5, '2314321325133', '103.10.105.60', '2016-08-31 17:00:00', '2016-09-26', 'close', 'registration', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 1, 'Telkomsel', 'Android', ''),
+(6, '2314321325134', '103.10.105.60', '2016-08-31 17:00:00', '2016-09-26', 'delete', 'shopping', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 3, 'Telkomsel', 'Android', ''),
+(7, '2314321325135', '103.10.105.60', '2016-09-01 17:00:00', '2016-09-27', 'login', 'welcome', 'apple', 'ID', 'Sumatera Barat', 'Medan', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1, 'Telkomsel', 'Android', ''),
+(8, '2314321325136', '103.10.105.60', '2016-09-02 17:00:00', '2016-09-26', 'save', 'shopping', 'apple', 'ID', 'Sumatera Utara', 'Padang', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2, 'Telkomsel', 'Android', ''),
+(9, '4356243624354236', '103.10.105.60', '2016-09-03 17:00:00', '2016-09-27', 'save', 'order', 'apple', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1, 'Telkomsel', 'Android', ''),
+(10, '123232323', '103.10.105.60', '2016-11-21 17:00:00', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'wifi', 4, 'Telkomsel', 'Android', ''),
+(11, '123232323', '103.10.105.60', '2016-11-21 17:00:00', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2, 'Telkomsel', 'Android', ''),
+(12, '1232323111', '103.10.105.60', '2016-11-21 17:00:00', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'drikdoank@gmail.com', 'cellular', 1, 'Telkomsel', 'Android', ''),
+(13, '1232323111', '103.10.105.60', '2017-01-07 17:16:35', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa Barat', 'Bogor', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 6, 'Telkomsel', 'Android', ''),
+(14, '1232323111', '103.10.105.60', '2016-11-21 17:00:00', '2016-11-22', 'save', 'registration', 'samsung', 'ID', 'Jawa barat', 'Bogor', '-6.5944,106.7892', 'indriyani.cs49@gmail.com', 'cellular', 2, 'Telkomsel', 'Android', ''),
+(15, '1232323111', '118.136.157.189', '2016-11-24 17:00:00', '2016-11-25', 'save', 'registration', 'samsung', 'ID', 'Jakarta Raya', 'Jakarta', '-6.1744,106.8294', 'drikdoank@gmail.com', '', 1, 'Telkomsel', 'Android', ''),
+(16, '1232323111', '118.136.157.189', '2016-11-24 17:00:00', '2016-11-25', 'save', 'registration', 'samsung', 'ID', 'Jakarta Raya', 'Jakarta', '-6.1744,106.8294', 'drikdoank@gmail.com', '', 1, 'Telkomsel', 'Android', '');
 
 -- --------------------------------------------------------
 
@@ -271,6 +286,90 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `operator_per_day`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_day` (
+`day` timestamp
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `operator_per_day_user`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_day_user` (
+`user` varchar(100)
+,`id_aplikasi` int(10)
+,`day` timestamp
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `operator_per_month`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_month` (
+`month` int(2)
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `operator_per_month_user`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_month_user` (
+`user` varchar(100)
+,`id_aplikasi` int(10)
+,`month` int(2)
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `operator_per_year`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_year` (
+`year` int(4)
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `operator_per_year_user`
+--
+CREATE TABLE IF NOT EXISTS `operator_per_year_user` (
+`user` varchar(100)
+,`id_aplikasi` int(10)
+,`year` int(4)
+,`telkomsel_count` bigint(21)
+,`indosat_count` bigint(21)
+,`xl_count` bigint(21)
+,`smartfren_count` bigint(21)
+,`other_count` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -279,6 +378,13 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('drikdoank@gmail.com', '6ab2f44831d31b104d23697c06b771799151b3b56cfcc31c24c34972b0470abc', '2017-02-02 06:07:50');
 
 -- --------------------------------------------------------
 
@@ -290,24 +396,54 @@ CREATE TABLE IF NOT EXISTS `users` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `img` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
+  `active_app` varchar(225) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `plan` int(10) NOT NULL,
+  `activated` int(1) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hendrik', 'drikdoank@gmail.com', 'admin', '$2y$10$rFCavDebMnD4B3CAvG0ptuuj6PaBLUGjVoMXfBk3bj3W8RAHvVkZG', 'O8zfv1qIl7wYZftZu6yYnRNa0eHLS7IZezIWY613KI6RNqupIUjmcZB1kvgP', '2016-09-17 03:02:01', '2016-11-22 08:26:03'),
-(2, 'Indriyani', 'indri@gmail.com', 'partner', '$2y$10$avEe2V5oowSLzBkazFliXOud3urBM9ItlugDteFdXLKKQVTFHqQJK', NULL, '2016-09-23 23:37:50', '2016-09-23 23:37:50'),
-(3, 'Hendra', 'hendrik@gmail.com', 'partner', '$2y$10$efMzwzQ5IZytSOjJROPFROL.QCWVOcOC3axhEW7oaMiojK6rBzCw2', 'I0IdI1Z05VTSkaC88UIU9inheOBfoCBMSPVSD6s0hN5OnJBlJ4QCfz1Ovixy', '2016-09-26 18:41:32', '2016-09-26 18:41:38'),
-(4, 'Budi', 'budi@gmail.com', 'partner', '$2y$10$vHMGDG.id0.dl0etknvCC.xwmwDfRc3K51N2MklH5VITH8Y3eUsnW', 'WGSPz4juSA36OYLskpHDBpzpXN0OPOks5XZs8pQzhxOabF6GJ6ATvDfosolh', '2016-09-26 18:42:01', '2016-09-26 18:42:04'),
-(5, 'Anis', 'anis@gmail.com', 'partner', '$2y$10$Vx7.Ba16euhEsXShotUEeOwFOdtjsz22V0/QgkHSLNFG8ZFP89.c6', NULL, '2017-09-26 18:42:47', '2016-09-26 18:42:47'),
-(6, 'Indriyani', 'indriyani.cs49@gmail.com', 'partner', '$2y$10$Z/CL3nOYV5Q.FM0fSHFRtuqEcE/IDzH9eb7ItbSx9/9.tmzY8cJuS', '9IOdQtTWvWcTolSWHhDq4q61tg8xoPcsNC2WdrhW9WElVIZTnYbxiCSOGc8V', '2016-10-02 07:14:30', '2016-11-22 19:56:24');
+INSERT INTO `users` (`id`, `name`, `email`, `img`, `active_app`, `role`, `password`, `remember_token`, `created_at`, `updated_at`, `status`, `plan`, `activated`) VALUES
+(1, 'Hendrik', 'drikdoank123@gmail.com', 'user2-160x160.jpg', '1', 'admin', '$2y$10$rFCavDebMnD4B3CAvG0ptuuj6PaBLUGjVoMXfBk3bj3W8RAHvVkZG', 'Xw8hJLCRd22OMlx32tshn9Us81jWjbI8iJCCk4fmeOEZ641cadkHKbq9N4OJ', '2016-09-17 03:02:01', '2017-02-02 04:50:14', '1', 3, 1),
+(2, 'Indriyani', 'indri@gmail.com', 'user7-128x128.jpg', '2', 'partner', '$2y$10$avEe2V5oowSLzBkazFliXOud3urBM9ItlugDteFdXLKKQVTFHqQJK', NULL, '2016-09-23 23:37:50', '2016-09-23 23:37:50', '1', 3, 1),
+(3, 'Hendra', 'hendrik@gmail.com', 'user2-160x160.jpg', '7', 'partner', 'c3ec0f7b054e729c5a716c8125839829', 'I0IdI1Z05VTSkaC88UIU9inheOBfoCBMSPVSD6s0hN5OnJBlJ4QCfz1Ovixy', '2016-09-26 18:41:32', '2016-09-26 18:41:38', '1', 3, 1),
+(4, 'Budi', 'budi@gmail.com', 'user2-160x160.jpg', '3', 'partner', '$2y$10$vHMGDG.id0.dl0etknvCC.xwmwDfRc3K51N2MklH5VITH8Y3eUsnW', 'WGSPz4juSA36OYLskpHDBpzpXN0OPOks5XZs8pQzhxOabF6GJ6ATvDfosolh', '2016-09-26 18:42:01', '2016-09-26 18:42:04', '1', 3, 1),
+(5, 'Anis', 'anis@gmail.com', 'user2-160x160.jpg', '5', 'partner', '$2y$10$Vx7.Ba16euhEsXShotUEeOwFOdtjsz22V0/QgkHSLNFG8ZFP89.c6', NULL, '2017-09-26 18:42:47', '2016-09-26 18:42:47', '1', 3, 1),
+(6, 'Indriyani', 'indriyani.cs49@gmail.com', 'user7-128x128.jpg', '6', 'partner', '$2y$10$Z/CL3nOYV5Q.FM0fSHFRtuqEcE/IDzH9eb7ItbSx9/9.tmzY8cJuS', 'ffWrZPzxtOXZqZWZJdZLqWtTNbgRN20Z48TapcnFPA4i0TALvUcpH1DPENoW', '2016-10-02 07:14:30', '2017-01-12 04:24:49', '1', 3, 1),
+(7, 'Budi', 'drikdoank49@gmail.com', 'user2-160x160.jpg', '13', 'partner', '$2y$10$SRDzbpY6O/r4AA6ooD2YNekNoPkrwD7OqpBzovblsbM.uGgZSsmpC', NULL, '2016-12-22 03:47:44', '2016-12-22 03:47:44', '1', 3, 1),
+(8, 'Didok', 'drikdoank12@gmail.com', '', '', 'partner', '$2y$10$89Ol.mOhaub/hWhY6GZvMutYCPVdsEOvzcj5nSIzm9/tH04LDOvqW', '0ZD1k9wE6zhjNUOI3KIyvuPUkITIGQLiqvcpAwCP4Oqm2SJi5bUX3Mt3MJ57', '2017-02-04 06:03:13', '2017-02-04 06:03:37', '1', 3, 1),
+(9, 'Hendrik', 'drikdoank13@gmail.com', '', '', 'partner', '$2y$10$78Yc38y2zk3VrMTJA.2q5e5ctLcHTkT9km.fy7JANFdyCBm55b1vO', 'MkkFG4ZFP6J2yM91M4aikuEr29e55j2wpOzQcpa79QeWp7m09tc7MGzt1NMc', '2017-02-04 06:08:19', '2017-02-04 06:08:27', '1', 3, 1),
+(10, 'sdsd', 'drikdoank@gmail.com', '', '', 'partner', '$2y$10$nPp44BYRvowgYTaP6/jql.xkYVavB2NjyGL5AJSgEjvxDBht.UBN6', NULL, '2017-02-04 06:09:52', '2017-02-04 06:09:52', '1', 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_activations`
+--
+
+CREATE TABLE IF NOT EXISTS `user_activations` (
+`Id` int(10) NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `activated` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `user_activations`
+--
+
+INSERT INTO `user_activations` (`Id`, `user_id`, `token`, `created_at`, `activated`) VALUES
+(1, 10, 'e0d6132def4e05d100fd1a7b01b02a480c6aff26c31f9f2cabb414f64722729b', '2017-02-04 06:09:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -315,7 +451,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `role`, `password`, `remember_token`
 -- Stand-in structure for view `view_activity_by_type_device_per_day`
 --
 CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_day` (
-`day` date
+`day` timestamp
 ,`samsung_count` bigint(21)
 ,`apple_count` bigint(21)
 ,`other_count` bigint(21)
@@ -327,7 +463,8 @@ CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_day` (
 --
 CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_day_user` (
 `user` varchar(100)
-,`day` date
+,`id_aplikasi` int(10)
+,`day` timestamp
 ,`samsung_count` bigint(21)
 ,`apple_count` bigint(21)
 ,`other_count` bigint(21)
@@ -350,6 +487,7 @@ CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_month` (
 --
 CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_month_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`month` int(2)
 ,`samsung_count` bigint(21)
 ,`apple_count` bigint(21)
@@ -373,6 +511,7 @@ CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_year` (
 --
 CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_year_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`samsung_count` bigint(21)
 ,`apple_count` bigint(21)
@@ -384,7 +523,7 @@ CREATE TABLE IF NOT EXISTS `view_activity_by_type_device_per_year_user` (
 -- Stand-in structure for view `view_by_click_per_day`
 --
 CREATE TABLE IF NOT EXISTS `view_by_click_per_day` (
-`day` date
+`day` timestamp
 ,`login_count` bigint(21)
 ,`save_count` bigint(21)
 ,`close_count` bigint(21)
@@ -398,7 +537,8 @@ CREATE TABLE IF NOT EXISTS `view_by_click_per_day` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_click_per_day_user` (
 `user` varchar(100)
-,`day` date
+,`id_aplikasi` int(10)
+,`day` timestamp
 ,`login_count` bigint(21)
 ,`save_count` bigint(21)
 ,`close_count` bigint(21)
@@ -425,6 +565,7 @@ CREATE TABLE IF NOT EXISTS `view_by_click_per_month` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_click_per_month_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`month` int(2)
 ,`login_count` bigint(21)
 ,`save_count` bigint(21)
@@ -452,6 +593,7 @@ CREATE TABLE IF NOT EXISTS `view_by_click_per_year` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_click_per_year_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`login_count` bigint(21)
 ,`save_count` bigint(21)
@@ -465,7 +607,7 @@ CREATE TABLE IF NOT EXISTS `view_by_click_per_year_user` (
 -- Stand-in structure for view `view_by_view_page_perday`
 --
 CREATE TABLE IF NOT EXISTS `view_by_view_page_perday` (
-`day` date
+`day` timestamp
 ,`welcome_count` bigint(21)
 ,`registration_count` bigint(21)
 ,`shopping_count` bigint(21)
@@ -479,7 +621,8 @@ CREATE TABLE IF NOT EXISTS `view_by_view_page_perday` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_view_page_perday_user` (
 `user` varchar(100)
-,`day` date
+,`id_aplikasi` int(10)
+,`day` timestamp
 ,`welcome_count` bigint(21)
 ,`registration_count` bigint(21)
 ,`shopping_count` bigint(21)
@@ -506,6 +649,7 @@ CREATE TABLE IF NOT EXISTS `view_by_view_page_permonth` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_view_page_permonth_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`month` int(2)
 ,`welcome_count` bigint(21)
 ,`registration_count` bigint(21)
@@ -533,6 +677,7 @@ CREATE TABLE IF NOT EXISTS `view_by_view_page_peryear` (
 --
 CREATE TABLE IF NOT EXISTS `view_by_view_page_peryear_user` (
 `user` varchar(100)
+,`id_aplikasi` int(10)
 ,`year` int(4)
 ,`welcome_count` bigint(21)
 ,`registration_count` bigint(21)
@@ -613,7 +758,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `count_connectedby_day_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`,`master_data`.`created_at`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -631,7 +776,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `count_connectedby_month_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_month_user` AS select `master_data`.`user` AS `user`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_month_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -649,7 +794,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `count_connectedby_year_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_year_user` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_connectedby_year_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`connected_by` = 'wifi') then 1 end)) AS `wifi_count`,count((case when (`master_data`.`connected_by` = 'cellular') then 1 end)) AS `cellular_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -667,7 +812,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `count_dashboard_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_dashboard_user` AS select `master_data`.`user` AS `user`,count(distinct `master_data`.`id`) AS `count_activity`,count(distinct `master_data`.`id`) AS `count_click`,count(distinct `master_data`.`id`) AS `count_view` from `master_data` group by `master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `count_dashboard_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,count(distinct `master_data`.`id`) AS `count_activity`,count(distinct `master_data`.`id`) AS `count_click`,count(distinct `master_data`.`id`) AS `count_view` from `master_data` group by `master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -685,7 +830,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `map_country`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_country` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,`master_data`.`language` AS `country`,count(`master_data`.`language`) AS `count_country` from `master_data` group by `master_data`.`language`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_country` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,`master_data`.`language` AS `country`,count(`master_data`.`language`) AS `count_country` from `master_data` group by `master_data`.`language`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -703,7 +848,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `map_region`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_region` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,`master_data`.`regional` AS `regional`,count(`master_data`.`regional`) AS `count_region` from `master_data` group by `master_data`.`regional`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_region` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,`master_data`.`regional` AS `regional`,count(`master_data`.`regional`) AS `count_region` from `master_data` group by `master_data`.`regional`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -721,7 +866,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `map_state`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_state` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,`master_data`.`state` AS `regional`,count(`master_data`.`state`) AS `count_state` from `master_data` group by `master_data`.`state`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_state` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,`master_data`.`state` AS `regional`,count(`master_data`.`state`) AS `count_state` from `master_data` group by `master_data`.`state`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -731,6 +876,60 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `map_state_admin`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `map_state_admin` AS select year(`master_data`.`created_at`) AS `year`,`master_data`.`state` AS `regional`,count(`master_data`.`state`) AS `count_state` from `master_data` group by `master_data`.`state`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_day`
+--
+DROP TABLE IF EXISTS `operator_per_day`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_day` AS select `master_data`.`created_at` AS `day`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_day_user`
+--
+DROP TABLE IF EXISTS `operator_per_day_user`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`,`master_data`.`id_aplikasi`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_month`
+--
+DROP TABLE IF EXISTS `operator_per_month`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_month` AS select month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_month_user`
+--
+DROP TABLE IF EXISTS `operator_per_month_user`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_month_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_year`
+--
+DROP TABLE IF EXISTS `operator_per_year`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_year` AS select year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `operator_per_year_user`
+--
+DROP TABLE IF EXISTS `operator_per_year_user`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `operator_per_year_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`operator` = 'Telkomsel') then 1 end)) AS `telkomsel_count`,count((case when (`master_data`.`operator` = 'Indosat') then 1 end)) AS `indosat_count`,count((case when (`master_data`.`operator` = 'XL') then 1 end)) AS `xl_count`,count((case when (`master_data`.`operator` = 'Smartfren') then 1 end)) AS `smartfren_count`,count((case when ((`master_data`.`operator` <> 'Telkomsel') and (`master_data`.`operator` <> 'Indosat') and (`master_data`.`operator` <> 'XL') and (`master_data`.`operator` <> 'Smartfren')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -748,7 +947,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_activity_by_type_device_per_day_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -766,7 +965,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_activity_by_type_device_per_month_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_month_user` AS select `master_data`.`user` AS `user`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_month_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -784,7 +983,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_activity_by_type_device_per_year_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_year_user` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_activity_by_type_device_per_year_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`type_device` = 'samsung') then 1 end)) AS `samsung_count`,count((case when (`master_data`.`type_device` = 'apple') then 1 end)) AS `apple_count`,count((case when ((`master_data`.`type_device` <> 'apple') and (`master_data`.`type_device` <> 'samsung')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -802,7 +1001,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_click_per_day_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_day_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -820,7 +1019,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_click_per_month_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_month_user` AS select `master_data`.`user` AS `user`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_month_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -838,7 +1037,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_click_per_year_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_year_user` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_click_per_year_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`click` = 'login') then 1 end)) AS `login_count`,count((case when (`master_data`.`click` = 'save') then 1 end)) AS `save_count`,count((case when (`master_data`.`click` = 'close') then 1 end)) AS `close_count`,count((case when (`master_data`.`click` = 'delete') then 1 end)) AS `delete_count`,count((case when ((`master_data`.`click` <> 'login') and (`master_data`.`click` <> 'save') and (`master_data`.`click` <> 'close') and (`master_data`.`click` <> 'delete')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -856,7 +1055,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_view_page_perday_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_perday_user` AS select `master_data`.`user` AS `user`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_perday_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,`master_data`.`created_at` AS `day`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by `master_data`.`created_at`,`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -874,7 +1073,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_view_page_permonth_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_permonth_user` AS select `master_data`.`user` AS `user`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_permonth_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,month(`master_data`.`created_at`) AS `month`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by month(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -892,7 +1091,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_by_view_page_peryear_user`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_peryear_user` AS select `master_data`.`user` AS `user`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_by_view_page_peryear_user` AS select `master_data`.`user` AS `user`,`master_data`.`id_aplikasi` AS `id_aplikasi`,year(`master_data`.`created_at`) AS `year`,count((case when (`master_data`.`view` = 'welcome') then 1 end)) AS `welcome_count`,count((case when (`master_data`.`view` = 'registration') then 1 end)) AS `registration_count`,count((case when (`master_data`.`view` = 'shopping') then 1 end)) AS `shopping_count`,count((case when (`master_data`.`view` = 'order') then 1 end)) AS `order_count`,count((case when ((`master_data`.`view` <> 'welcome') and (`master_data`.`view` <> 'registration') and (`master_data`.`view` <> 'shopping') and (`master_data`.`view` <> 'order')) then 1 end)) AS `other_count` from `master_data` group by year(`master_data`.`created_at`),`master_data`.`user`,`master_data`.`id_aplikasi`;
 
 -- --------------------------------------------------------
 
@@ -977,6 +1176,12 @@ ALTER TABLE `users`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `user_activations`
+--
+ALTER TABLE `user_activations`
+ ADD PRIMARY KEY (`Id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -984,17 +1189,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aplikasi`
 --
 ALTER TABLE `aplikasi`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `master_data`
 --
 ALTER TABLE `master_data`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `user_activations`
+--
+ALTER TABLE `user_activations`
+MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
