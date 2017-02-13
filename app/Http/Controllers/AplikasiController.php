@@ -24,7 +24,7 @@ class AplikasiController extends Controller {
 			$aplikasis = Aplikasi::orderBy('id', 'desc')->paginate(5);
 			foreach ($aplikasis as $model){
 				if($model->status==1)
-					$model->status="Intsall";
+					$model->status="Install";
 				else
 					$model->status="Uninstall";
 			}
@@ -32,7 +32,7 @@ class AplikasiController extends Controller {
 			$aplikasis = Aplikasi::Where('user', $user->email)->paginate(5);
 				foreach ($aplikasis as $model){
 				if($model->status==1)
-					$model->status="Intsall";
+					$model->status="Install";
 				else
 					$model->status="Uninstall";
 			}

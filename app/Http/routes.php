@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/connected-year', 'PageController@connectedyear');
 
     Route::resource("aplikasis","AplikasiController");
+    Route::resource("iklans","IklanController");
     Route::resource("master_datas","MasterDataController");
     Route::resource("about","AboutController");
 

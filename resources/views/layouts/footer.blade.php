@@ -31,6 +31,8 @@
 <script src="{{ asset('assets/plugins/flot/jquery.flot.pie.min.js') }}"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="{{ asset('assets/plugins/flot/jquery.flot.categories.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('assets/plugins/select2/select2.full.min.js') }}"></script>
 
 <!-- ChartJS 1.0.1 -->
 <script src="{{ asset('assets/plugins/chartjs/Chart.min.js') }}"></script>
@@ -42,3 +44,11 @@
 <!-- Map chart-->
 <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyBjJTuVIp1YElHYU3atuFrU6jl7qmro2Yg" async="" defer="defer"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+    
+    //Datemask dd/mm/yyyy
+  });
+</script>
