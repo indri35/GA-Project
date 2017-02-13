@@ -57,7 +57,7 @@ class IklanController extends Controller {
             'hour_end' => 'required',
             'day_start' => 'required',
             'day_end' => 'required',
-			'picture' => 'required'
+			'picture' => 'required|mimes:jpeg,bmp,jpg,png'
         ]);
 
 		$user = Auth::user();
@@ -128,7 +128,9 @@ class IklanController extends Controller {
             'hour_start' => 'required',
             'hour_end' => 'required',
             'day_start' => 'required',
-            'day_end' => 'required'
+            'day_end' => 'required',
+			'picture' => 'mimes:jpeg,bmp,jpg,png'
+
         ]);
 		$user = Auth::user();
 	
