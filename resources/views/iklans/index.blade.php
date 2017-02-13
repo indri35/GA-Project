@@ -29,8 +29,8 @@
                         <th>Created  Date</th>
                         <th>Start Hour</th>
                         <th>End Hour</th>
-                        <th>Day Hour</th>
-                        <th>Day Hour</th>
+                        <th>Start Day</th>
+                        <th>End Day</th>
                         <th>Status</th>
                         <th class="text-right">OPTIONS</th>
                         </tr>
@@ -44,8 +44,8 @@
                             <td>{{date('d-M-Y',strtotime($master_datum->created_at))}}</td>
                             <td>{{$master_datum->hour_end}}</td>
                             <td>{{$master_datum->hour_start}}</td>
-                            <td>{{$master_datum->day_start}}</td>
-                            <td>{{$master_datum->day_end}}</td>
+                            <td>{{date('d-M-Y',strtotime($master_datum->day_start))}}</td>
+                            <td>{{date('d-M-Y',strtotime($master_datum->day_end))}}</td>
                             <td>{{$master_datum->status}}</td>
                                 <td class="text-right">
                                     <a class="btn btn-xs btn-primary" href="{{ route('iklans.show', $master_datum->id) }}"><i class="glyphicon glyphicon-eye-open"></i> View</a>
