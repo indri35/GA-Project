@@ -159,7 +159,7 @@ class IklanController extends Controller {
 	{		
 		$user = Auth::user();
 		$iklan = Iklan::findOrFail($id);
-		return view('Iklans.edit', compact('iklan','user'));
+		return view('iklans.edit', compact('iklan','user'));
 	}
 
 	/**
