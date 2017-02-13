@@ -100,6 +100,7 @@ class IklanController extends Controller {
 
 		$this->validate($request, [
             'name' => 'required',
+            'url' => 'required',
             'description' => 'required',
             'hour_start' => 'required',
             'hour_end' => 'required',
@@ -112,6 +113,7 @@ class IklanController extends Controller {
 		$Iklan = new Iklan();
 		$Iklan->id = $request->input("id");
 		$Iklan->user = $user->email;
+		$Iklan->url = $request->input("url");
 		$Iklan->name = $request->input("name");
 		$Iklan->description = $request->input("description");
 		$Iklan->hour_start = $request->input("hour_start");
@@ -172,6 +174,7 @@ class IklanController extends Controller {
 
 		$this->validate($request, [
             'name' => 'required',
+            'url' => 'required',
             'description' => 'required',
             'hour_start' => 'required',
             'hour_end' => 'required',
@@ -185,6 +188,7 @@ class IklanController extends Controller {
 		$Iklan = Iklan::findOrFail($id);
 		$Iklan->user = $user->email;
 		$Iklan->name = $request->input("name");
+		$Iklan->url = $request->input("url");
 		$Iklan->description = $request->input("description");
 		$Iklan->hour_start = $request->input("hour_start");
 		$Iklan->hour_end = $request->input("hour_end");

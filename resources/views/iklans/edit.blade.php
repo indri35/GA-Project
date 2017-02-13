@@ -24,6 +24,13 @@
                         <span class="help-block">{{ $errors->first("name") }}</span>
                        @endif
                     </div>
+                    <div class="form-group @if($errors->has('url')) has-error @endif">
+                    <label for="url-field">URL</label>
+                    <input type="text" id="url-field" name="url" class="form-control" value="{{ $iklan->url }}" >
+                        @if($errors->has("url"))
+                        <span class="help-block">{{ $errors->first("url") }}</span>
+                       @endif
+                    </div>
                     <div class="form-group @if($errors->has('description')) has-error @endif">
                        <label for="description-field">description</label>
                         <textarea type="text" id="description-field" name="description" class="form-control" value="{{ $iklan->description }}"></textarea> 

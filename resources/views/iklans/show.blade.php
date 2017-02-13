@@ -30,6 +30,10 @@
                      <label for="appsname">Name</label>
                      <p class="form-control-static">{{$iklan->name}}</p>
                 </div>
+                    <div class="form-group">
+                     <label for="appsname">URL</label>
+                     <p class="form-control-static">{{$iklan->url}}</p>
+                </div>
                 <div class="form-group">
                      <label for="id">Description</label>
                      <p class="form-control-static">{{$iklan->description}}</p>
