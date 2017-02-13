@@ -9,8 +9,37 @@ use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\TranslateClient;
 use File;
 use Illuminate\Support\Facades\Auth;
+use App\Aplikasi;
+
 
 class IklanController extends Controller {
+
+	public function getiklan(Request $request, $start_day)
+	{
+		//2002-12-12
+		$time = strtotime($start_day);
+
+		$start_day = date('Y-m-d',$time);
+		$token = $request->header('Api-key');
+		$sig = $request->header('Sig');
+		$status = true;
+		$iklans;
+		if($sig!=null&&$token!=null){	
+			$apps = Aplikasi::Where('token',$token)->first();	
+			if($apps!=null){
+				$user = User::Where('email',$apps->user)->first();
+				$iklans = Iklan::where('day_start','>', $start_day)->orderBy('day_start', 'desc')->get();
+			}else{
+				$status = false;
+				$iklans = "user not detected";
+			}
+		}else{
+				$status = false;
+				$iklans = "token or sig not valid";
+		}
+        return compact('status','start_day','iklans');
+	}
+
 
 	/**
 	 * Display a listing of the resource.
