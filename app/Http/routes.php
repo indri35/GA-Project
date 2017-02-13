@@ -102,7 +102,7 @@ Route::get('/getDataOperatorMonth', 'DashboardController@getDataOperatorMonth');
 Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
-Route::get('/iklan/{day}','IklanController@getiklan');
+Route::get('/iklan/{day?}','IklanController@getiklan');
 Route::post('/create_data','MasterDataController@store');
 Route::post('/get_encrypt_imei','MasterDataController@getImeiEncrypt');
 

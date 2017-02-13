@@ -10,11 +10,18 @@ use Stichoza\GoogleTranslate\TranslateClient;
 use File;
 use Illuminate\Support\Facades\Auth;
 use App\Aplikasi;
-
+use Illuminate\Routing\UrlGenerator;
 
 class IklanController extends Controller {
+	protected $url;
 
-	public function getiklan(Request $request, $start_day)
+		public function __construct(UrlGenerator $url)
+		{
+			$this->url = $url;
+		}
+
+
+	public function getiklan(Request $request, $start_day=null)
 	{
 		//2002-12-12
 		$time = strtotime($start_day);
@@ -27,8 +34,20 @@ class IklanController extends Controller {
 		if($sig!=null&&$token!=null){	
 			$apps = Aplikasi::Where('token',$token)->first();	
 			if($apps!=null){
-				$user = User::Where('email',$apps->user)->first();
-				$iklans = Iklan::where('day_start','>', $start_day)->orderBy('day_start', 'desc')->get();
+				if($start_day!=null){
+					$iklans = Iklan::where('day_start','>', $start_day)->orderBy('day_start', 'desc')->paginate(100);
+					foreach ($iklans as $model){
+					$l =  $this->url->to('/');
+					$model->picture = $l.$model->picture;
+					}
+				}				
+				else{
+					$iklans = Iklan::orderBy('day_start', 'desc')->paginate(100);	
+										foreach ($iklans as $model){
+					$l = $this->url->to('/');
+					$model->picture = $l.$model->picture;
+										}
+				}
 			}else{
 				$status = false;
 				$iklans = "user not detected";
@@ -86,7 +105,7 @@ class IklanController extends Controller {
             'hour_end' => 'required',
             'day_start' => 'required',
             'day_end' => 'required',
-			'picture' => 'required|mimes:jpeg,bmp,jpg,png'
+			'picture' => 'required|mimes:jpeg,bmp,jpg,png|max:5000}'
         ]);
 
 		$user = Auth::user();
@@ -158,7 +177,7 @@ class IklanController extends Controller {
             'hour_end' => 'required',
             'day_start' => 'required',
             'day_end' => 'required',
-			'picture' => 'mimes:jpeg,bmp,jpg,png'
+			'picture' => 'mimes:jpeg,bmp,jpg,png||max:5000}'
 
         ]);
 		$user = Auth::user();
