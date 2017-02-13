@@ -18,7 +18,7 @@
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group @if($errors->has('name')) has-error @endif">
-                       <label for="name-field">name</label>
+                       <label for="name-field">Name</label>
                     <input type="text" id="name-field" name="name" class="form-control" value="{{ is_null(old("name")) ? $iklan->name : old("name") }}"/>
                        @if($errors->has("name"))
                         <span class="help-block">{{ $errors->first("name") }}</span>
@@ -32,7 +32,7 @@
                        @endif
                     </div>
                     <div class="form-group @if($errors->has('description')) has-error @endif">
-                       <label for="description-field">description</label>
+                       <label for="description-field">Description</label>
                         <textarea type="text" id="description-field" name="description" class="form-control" value="{{ $iklan->description }}"></textarea> 
                         @if($errors->has("description"))
                         <span class="help-block">{{ $errors->first("description") }}</span>
