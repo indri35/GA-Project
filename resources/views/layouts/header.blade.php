@@ -142,7 +142,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        @if (Auth::user()->role=='admin') 
+        @if (Auth::user()->role=='iklan') 
         <li class="treeview">
           <a href="{{ url('/iklans') }}">
             <i class="fa fa-check-circle"></i> <span>Advertisement</span>
