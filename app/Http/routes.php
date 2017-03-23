@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/connected-year', 'PageController@connectedyear');
 
     Route::resource("aplikasis","AplikasiController");
+    Route::resource("iklans","IklanController");
     Route::resource("master_datas","MasterDataController");
     Route::resource("about","AboutController");
 
@@ -101,9 +102,12 @@ Route::get('/getDataOperatorMonth', 'DashboardController@getDataOperatorMonth');
 Route::get('/getDataOperatorYear', 'DashboardController@getDataOperatorYear');
 
 Route::auth();
+Route::get('/iklan/{day?}','IklanController@getiklan');
 Route::post('/create_data','MasterDataController@store');
 Route::post('/get_encrypt_imei','MasterDataController@getImeiEncrypt');
 
+//activation
+Route::get('/user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
 //jwt-auth
 Route::post('/signup', function(){

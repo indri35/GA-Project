@@ -199,7 +199,7 @@ class DashboardController extends Controller
     public function updateimgprofil(Request $request)
     {
         $this->validate($request, [
-            'img' => 'required'
+            'img' => 'required|mimes:jpeg,bmp,jpg,png'
         ]);
         $user = Auth::user();     
         $imageName = $user->id . '-' . $user->name . '-' . 
@@ -208,6 +208,7 @@ class DashboardController extends Controller
         $request->file('img')->move($path , $imageName);
         $user->img = '/upload/images/profil/'.$imageName;
         $user->save();
+        
         return $this->dashboard();
     }
 

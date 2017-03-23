@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap.css')}}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +52,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>Analytic</span>
+      <span class="logo-lg"><b>Apps</b>Analytic</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -135,11 +137,19 @@
           </a>
         </li>
         @endif
-        <li class="treeview">
+        <li class="active treeview">
           <a href="{{ url('/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        @if (Auth::user()->role=='iklan') 
+        <li class="treeview">
+          <a href="{{ url('/iklans') }}">
+            <i class="fa fa-check-circle"></i> <span>Advertisement</span>
+          </a>
+        </li>
+        @endif
+
         <li class="treeview">
           <a href="{{ url('/master-data') }}">
             <i class="fa fa-table"></i> <span>Data Master</span>

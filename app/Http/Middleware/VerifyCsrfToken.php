@@ -20,6 +20,7 @@ class VerifyCsrfToken extends BaseVerifier
         '/update_data',
         '/delete_data',
         '/get_data',
+        '/getiklan',
         '/signin',
         '/signup',
         

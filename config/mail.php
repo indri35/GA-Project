@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'drikdoank@gmail.com', 'name' => 'Admin Analytic'],
+    'from' => ['address' => 'lunaappsid@gmail.com', 'name' => 'Admin Analytic'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => env('drikdoank@gmail.com'),
+    'username' => env('MAIL_USERNAME','lunaappsid@gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('blogdidok49'),
+    'password' => env('MAIL_PASSWORD','luna123456'),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,5 +108,8 @@ return [
     */
 
     'sendmail' => '/usr/sbin/sendmail -bs',
+
+    'pretend' => false,
+
 
 ];

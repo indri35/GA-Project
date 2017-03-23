@@ -30,10 +30,21 @@
       <p class="login-box-msg">
         <img src="{{ asset('assets/dist/img/analytics_logo.png') }}" width="100" height="100" alt="User Image">
     </p>
-    <a href="{{ url('/') }}"><b>Admin</b>Analytic</a>
+    <a href="{{ url('/') }}"><b>Apps</b>Analytic</a>
   </div>
   <!-- /.login-logo -->
 <div class="login-box-body">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+    @if (session('warning'))
+        <div class="alert alert-warning">
+            {{ session('warning') }}
+        </div>
+    @endif
+
     <p class="login-box-msg">Sign in to start your session</p>
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
@@ -88,7 +99,7 @@
                         </div>
                     </form>
                    <p class="login-box-msg">
-                       <strong>Developed By <a href="http://almsaeedstudio.com">AppSynthesis Lab @2016</a></strong>
+                       <strong>Copyright &copy; <a href="www.appxoffer.com">2016 AppXoffer</a></strong>
                    </div>
                 </div>
             </div>
