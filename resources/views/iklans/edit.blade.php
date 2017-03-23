@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group @if($errors->has('description')) has-error @endif">
                        <label for="description-field">Description</label>
-                        <textarea type="text" id="description-field" name="description" class="form-control" value="{{ $iklan->description }}"></textarea> 
+                        <textarea type="text" id="description-field" name="description" class="form-control">{{ $iklan->description }}</textarea> 
                         @if($errors->has("description"))
                         <span class="help-block">{{ $errors->first("description") }}</span>
                        @endif
