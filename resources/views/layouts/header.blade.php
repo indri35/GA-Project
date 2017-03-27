@@ -130,18 +130,20 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-       @if (Auth::user()->role!='admin') 
+       @if (Auth::user()->role!='admin' and Auth::user()->role!='iklan') 
         <li class="active treeview">
           <a href="{{ url('/choose') }}">
             <i class="fa fa-check-circle"></i> <span>Choose Application</span>
           </a>
         </li>
         @endif
+        @if (Auth::user()->role!='iklan') 
         <li class="active treeview">
           <a href="{{ url('/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        @endif      
         @if (Auth::user()->role=='iklan') 
         <li class="treeview">
           <a href="{{ url('/iklans') }}">
@@ -149,12 +151,13 @@
           </a>
         </li>
         @endif
-
+        @if (Auth::user()->role!='iklan') 
         <li class="treeview">
           <a href="{{ url('/master-data') }}">
             <i class="fa fa-table"></i> <span>Data Master</span>
           </a>
         </li>
+        @endif
         @if (Auth::user()->role=='admin')
         <li class="treeview">
           <a href="{{ url('/user-data') }}">
@@ -162,6 +165,7 @@
           </a>
         </li>
         @endif
+        @if (Auth::user()->role!='iklan') 
         <li class="treeview">
           <a href="{{ url('/aplikasis') }}">
             <i class="fa fa-table"></i> <span>Apps</span>
@@ -232,6 +236,7 @@
             <li><a href="{{ url('/connected-year') }}"><i class="fa fa-fw"></i> Year</a></li>
           </ul>
         </li>
+          @endif
       </ul>
     </section>
     <!-- /.sidebar -->
