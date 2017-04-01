@@ -207,13 +207,17 @@ class DashboardController extends Controller
 		}
 		else if($user->role=='iklan'){       
             $iklans = Iklan::orderBy('id', 'desc')->paginate(5);
+			$iklans_count = Iklan::count();
+			$user_count = User::where('role','partner')->count();
+			$retention = DB::table('iklan')->sum('retention');
+			$open = DB::table('iklan')->sum('open');
             foreach ($iklans as $model){
                 if($model->status==1)
                     $model->status="Active";
                 else
                     $model->status="Unactive";
             }
-	        return view('iklans.index', compact('user','iklans'));		
+	        return view('iklans.index', compact('user','open','iklans','iklans_count','user_count','retention'));		
         }
 		else{
 			$master_datas = Aplikasi::Where('user',$user->email)->get();

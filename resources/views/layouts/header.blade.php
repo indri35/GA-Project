@@ -158,7 +158,7 @@
           </a>
         </li>
         @endif
-        @if (Auth::user()->role=='admin')
+        @if (Auth::user()->role=='admin' || Auth::user()->role=='iklan')
         <li class="treeview">
           <a href="{{ url('/user-data') }}">
             <i class="fa fa-table"></i> <span>Users</span>

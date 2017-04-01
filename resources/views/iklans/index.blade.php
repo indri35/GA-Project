@@ -17,7 +17,7 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                    <h3>2</h3> 
+                    <h3>{{$user_count}}</h3> 
                     <p>User</p>
                     </div>
                     <div class="icon">
@@ -30,8 +30,8 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                    <h3>2</h3> 
-                    <p>Install</p>
+                    <h3>{{$iklans_count}}</h3> 
+                    <p>Iklan</p>
                     </div>
                     <div class="icon">
                     <i class="ion ion-eye"></i>
@@ -43,7 +43,7 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                    <h3>6</h3> 
+                    <h3>{{$retention}}</h3> 
                     <p>Retention</p>
                     </div>
                     <div class="icon">
@@ -54,10 +54,10 @@
                 <!-- ./col -->
                 <div class="col-lg-3 col-xs-6">
                 <!-- small box -->
-                <div class="small-box bg-red">
+                <div class="small-box bg-blue">
                     <div class="inner">
-                    <h3>6</h3> 
-                    <p>Uinstall</p>
+                    <h3>{{$open}}</h3> 
+                    <p>Open Adds</p>
                     </div>
                     <div class="icon">
                     <i class="fa ion-eye"></i>
@@ -80,7 +80,7 @@
         <div class="box box-primary">
     <div class="box-header with-border">
         <i class="fa fa-bar-chart-o"></i>
-        <h3 class="box-title">Iklan</h3>
+        <h3 class="box-title">Advertisement</h3>
         <div class="box-tools pull-right">
         <a class="btn btn-success" href="{{ route('aplikasis.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
         </div>

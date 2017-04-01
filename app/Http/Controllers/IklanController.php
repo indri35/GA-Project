@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Stichoza\GoogleTranslate\TranslateClient;
 use File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Aplikasi;
 use Illuminate\Routing\UrlGenerator;
 
@@ -68,14 +69,18 @@ class IklanController extends Controller {
 	public function index()
 	{
 		$user = Auth::user();
+		$user_count = User::where('role','partner')->count();
 		$iklans = Iklan::orderBy('id', 'desc')->paginate(5);
+		$iklans_count = Iklan::count();
+		$retention = DB::table('iklan')->sum('retention');
+		$open = DB::table('iklan')->sum('open');
 		foreach ($iklans as $model){
 			if($model->status==1)
 				$model->status="Active";
 			else
 				$model->status="Unactive";
 		}
-		return view('iklans.index', compact('iklans'));
+		return view('iklans.index', compact('iklans','open','iklans_count','user_count','retention'));
 	}
 
 	/**

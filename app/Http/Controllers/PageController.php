@@ -30,8 +30,8 @@ class PageController extends Controller {
 	public function userdata()
 	{
 		$user = Auth::user();
-		if($user->role=='admin'){
-			$master_datas = User::orderBy('id', 'desc')->paginate(10);
+		if($user->role=='admin' || Auth::user()->role=='iklan'){
+			$master_datas = User::Where('role','partner')->orderBy('id', 'desc')->paginate(10);
 		}else{
 			$master_datas = User::orderBy('id', 'desc')->Where('email',$user->email)->paginate(10);			
 		}
