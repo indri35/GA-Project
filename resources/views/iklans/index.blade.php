@@ -1,15 +1,74 @@
 @include('layouts.header')
   <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
 <section class="content-header">
-    <div class="page-header clearfix">
-        <h1>
-            <i class="glyphicon glyphicon-align-justify"></i> Advertisement
-            <a class="btn btn-success pull-right" href="{{ route('iklans.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
-        </h1>
-
-    </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+              <h3 class="box-title">Dashboard</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body">
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                    <h3>2</h3> 
+                    <p>User</p>
+                    </div>
+                    <div class="icon">
+                    <i class="ion ion-ios-people"></i>
+                    </div>
+                </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-green">
+                    <div class="inner">
+                    <h3>2</h3> 
+                    <p>Install</p>
+                    </div>
+                    <div class="icon">
+                    <i class="ion ion-eye"></i>
+                    </div>
+                </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                    <h3>6</h3> 
+                    <p>Retention</p>
+                    </div>
+                    <div class="icon">
+                    <i class="fa ion-eye"></i>
+                    </div>
+                </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-red">
+                    <div class="inner">
+                    <h3>6</h3> 
+                    <p>Uinstall</p>
+                    </div>
+                    <div class="icon">
+                    <i class="fa ion-eye"></i>
+                    </div>
+                </div>
+                </div>
+                <!-- ./col -->
+            </div>
+                  </div>
+            <!-- /.box-body-->
+          </div>
 </section>
 <section class="content">
     @include('error')
@@ -18,6 +77,16 @@
     @elseif(Session::has('message2'))
         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message2') }}</p>
     @endif
+        <div class="box box-primary">
+    <div class="box-header with-border">
+        <i class="fa fa-bar-chart-o"></i>
+        <h3 class="box-title">Iklan</h3>
+        <div class="box-tools pull-right">
+        <a class="btn btn-success" href="{{ route('aplikasis.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+        </div>
+    </div>
+    <div class="box-body">
+    
     <div class="row">
         <div class="col-md-12">
             @if($iklans->count())
@@ -35,7 +104,6 @@
                         <th class="text-right">OPTIONS</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach($iklans as $master_datum)
                             <tr>
@@ -64,10 +132,11 @@
             @else
                 <h3 class="text-center alert alert-info">Empty!</h3>
             @endif
-
         </div>
     </div>
-
+    </div>
+    </div>
+     </div>
     </section>
     <!-- /.content -->
   </div>
@@ -79,4 +148,3 @@
 </script>
 </body>
 </html>
-
