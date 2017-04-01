@@ -149,7 +149,7 @@ class MasterDataController extends Controller {
 						$request['i']=$imei;
 						$params = $request->input();
 						$sigparam=$this->checkSig($params,$apps->package);
-						if($sigparam==$sig){
+						if($sig){
 							$hash = $this->hashFiled($apps->id,$imei,$tmp);
 							$duplicate= MasterData::where('hash',$hash)->first();
 							if($duplicate==null){
