@@ -18,15 +18,15 @@ class IklanController extends Controller {
 	protected $url;
 	
 	public function __construct(UrlGenerator $url)
-						{
+							{
 		$this->url = $url;
 	}
 	
 	
 	public function getiklan(Request $request, $start_day=null)
-					{
+						{
 		//2		002-12-12
-								$time = strtotime($start_day);
+										$time = strtotime($start_day);
 		
 		$start_day = date('Y-m-d',$time);
 		$token = $request->header('Api-key');
@@ -68,13 +68,14 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Display a listing of the resource.
-					 *
-					 * @return Response
-					 */
-					public function index()
-					{
+						 *
+						 * @return Response
+						 */
+						public function index()
+						{
 		$user = Auth::user();
 		$user_count = User::where('role','partner')->count();
 		$iklans = Iklan::orderBy('id', 'desc')->paginate(5);
@@ -83,9 +84,9 @@ class IklanController extends Controller {
 		$open = DB::table('iklan')->sum('open');
 		foreach ($iklans as $model){
 			if($model->status==1)
-																$model->status="Active";
+																			$model->status="Active";
 			else
-																$model->status="Unactive";
+																			$model->status="Unactive";
 		}
 		return view('iklans.index', compact('iklans','open','iklans_count','user_count','retention'));
 	}
@@ -94,13 +95,14 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Show the form for creating a new resource.
-					 *
-					 * @return Response
-					 */
-					public function create()
-					{
+						 *
+						 * @return Response
+						 */
+						public function create()
+						{
 		$user = Auth::user();
 		return view('iklans.create',compact('user'));
 	}
@@ -126,16 +128,15 @@ class IklanController extends Controller {
 			}
 			else{
 				$data->message="parameter not valid";
-				$data->status=true;
+				$data->status=false;
 				return compact('data');
 			}
 		}
 		else{
-			$data->status=true;
+			$data->status=false;
 			$data->message="token invalid";
 			return compact('data');
-		}
-		
+		}	
 	}
 	
 	public function postOpen(Request $request){
@@ -158,12 +159,12 @@ class IklanController extends Controller {
 			}
 			else{
 				$data->message="parameter not valid";
-				$data->status=true;
+				$data->status=false;
 				return compact('data');
 			}
 		}
 		else{
-			$data->status=true;
+			$data->status=false;
 			$data->message="token invalid";
 			return compact('data');
 		}
@@ -171,25 +172,26 @@ class IklanController extends Controller {
 	}
 	
 	
+	
 	/**
 	* Store a newly created resource in storage.
-					 *
-					 * @param Request $request
-					 * @return Response
-					 */
-					public function store(Request $request)
-					{
+						 *
+						 * @param Request $request
+						 * @return Response
+						 */
+						public function store(Request $request)
+						{
 		
 		$this->validate($request, [
-								            'name' => 'required',
-								            'url' => 'required',
-								            'description' => 'required',
-								            'hour_start' => 'required',
-								            'hour_end' => 'required',
-								            'day_start' => 'required',
-								            'day_end' => 'required',
-											'picture' => 'required|mimes:jpeg,bmp,jpg,png|max:5000}'
-								        ]);
+										            'name' => 'required',
+										            'url' => 'required',
+										            'description' => 'required',
+										            'hour_start' => 'required',
+										            'hour_end' => 'required',
+										            'day_start' => 'required',
+										            'day_end' => 'required',
+													'picture' => 'required|mimes:jpeg,bmp,jpg,png|max:5000}'
+										        ]);
 		
 		$user = Auth::user();
 		$Iklan = new Iklan();
@@ -222,14 +224,15 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Display the specified resource.
-					 *
-					 * @param  int  $id
-					 * @return Response
-					 */
-					public function show($id)
-					{
+						 *
+						 * @param  int  $id
+						 * @return Response
+						 */
+						public function show($id)
+						{
 		$iklan = Iklan::findOrFail($id);
 		
 		return view('iklans.show', compact('iklan'));
@@ -239,14 +242,15 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Show the form for editing the specified resource.
-					 *
-					 * @param  int  $id
-					 * @return Response
-					 */
-					public function edit($id)
-					{
+						 *
+						 * @param  int  $id
+						 * @return Response
+						 */
+						public function edit($id)
+						{
 		$user = Auth::user();
 		$iklan = Iklan::findOrFail($id);
 		return view('iklans.edit', compact('iklan','user'));
@@ -256,25 +260,26 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Update the specified resource in storage.
-					 *
-					 * @param  int  $id
-					 * @param Request $request
-					 * @return Response
-					 */
-					public function update(Request $request, $id)
-					{
+						 *
+						 * @param  int  $id
+						 * @param Request $request
+						 * @return Response
+						 */
+						public function update(Request $request, $id)
+						{
 		
 		$this->validate($request, [
-								            'name' => 'required',
-								            'url' => 'required',
-								            'description' => 'required',
-								            'hour_start' => 'required',
-								            'hour_end' => 'required',
-								            'day_start' => 'required',
-								            'day_end' => 'required',
-											'picture' => 'mimes:jpeg,bmp,jpg,png||max:5000}'
+										            'name' => 'required',
+										            'url' => 'required',
+										            'description' => 'required',
+										            'hour_start' => 'required',
+										            'hour_end' => 'required',
+										            'day_start' => 'required',
+										            'day_end' => 'required',
+													'picture' => 'mimes:jpeg,bmp,jpg,png||max:5000}'
 		
 		]);
 		$user = Auth::user();
@@ -307,14 +312,15 @@ class IklanController extends Controller {
 	
 	
 	
+	
 	/**
 	* Remove the specified resource from storage.
-					 *
-					 * @param  int  $id
-					 * @return Response
-					 */
-					public function destroy($id)
-					{
+						 *
+						 * @param  int  $id
+						 * @return Response
+						 */
+						public function destroy($id)
+						{
 		$Iklan = Iklan::findOrFail($id);
 		$Iklan->delete();
 		
