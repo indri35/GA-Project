@@ -139,7 +139,7 @@ class IklanController extends Controller {
 		}	
 	}
 	
-	public function postOpen(Request $request){
+	public function postopen(Request $request){
 		$token = $request->header('Api-key');
 		$sig = $request->header('Sig');
 		$apps = Aplikasi::Where('token',$token)->first();
