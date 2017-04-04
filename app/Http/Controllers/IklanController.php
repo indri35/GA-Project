@@ -160,13 +160,13 @@ class IklanController extends Controller {
 			else{
 				$data->message="parameter not valid";
 				$data->status=false;
-				return compact('data');
+				return compact('request');
 			}
 		}
 		else{
 			$data->status=false;
 			$data->message="token invalid";
-			return compact('data');
+			return compact('request');
 		}
 		
 	}
