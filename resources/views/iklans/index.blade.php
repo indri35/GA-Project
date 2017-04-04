@@ -82,7 +82,7 @@
         <i class="fa fa-bar-chart-o"></i>
         <h3 class="box-title">Advertisement</h3>
         <div class="box-tools pull-right">
-        <a class="btn btn-success" href="{{ route('aplikasis.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
+        <a class="btn btn-success" href="{{ route('iklans.create') }}"><i class="glyphicon glyphicon-plus"></i> Create</a>
         </div>
     </div>
     <div class="box-body">
