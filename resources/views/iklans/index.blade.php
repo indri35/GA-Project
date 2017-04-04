@@ -44,7 +44,7 @@
                 <div class="small-box bg-yellow">
                     <div class="inner">
                     <h3>{{$retention}}</h3> 
-                    <p>Retention</p>
+                    <p>Impression</p>
                     </div>
                     <div class="icon">
                     <i class="fa ion-eye"></i>
