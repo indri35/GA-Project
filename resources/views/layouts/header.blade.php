@@ -165,6 +165,13 @@
           </a>
         </li>
           @endif
+        @if (Auth::user()->role =='iklan') 
+        <li class="treeview">
+          <a href="{{ url('/open-data') }}">
+            <i class="fa fa-table"></i> <span>Data Open Adds</span>
+          </a>
+        </li>
+          @endif
         @if (Auth::user()->role=='admin' || Auth::user()->role=='iklan')
         <li class="treeview">
           <a href="{{ url('/user-data') }}">

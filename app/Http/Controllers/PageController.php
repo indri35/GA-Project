@@ -32,12 +32,14 @@ class PageController extends Controller {
 		$datas = DB::table('retention')
 		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
 				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,retention.created_at, count(id_iklan) as count'))
+                ->where('retention.name','retention')
                 ->groupBy('id_iklan')
                 ->groupBy(DB::raw('day(retention.created_at)'))
                 ->paginate(5);
 		$datas_month = DB::table('retention')
 		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
 				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,monthname(retention.created_at) as created_at, count(id_iklan) as count'))
+				->where('retention.name','retention')
                 ->groupBy('id_iklan')
                 ->groupBy(DB::raw('month(retention.created_at)'))
                 ->paginate(5);
@@ -45,6 +47,35 @@ class PageController extends Controller {
 		$datas_year = DB::table('retention')
 		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
 				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,year(retention.created_at) as created_at, count(id_iklan) as count'))
+				->where('retention.name','retention')
+                ->groupBy('id_iklan')
+                ->groupBy(DB::raw('year(retention.created_at)'))
+                ->paginate(5);
+
+		return view('page.retention-data', compact('datas','datas_month','datas_year'));
+	}
+
+		public function opendata()
+	{
+		$datas = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,retention.created_at, count(id_iklan) as count'))
+                ->where('retention.name','open')
+                ->groupBy('id_iklan')
+                ->groupBy(DB::raw('day(retention.created_at)'))
+                ->paginate(5);
+		$datas_month = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,monthname(retention.created_at) as created_at, count(id_iklan) as count'))
+				->where('retention.name','open')
+                ->groupBy('id_iklan')
+                ->groupBy(DB::raw('month(retention.created_at)'))
+                ->paginate(5);
+
+		$datas_year = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,year(retention.created_at) as created_at, count(id_iklan) as count'))
+				->where('retention.name','open')
                 ->groupBy('id_iklan')
                 ->groupBy(DB::raw('year(retention.created_at)'))
                 ->paginate(5);

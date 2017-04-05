@@ -128,6 +128,7 @@ class IklanController extends Controller {
 				$retention = new Retention();
 				$retention->id_iklan = $iklan->id;
 				$retention->id_user = $apps->user;
+				$retention->name = "retention";
 				$ip = $request->ip();
 				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
 								
@@ -184,6 +185,7 @@ class IklanController extends Controller {
 
 				$retention = new Retention();
 				$retention->id_iklan = $iklan->id;
+				$retention->name = "open";
 				$retention->id_user = $apps->user;
 				$ip = $request->ip();
 				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));								
