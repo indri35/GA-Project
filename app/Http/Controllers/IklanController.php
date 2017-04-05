@@ -114,7 +114,10 @@ class IklanController extends Controller {
 		$sig = $request->header('Sig');
 		$apps = Aplikasi::Where('token',$token)->first();
 		$data = new Status();
-		
+		$tr = new TranslateClient();
+		$tr->setSource('en');
+		$tr->setTarget('id');
+
 		if($apps){
 			if (isset($request['id'])){
 				$id = $request->input("id");
@@ -167,7 +170,10 @@ class IklanController extends Controller {
 		$sig = $request->header('Sig');
 		$apps = Aplikasi::Where('token',$token)->first();
 		$data = new Status();
-		
+		$tr = new TranslateClient();
+		$tr->setSource('en');
+		$tr->setTarget('id');
+
 		if($apps){
 			if (isset($request['id'])){
 				$id = $request->input("id");
