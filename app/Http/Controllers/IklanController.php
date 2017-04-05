@@ -137,7 +137,6 @@ class IklanController extends Controller {
 						$reg_indo="Jakarta Raya";
 					$retention->state = $reg_indo;
 					$retention->city = $detail->city;
-					$retention->operator = $detail->network;
 				}
 				else{
 					$retention->state = "Jawa Barat";
@@ -150,7 +149,7 @@ class IklanController extends Controller {
 				$data->name=$iklan->name;
 				$data->retention=$iklan->retention;
 				$data->message="success";
-				return compact('data');
+				return compact('data','detail');
 			}
 			else{
 				$data->message="parameter not valid";
