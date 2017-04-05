@@ -30,11 +30,26 @@ class PageController extends Controller {
 		public function retentiondata()
 	{
 		$datas = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,retention.created_at, count(id_iklan) as count'))
                 ->groupBy('id_iklan')
-                ->paginate(10);
-				
-		return view('page.retention-data', compact('datas'));
-		//return compact('datas');
+                ->groupBy(DB::raw('day(retention.created_at)'))
+                ->paginate(5);
+		$datas_month = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,monthname(retention.created_at) as created_at, count(id_iklan) as count'))
+                ->groupBy('id_iklan')
+                ->groupBy(DB::raw('month(retention.created_at)'))
+                ->paginate(5);
+
+		$datas_year = DB::table('retention')
+		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,year(retention.created_at) as created_at, count(id_iklan) as count'))
+                ->groupBy('id_iklan')
+                ->groupBy(DB::raw('year(retention.created_at)'))
+                ->paginate(5);
+
+		return view('page.retention-data', compact('datas','datas_month','datas_year'));
 	}
 
 
