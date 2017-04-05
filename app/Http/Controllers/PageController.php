@@ -29,9 +29,12 @@ class PageController extends Controller {
 	}
 		public function retentiondata()
 	{
-		$user = Auth::user();
-		$datas = Retention::orderBy('id', 'desc')->paginate(10);
+		$datas = DB::table('retention')
+                ->groupBy('id_iklan')
+                ->paginate(10);
+				
 		return view('page.retention-data', compact('datas'));
+		//return compact('datas');
 	}
 
 
