@@ -74,7 +74,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Iklan</th>
-                    <th>Date</th>
+                    <th>Month</th>
                     <th>User</th>
                     <th>Count</th>
                   </tr>
@@ -125,7 +125,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Iklan</th>
-                    <th>Date</th>
+                    <th>Year</th>
                     <th>User</th>
                     <th>Count</th>
                   </tr>
