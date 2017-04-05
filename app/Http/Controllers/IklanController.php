@@ -186,8 +186,7 @@ class IklanController extends Controller {
 				$retention->id_iklan = $iklan->id;
 				$retention->id_user = $apps->user;
 				$ip = $request->ip();
-				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
-								
+				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));								
 				if(isset($detail->country)){
 					$reg_indo=$tr->translate($detail->region);
 					if($reg_indo=="Jakarta")
