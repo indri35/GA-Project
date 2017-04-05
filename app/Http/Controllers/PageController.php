@@ -80,7 +80,7 @@ class PageController extends Controller {
                 ->groupBy(DB::raw('year(retention.created_at)'))
                 ->paginate(5);
 
-		return view('page.retention-data', compact('datas','datas_month','datas_year'));
+		return view('page.open-data', compact('datas','datas_month','datas_year'));
 	}
 
 
