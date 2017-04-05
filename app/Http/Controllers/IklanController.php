@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Iklan;
+use App\Retention;
 use App\MasterData;
 use App\User;
 use App\Status;
@@ -120,6 +121,28 @@ class IklanController extends Controller {
 				$iklan = Iklan::Where('id',$id)->first();
 				$iklan->retention += 1;
 				$iklan->save();
+
+				$retention = new Retention();
+				$retention->id_iklan = $iklan->id;
+				$retention->id_user = $apps->user;
+				$ip = $request->ip();
+				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+								
+				if(isset($detail->country)){
+					$reg_indo=$tr->translate($detail->region);
+					if($reg_indo=="Jakarta")
+						$reg_indo="Jakarta Raya";
+					$retention->state = $reg_indo;
+					$retention->city = $detail->city;
+					$retention->operator = $detail->network;
+				}
+				else{
+					$retention->state = "Jawa Barat";
+					$retention->city = "Bogor";
+					$retention->operator = "IPB";
+				}
+				$retention->save();
+				
 				$data->status=true;
 				$data->name=$iklan->name;
 				$data->retention=$iklan->retention;
@@ -148,9 +171,32 @@ class IklanController extends Controller {
 		if($apps){
 			if (isset($request['id'])){
 				$id = $request->input("id");
+				
 				$iklan = Iklan::Where('id',$id)->first();
 				$iklan->open += 1;
 				$iklan->save();
+
+				$retention = new Retention();
+				$retention->id_iklan = $iklan->id;
+				$retention->id_user = $apps->user;
+				$ip = $request->ip();
+				$detail = json_decode(file_get_contents("http://ipinfo.io/{$ip}"));
+								
+				if(isset($detail->country)){
+					$reg_indo=$tr->translate($detail->region);
+					if($reg_indo=="Jakarta")
+						$reg_indo="Jakarta Raya";
+					$retention->state = $reg_indo;
+					$retention->city = $detail->city;
+					$retention->operator = $detail->network;
+				}
+				else{
+					$retention->state = "Jawa Barat";
+					$retention->city = "Bogor";
+					$retention->operator = "IPB";
+				}
+				$retention->save();
+				
 				$data->status=true;
 				$data->name=$iklan->name;
 				$data->open=$iklan->open;
