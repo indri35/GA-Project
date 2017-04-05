@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\MasterData;
 use App\User;
+use App\Retention;
 use App\Aplikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,13 @@ class PageController extends Controller {
 		}
 		return view('page.master-data', compact('master_datas'));
 	}
+		public function retentiondata()
+	{
+		$user = Auth::user();
+		$datas = Retention::orderBy('id', 'desc')->paginate(10);
+		return view('page.retention-data', compact('datas'));
+	}
+
 
 	public function userdata()
 	{

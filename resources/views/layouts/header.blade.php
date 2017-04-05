@@ -158,6 +158,13 @@
           </a>
         </li>
         @endif
+        @if (Auth::user()->role =='iklan') 
+        <li class="treeview">
+          <a href="{{ url('/retention-data') }}">
+            <i class="fa fa-table"></i> <span>Data Retention</span>
+          </a>
+        </li>
+          @endif
         @if (Auth::user()->role=='admin' || Auth::user()->role=='iklan')
         <li class="treeview">
           <a href="{{ url('/user-data') }}">
