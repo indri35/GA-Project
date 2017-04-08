@@ -41,11 +41,15 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installday =  DB::table('view_install_per_day_admin')->get();
+			$installday =  DB::table('view_install_per_day_admin')
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$installday =  DB::table('view_install_per_day')->Where('user',$user->email)->get();
-		}
+			$installday =  DB::table('view_install_per_day')->Where('user',$user->email)							
+			->groupBy(DB::raw('day(day)'))
+			->get();
+			}
 		return $installday;
 	}
 	public function getDataInstallMonth()
@@ -76,10 +80,14 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$clickday =  DB::table('view_by_click_per_day')->get();
+			$clickday =  DB::table('view_by_click_per_day')
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$clickday =  DB::table('view_by_click_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+			$clickday =  DB::table('view_by_click_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		return $clickday;
 	}
@@ -111,10 +119,14 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$viewday =  DB::table('view_by_view_page_perday')->get();
+			$viewday =  DB::table('view_by_view_page_perday')
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$viewday =  DB::table('view_by_view_page_perday_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+			$viewday =  DB::table('view_by_view_page_perday_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		return $viewday;
 	}
@@ -146,10 +158,14 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$activityday =  DB::table('view_activity_by_type_device_per_day')->get();
+			$activityday =  DB::table('view_activity_by_type_device_per_day')
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$activityday =  DB::table('view_activity_by_type_device_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+			$activityday =  DB::table('view_activity_by_type_device_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)
+							->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		return $activityday;
 	}
@@ -258,11 +274,15 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$connectedday =  DB::table('count_connectedby_day')->get();
+			$connectedday =  DB::table('count_connectedby_day')
+										->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$connectedday =  DB::table('count_connectedby_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
-		}
+			$connectedday =  DB::table('count_connectedby_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)							
+			->groupBy(DB::raw('day(day)'))
+			->get();
+	}
 		return $connectedday;
 	}
 	public function getDataConnectedMonth()
@@ -327,10 +347,14 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$operatorday =  DB::table('operator_per_day')->get();
+			$operatorday =  DB::table('operator_per_day')
+										->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		else{
-			$operatorday =  DB::table('operator_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+			$operatorday =  DB::table('operator_per_day_user')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)
+										->groupBy(DB::raw('day(day)'))
+							->get();
 		}
 		return $operatorday;
 	}
