@@ -137,7 +137,7 @@ class PageController extends Controller {
 			$master_datas = DB::table('master_data')
 				->select(DB::raw('created_at, click, id_aplikasi, count(click) as count'))
 				->groupBy('click')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}else{
 			$master_datas = DB::table('master_data')
@@ -145,7 +145,7 @@ class PageController extends Controller {
 				->where('user', $user->email)
 				->where('id_aplikasi',$user->active_app)
 				->groupBy('click')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 
 			//$master_datas = MasterData::orderBy('id', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);			
@@ -205,7 +205,7 @@ class PageController extends Controller {
 			$master_datas = DB::table('master_data')
 				->select(DB::raw('created_at, view, id_aplikasi, count(view) as count'))
 				->groupBy('view')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}else{
 			$master_datas = DB::table('master_data')
@@ -213,7 +213,7 @@ class PageController extends Controller {
 				->where('user', $user->email)
 				->where('id_aplikasi',$user->active_app)
 				->groupBy('view')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}
 		return view('page.view.view-day',compact('master_datas'));
@@ -273,7 +273,7 @@ class PageController extends Controller {
 			$master_datas = DB::table('master_data')
 				->select(DB::raw('created_at, connected_by,  id_aplikasi,  count(connected_by) as count'))
 				->groupBy('connected_by')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}else{
 			$master_datas = DB::table('master_data')
@@ -281,7 +281,7 @@ class PageController extends Controller {
 				->where('user', $user->email)
 				->where('id_aplikasi',$user->active_app)
 				->groupBy('connected_by')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}
 		return view('page.connected.connected-day',compact('master_datas'));
@@ -341,7 +341,7 @@ class PageController extends Controller {
 			$master_datas = DB::table('master_data')
 				->select(DB::raw('created_at, operator, id_aplikasi, count(operator) as count'))
 				->groupBy('operator')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}else{
 			$master_datas = DB::table('master_data')
@@ -349,7 +349,7 @@ class PageController extends Controller {
 				->where('user', $user->email)
 				->where('id_aplikasi',$user->active_app)
 				->groupBy('operator')
-				->groupBy(DB::raw('dayt(created_at)'))
+				->groupBy(DB::raw('day(created_at)'))
 				->paginate(10);
 		}
 		return view('page.operator.operator-day', compact('master_datas'));
