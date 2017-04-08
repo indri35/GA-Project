@@ -177,7 +177,7 @@
       var registration_count = [];
       var shopping_count = [];
       var order_count = [];
-      var other_count = [];
+      var main_count = [];
       
       for(var i in data) {
           day.push(data[i].day);
@@ -185,7 +185,7 @@
           registration_count.push(data[i].registration_count);
           shopping_count.push(data[i].shopping_count);
           order_count.push(data[i].order_count);
-          other_count.push(data[i].other_count);
+          main_count.push(data[i].main_count);
       }
 
       if(day.length > 30) {
@@ -194,7 +194,7 @@
           registration_count.shift();
           shopping_count.shift();
           order_count.shift();
-          other_count.shift();
+          main_count.shift();
       }
 
       var barChartDataView = {
@@ -241,14 +241,14 @@
             data: order_count
           },
           {
-            label: "Other",
+            label: "Main Activity",
             fillColor: "#3c8dbc",
             strokeColor: "#3c8dbc",
             pointColor: "#3c8dbc",
             pointStrokeColor: "#3c8dbc",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#3c8dbc",
-            data: other_count
+            data: main_count
           }
         ]
       };

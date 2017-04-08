@@ -26,6 +26,7 @@
       var welcome_count = [];
       var registration_count = [];
       var shopping_count = [];
+      var main_count = [];
       var order_count = [];
       var other_count = [];
       
@@ -34,6 +35,7 @@
           welcome_count.push(data[i].welcome_count);
           registration_count.push(data[i].registration_count);
           shopping_count.push(data[i].shopping_count);
+          main_count.push(data[i].main_count);
           order_count.push(data[i].order_count);
           other_count.push(data[i].other_count);
       }
@@ -41,6 +43,7 @@
       if(day.length > 30) {
           day.shift();
           welcome_count.shift();
+          main_count.shift();
           registration_count.shift();
           shopping_count.shift();
           order_count.shift();
@@ -69,12 +72,23 @@
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#00a65a",
             data: registration_count
+          }
+          ,
+          {
+            label: "Main Activity",
+            fillColor: "#00a65a",
+            strokeColor: "#00a65a",
+            pointColor: "#00a65a",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#00a65a",
+            data: main_count
           },
           {
             label: "Shopping",
-            fillColor: "#f39c12",
-            strokeColor: "#f39c12",
-            pointColor: "#f39c12",
+            fillColor: "#779c12",
+            strokeColor: "#gg9c12",
+            pointColor: "#559c12",
             pointStrokeColor: "#f39c12",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#f39c12",

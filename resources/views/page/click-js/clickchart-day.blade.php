@@ -18,6 +18,7 @@
       var day = [];
       var login_count = [];
       var save_count = [];
+      var start_count = [];
       var close_count = [];
       var delete_count = [];
       var other_count = [];
@@ -26,6 +27,7 @@
           day.push(data[i].day);
           login_count.push(data[i].login_count);
           save_count.push(data[i].save_count);
+          start_count.push(data[i].start_count);
           close_count.push(data[i].close_count);
           delete_count.push(data[i].delete_count);
           other_count.push(data[i].other_count);
@@ -34,6 +36,7 @@
       if(day.length > 30) {
           day.shift();
           login_count.shift();
+          start_count.shift();
           save_count.shift();
           close_count.shift();
           delete_count.shift();
@@ -53,6 +56,16 @@
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#f56954",
             data: login_count
+          },
+          {
+            label: "Start",
+            fillColor: "#gg6954",
+            strokeColor: "#006954",
+            pointColor: "#f50054",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f56954",
+            data: start_count
           },
           {
             label: "Save",

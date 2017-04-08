@@ -19,6 +19,7 @@
       var telkomsel_count = [];
       var indosat_count = [];
       var xl_count = [];
+      var tri_count = [];
       var smartfren_count = [];
       var other_count = [];
       
@@ -26,6 +27,7 @@
           day.push(data[i].day);
           telkomsel_count.push(data[i].telkomsel_count);
           indosat_count.push(data[i].indosat_count);
+          tri_count.push(data[i].tri_count);
           xl_count.push(data[i].xl_count);
           smartfren_count.push(data[i].smartfren_count);
           other_count.push(data[i].other_count);
@@ -36,6 +38,7 @@
           telkomsel_count.shift();
           indosat_count.shift();
           xl_count.shift();
+          tri_count.shift();
           smartfren_count.shift();
           other_count.shift();
       }
@@ -63,6 +66,16 @@
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#00a65a",
             data: indosat_count
+          },
+          {
+            label: "3",
+            fillColor: "#ffa65a",
+            strokeColor: "#ffa65a",
+            pointColor: "#ffa65a",
+            pointStrokeColor: "#c1c7d1",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#00a65a",
+            data: tri_count
           },
           {
             label: "xl",
