@@ -19,17 +19,20 @@
       var samsung_count = [];
       var apple_count = [];
       var other_count = [];
+      var xiaomi_count = [];
       
       for(var i in data) {
           day.push(data[i].day);
           samsung_count.push(data[i].samsung_count);
           apple_count.push(data[i].apple_count);
+          xiaomi_count.push(data[i].xiaomi_count);
           other_count.push(data[i].other_count);
       }
       if(day.length > 31){
           day.shift();
           samsung_count.shift();
           apple_count.shift();
+          xiaomi_count.shift();
           other_count.shift();
       }
 
@@ -55,6 +58,16 @@
             pointHighlightFill: "#fff",
             pointHighlightStroke: "#f39c12",
             data: apple_count
+          },
+          {
+            label: "Xiaomi",
+            fillColor: "#f21c12",
+            strokeColor: "#f39c12",
+            pointColor: "#f39c12",
+            pointStrokeColor: "#f39c12",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "#f39c12",
+            data: xiaomi_count
           },
           {
             label: "Other",
