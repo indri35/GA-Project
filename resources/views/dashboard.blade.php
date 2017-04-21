@@ -22,7 +22,7 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>{{$master_datas}}</h3> 
-              <p>Apps</p>
+              <p>Installed Apps</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-people"></i>

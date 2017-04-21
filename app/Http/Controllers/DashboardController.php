@@ -41,11 +41,21 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installday =  DB::table('view_install_per_day_admin')
-							->get();
-		}
-		else{
-			$installday =  DB::table('view_install_per_day')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+			$installday = DB::table('master_data')
+				->select(DB::raw('date(created_at) as day, imei, id_aplikasi, count(imei) as count_install'))
+				->groupBy('imei')
+				->groupBy(DB::raw('day(created_at)'))
+				->orderBy(DB::raw('day(created_at)'))
+				->get();
+		}else{
+			$installday = DB::table('master_data')
+				->select(DB::raw('date(created_at) as day, imei,  id_aplikasi,  count(imei) as count_install'))
+				->where('user', $user->email)
+				->where('id_aplikasi',$user->active_app)
+				->groupBy('imei')
+				->groupBy(DB::raw('day(created_at)'))
+				->orderBy(DB::raw('day(created_at)'))
+				->get();
 		}
 		return $installday;
 	}
@@ -53,22 +63,36 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installmonth =  DB::table('view_install_month_admin')->get();
-		}
-		else{
-			$installmonth =  DB::table('view_install_per_month')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
-		}
+				$installmonth = DB::table('master_data')
+					->select(DB::raw('MONTHNAME(created_at) as month, imei, id_aplikasi, count(imei) as count_install'))
+					->groupBy(DB::raw("MONTH(created_at)"))
+					->get();
+			}else{
+				$installmonth = DB::table('master_data')
+					->select(DB::raw('MONTHNAME(created_at) as month, imei,  id_aplikasi,  count(imei) as count_install'))
+					->where('user', $user->email)
+					->where('id_aplikasi',$user->active_app)
+					->groupBy(DB::raw("MONTH(created_at)"))
+					->get();
+			}
 		return $installmonth;
 	}
 	public function getDataInstallYear()
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installyear =  DB::table('view_install_year_admin')->get();
-		}
-		else{
-			$installyear =  DB::table('view_install_per_year')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
-		}
+				$installyear = DB::table('master_data')
+					->select(DB::raw('YEAR(created_at) as year, imei, id_aplikasi, count(imei) as count_install'))
+					->groupBy(DB::raw("YEAR(created_at)"))
+					->get();
+			}else{
+				$installyear = DB::table('master_data')
+					->select(DB::raw('YEAR(created_at) as year, imei,  id_aplikasi,  count(imei) as count_install'))
+					->where('user', $user->email)
+					->where('id_aplikasi',$user->active_app)
+					->groupBy(DB::raw("YEAR(created_at)"))
+					->get();
+			}
 		return $installyear;
 	}
 	
@@ -187,11 +211,18 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$master_datas = Aplikasi::count();
+			$master_datas = DB::table('master_data')
+			->select(DB::raw('DISTINCT(imei)'))
+			->count();
+
 			$master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
 		}
 		else{
-			$master_datas = Aplikasi::Where('user',$user->email)->count();
+			$master_datas = DB::table('master_data')
+			->select(DB::raw('DISTINCT(imei)'))
+			->Where('user',$user->email)
+			->Where('id_aplikasi',$user->active_app)
+			->count();
 			$master_dataa = Usercount::orderBy('count_click', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);
 		}
 		
@@ -254,8 +285,12 @@ class DashboardController extends Controller
 		$this->validate($request, [
 		            'app' => 'required'
 		        ]);
+
 		$user = Auth::user();
 		$user->active_app=$request->app;
+		$app = Aplikasi::where('id',$request->app)->first();
+		if($app!=null)
+			$user->active_app_name=$app->name;
 		$user->save();
 		return $this->dashboard();
 	}
@@ -321,11 +356,20 @@ class DashboardController extends Controller
 		
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$install = DB::table('aplikasi')->Where('status',1)->count();
+			$install = DB::table('master_data')
+			->select(DB::raw('distinct(imei)'))
+			->count();
+
 			$uninstall = DB::table('aplikasi')->Where('status',0)->count();
 		}
 		else{
-			$install = DB::table('aplikasi')->Where('user',$user->email)->Where('status',1)->count();
+			$install = DB::table('master_data')
+			->select(DB::raw('distinct(imei)'))
+			->Where('user',$user->email)
+			->Where('id_aplikasi',$user->active_app)
+			->count();
+
+			DB::table('aplikasi')->Where('user',$user->email)->Where('status',1)->count();
 			$uninstall = DB::table('aplikasi')->Where('user',$user->email)->Where('status',0)->count();
 		}
 		return compact('install','uninstall');

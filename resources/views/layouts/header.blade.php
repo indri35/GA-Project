@@ -63,7 +63,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-
+      
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account: style can be found in dropdown.less -->
@@ -78,8 +78,10 @@
                 <img src="{{ asset(Auth::user()->img) }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name}} {{ Auth::user()->role }} (@if(Auth::user()->plan==3) Trial @elseif(Auth::user()->plan==5) Bronze @elseif(Auth::user()->plan==7) Silver @else Gold @endif)                  
-                  <small> ID Aplikasi: {{ Auth::user()->active_app}} </small>
+                  {{ Auth::user()->name}} {{ Auth::user()->role }} (@if(Auth::user()->plan==3) Trial @elseif(Auth::user()->plan==5) Bronze @elseif(Auth::user()->plan==7) Silver @else Gold @endif)
+                  @if (Auth::user()->role!='admin' and Auth::user()->role!='iklan') 
+                    <small> ID Apps {{ Auth::user()->active_app}}  : {{ Auth::user()->active_app_name}} </small>
+                  @endif
                   <small>Member since {{ Auth::user()->created_at }}</small>
                 </p>
               </li>
@@ -113,7 +115,9 @@
         </div>
         <div class="pull-left info">
           <p>{{ Auth::user()->name }}</p>
-          <a href="#"><i class="fa fa-circle text-success"></i>{{ Auth::user()->active_app }}</a>
+          @if (Auth::user()->role!='admin' and Auth::user()->role!='iklan') 
+            <a href="#"><i class="fa fa-circle text-success"></i> Apps ID: {{ Auth::user()->active_app}} - {{ Auth::user()->active_app_name }}</a>
+          @endif
         </div>
       </div>
       <!-- search form -->

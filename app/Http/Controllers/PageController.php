@@ -31,7 +31,7 @@ class PageController extends Controller {
 	{
 		$datas = DB::table('retention')
 		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
-				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,retention.created_at, count(id_iklan) as count'))
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user, date(retention.created_at), count(id_iklan) as count'))
                 ->where('retention.name','retention')
                 ->groupBy('id_iklan')
                 ->groupBy(DB::raw('day(retention.created_at)'))
@@ -59,7 +59,7 @@ class PageController extends Controller {
 	{
 		$datas = DB::table('retention')
 		 		->join('iklan', 'iklan.id', '=', 'retention.id_iklan')
-				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user,retention.created_at, count(id_iklan) as count'))
+				->select(DB::raw('retention.id,iklan.name as id_iklan,id_user, date(retention.created_at), count(id_iklan) as count'))
                 ->where('retention.name','open')
                 ->groupBy('id_iklan')
                 ->groupBy(DB::raw('day(retention.created_at)'))
