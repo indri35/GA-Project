@@ -45,19 +45,18 @@ class DashboardController extends Controller
 							->get();
 		}
 		else{
-			$installday =  DB::table('view_install_per_day')->Where('user',$user->email)							
-			->get();
-			}
+			$installday =  DB::table('view_install_per_day')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
+		}
 		return $installday;
 	}
 	public function getDataInstallMonth()
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installmonth =  DB::table('view_install_per_month_admin')->get();
+			$installmonth =  DB::table('view_install_month_admin')->get();
 		}
 		else{
-			$installmonth =  DB::table('view_install_per_month')->Where('user',$user->email)->get();
+			$installmonth =  DB::table('view_install_per_month')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
 		}
 		return $installmonth;
 	}
@@ -65,10 +64,10 @@ class DashboardController extends Controller
 	    {
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$installyear =  DB::table('view_install_per_year_admin')->get();
+			$installyear =  DB::table('view_install_year_admin')->get();
 		}
 		else{
-			$installyear =  DB::table('view_install_per_year')->Where('user',$user->email)->get();
+			$installyear =  DB::table('view_install_per_year')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->get();
 		}
 		return $installyear;
 	}

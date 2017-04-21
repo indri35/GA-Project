@@ -46,37 +46,32 @@
               <h3 class="box-title">Data Table With Full Features</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-                @if($user->count())
+            @if($master_datas->count())
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
+                    <th>Date</th>
+                    <th>ID Apps</th>
+                    <th>IMEI</th>
+                    <th>Count</th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($user as $user)
+                @foreach($master_datas as $master_datum)
                     <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->user}}</td>
-                        <td>{{$user->created_at}}</td>
-                        <td>{{$user->updated_at}}</td>
-                        </td>
+                        <td>{{ date('M',strtotime($master_datum->created_at))}}</td>
+                        <td>{{ $master_datum->id_aplikasi }}</td>
+                        <td>{{$master_datum->imei}}</td>
+                        <td>{{$master_datum->count}}</td>
                     </tr>
                 @endforeach
                 </tbody>
               </table>
+              {!! $master_datas->render() !!}
             @else
                 <h3 class="text-center alert alert-info">Empty!</h3>
             @endif  
             </div>
-            <!-- /.box-body -->
-          </div>
           <!-- /.box -->
         </div>
       </div>

@@ -99,34 +99,69 @@ class PageController extends Controller {
 	{
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei, id_aplikasi, count(imei) as count'))
+				->groupBy('imei')
+				->groupBy(DB::raw('day(created_at)'))
+				->orderBy(DB::raw('day(created_at)'))
+				->paginate(10);
 		}else{
-			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei,  id_aplikasi,  count(imei) as count'))
+				->where('user', $user->email)
+				->where('id_aplikasi',$user->active_app)
+				->groupBy('imei')
+				->groupBy(DB::raw('day(created_at)'))
+				->orderBy(DB::raw('day(created_at)'))
+				->paginate(10);
 		}
-		return view('page.install.install-day', compact('user'));
+		return view('page.install.install-day', compact('master_datas'));
 	}
 
 	public function installmonth()
 	{
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei, id_aplikasi, count(imei) as count'))
+				->groupBy('imei')
+				->orderBy('created_at')
+				->groupBy(DB::raw("MONTH(created_at)"))
+				->paginate(10);
 		}else{
-			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei,  id_aplikasi,  count(imei) as count'))
+				->where('user', $user->email)
+				->where('id_aplikasi',$user->active_app)
+				->groupBy('imei')
+				->orderBy('created_at')
+ 		        ->groupBy(DB::raw("MONTH(created_at)"))
+				->paginate(10);
 		}
-
-		return view('page.install.install-month', compact('user'));
+		return view('page.install.install-month', compact('master_datas'));
 	}
 
 	public function installyear()
 	{
 		$user = Auth::user();
 		if($user->role=='admin'){
-			$user = Aplikasi::orderBy('id', 'desc')->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei, id_aplikasi, count(imei) as count'))
+				->groupBy('imei')
+				->orderBy('created_at')
+				->groupBy(DB::raw("YEAR(created_at)"))
+				->paginate(10);
 		}else{
-			$user = Aplikasi::orderBy('id', 'desc')->Where('user',$user->email)->paginate(10);
+			$master_datas = DB::table('master_data')
+				->select(DB::raw('created_at, imei,  id_aplikasi,  count(imei) as count'))
+				->where('user', $user->email)
+				->where('id_aplikasi',$user->active_app)
+				->groupBy('imei')
+				->orderBy('created_at')
+ 		        ->groupBy(DB::raw("YEAR(created_at)"))
+				->paginate(10);
 		}
-		return view('page.install.install-year', compact('user'));
+		return view('page.install.install-year', compact('master_datas'));
 	}
 
 	//click page
