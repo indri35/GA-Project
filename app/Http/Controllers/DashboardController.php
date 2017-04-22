@@ -214,7 +214,7 @@ class DashboardController extends Controller
 			$master_datas = DB::table('master_data')
 			->select(DB::raw('DISTINCT(imei)'))
 			->count();
-			$apps = DB::table('Aplikasi')
+			$apps = DB::table('aplikasi')
 			->count();
 
 			$master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
@@ -226,7 +226,7 @@ class DashboardController extends Controller
 			->Where('id_aplikasi',$user->active_app)
 			->count();
 
-			$apps = DB::table('Aplikasi')
+			$apps = DB::table('aplikasi')
 			->Where('user',$user->email)
 			->count();
 			
