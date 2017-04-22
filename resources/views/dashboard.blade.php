@@ -41,7 +41,7 @@
               <h3>{{$count->count_view}}</h3> 
               @endforeach
               {!! $master_dataa->render() !!}
-              <p>Count View Page</p>
+              <p>View Pages</p>
             </div>
             <div class="icon">
               <i class="ion ion-eye"></i>
@@ -60,7 +60,7 @@
               <h3>{{$count->count_click}}</h3> 
               @endforeach
               {!! $master_dataa->render() !!}
-              <p>Count Click</p>
+              <p>Clicks</p>
             </div>
             <div class="icon">
               <i class="fa fa-mouse-pointer"></i>
