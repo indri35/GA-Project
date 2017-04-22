@@ -214,6 +214,8 @@ class DashboardController extends Controller
 			$master_datas = DB::table('master_data')
 			->select(DB::raw('DISTINCT(imei)'))
 			->count();
+			$apps = DB::table('Aplikasi')
+			->count();
 
 			$master_dataa = Count::orderBy('count_click', 'desc')->paginate(10);
 		}
@@ -223,10 +225,15 @@ class DashboardController extends Controller
 			->Where('user',$user->email)
 			->Where('id_aplikasi',$user->active_app)
 			->count();
+
+			$apps = DB::table('Aplikasi')
+			->Where('user',$user->email)
+			->count();
+			
 			$master_dataa = Usercount::orderBy('count_click', 'desc')->Where('user',$user->email)->Where('id_aplikasi',$user->active_app)->paginate(10);
 		}
 		
-		return view('dashboard', compact('master_datas', 'master_dataa','user'));
+		return view('dashboard', compact('master_datas', 'master_dataa','user','apps'));
 		
 	}
 	

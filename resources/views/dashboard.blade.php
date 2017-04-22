@@ -22,7 +22,7 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>{{$master_datas}}</h3> 
-              <p>Installed Apps</p>
+              <p>Installed Users</p>
             </div>
             <div class="icon">
               <i class="ion ion-ios-people"></i>
@@ -75,11 +75,8 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              @foreach($master_dataa as $count)
-              <h3>{{$count->count_activity}}</h3> 
-              @endforeach
-              {!! $master_dataa->render() !!}
-              <p>Count Activity</p>
+              <h3>{{$apps}}</h3> 
+              <p>Regsitered Apps</p>
             </div>
             <div class="icon">
               <i class="fa fa-table"></i>
